@@ -1,0 +1,74 @@
+---
+title: "My Fantasy Football Team"
+author: "Finley Jacobson"
+date: "9/11/2025"
+categories: [football players, fantasy football]
+image: "fantasy_football_mobile.jpg"
+---
+Note: The post image was obtained from [here.](https://www.flickr.com/photos/188197504@N02/49833861101)
+
+# My Players! {#sec-players}
+
+```{r}
+#| echo: false
+# create a data frame
+df <- data.frame(
+"Player_Name" = c("Lamar Jackson", "Nick Chubb", "Josh Jacobs", "A.J. Brown", "Xavier Worthy", "Sam LaPorta", "Travis Etienne", "Caleb Williams", "Breece Hall", "Dylan Sampson", "Javonate Williams", "Ricky Pearsall", "Kyle Pitts", "Jason Myers"),
+Team = c("Baltimore Ravens", "Houston Texans", "Green Bay Packers", "Philadelphia Eagles", "Kansas City Chiefs", "Detroit Lions", "Jacksonville Jaguars", "Chicago Bears", "New York Jets", "Cleveland Browns", "Dallas Cowboys", "San Francisco 49ers", "Atlanta Falcons", "Seattle Seahawks"),
+Position = c("QB", "RB", "RB", "WR", "WR", "TE", "R/W/T", "BN-QB", "BN-RB", "BN-RB", "BN-RB", "BN-WR", "BN-TE", "K"),
+"Jersey_Number" = c("#8", "#21", "#8", "#11", "#1", "#87", "#1", "#18", "#20", "#22", "#33", "#1", "#8", "#5")
+)
+```
+
+```{r}
+#| echo: false
+knitr::kable(df, caption = "My Fantasy Football Team")
+```
+
+# My Justifications! {#sec-justifications}
+
+Lamar Jackson: It comes as no surprise to say with confidence that Lamar Jackson is one of the greatest QBs in the league. With an outstanding performance in 2024, I have no doubt that he will do similarly well, if not better, than last year. His quick decision-making and incredible speed will grant me a large portion of my points each week. 
+
+Nick Chubb: With a history of being challenging to take down and able to execute clever cutbacks, he will serve as an excellent running back.
+
+Josh Jacobs: I expect him to earn me a decent amount of points based on his history of rushing over a thousand yards. Additionally, he is also known for gaining running touchdowns. 
+  
+A.J. Brown: Publicly known as a star wide receiver for the Eagles so of course I had to pick him up for my team.
+  
+Xavier Worthy: Currently holds the record for the fastest 40-yard dash, making him an excellent candidate; therefore, it will be challenging for opponents to stop or catch up to him. 
+
+Sam LaPorta: Broke the record in 2023 with the most receptions made by a rookie. Breaking this record at such a young age has got me thinking he's full of energy and great potential!
+  
+Travis Etienne: The starting running back for the Jaguars, I have a good feeling he will earn me a decent amount of points through rushing yards. 
+  
+Caleb Williams: I recall that throughout high school, I would often see him featured on ESPN or in the news, so I decided to take a long shot and pick him up without reviewing his recent performance or statistics.
+  
+Breece Hall: Even though he attended Iowa State instead of Iowa, I will admit that he adapted well to his role as a linebacker on the New York Jets. He will do well as a linebacker for my team. 
+  
+Dylan Sampson: Last year, he was selected as the SEC Offensive Player of the Year, with 1,491 rushing yards. I estimate a similar performance this year. 
+  
+Javonte Williams: Gaining attention from viewers for having a rather outstanding rookie season, I hope he will bring that same attitude and performance level this year.  
+
+Ricky Pearsall: Well-known for his exceptionally high catch rate, I see him playing a crucial role on my team. 
+  
+Kyle Pitts: Possessing incredible speed for his size makes him a key player on my team. 
+  
+Jason Myers: Well-known for his ability to kick long field goals. Additionally, he holds a relatively high rate of kicking in field goals. 
+  
+
+# Team Strengths! {#sec-strengths}
+
+I am confident in my choice of QBs, Lamar Jackson. Throughout the season, he will contribute a considerable number of points each week, which gives me confidence that he will be a key contributor to earning me a substantial portion of points. Unintentionally, I chose players who were all on different teams, which will serve as an advantage for me, especially if one of my players' teams isn't doing exceptionally well that week. 
+
+# Team Weaknesses! {#sec-weaknesses}
+
+For team weaknesses, the first and most obvious weakness is that I have no experience with fantasy football, and I'm still slowly learning what everything means. Therefore, in terms of strategy, I don't really have a plan; I'm more inclined to go with the flow. Additionally, I didn't realize how much more research I needed to do for the draft, so now I need to work with what's left over. 
+
+# Team Plan! {#sec-plan}
+
+My biggest weakness is my lack of experience and knowledge, but nevertheless, I have a plan that will include evaluating each of my players' performance during their games. These evaluations are designed to ensure that my players are performing well in their games. And if needed, I will make necessary changes, which may include moving players to and from my bench or even dropping a player. This plan will vastly increase my chances of winning. 
+
+# My Prediction! {#sec-prediction}
+
+My prediction is that I will place third in the league, and if I'm lucky, I may even place second. As for first place, I doubt I will win the league, which I estimate my chances of winning to be around 5-8%. 
+---
