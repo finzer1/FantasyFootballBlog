@@ -1,8 +1,8 @@
 ---
-title: "How Well Can Past Preformance Predict Future Preformance?"
+title: "How Accurate Can Projected Points Be In Predicting Actual Points Earned In A Game?"
 author: "Finley Jacobson"
 date: "10/09/25"
-categories: [correlation, multiple regression, fantasy football]
+categories: [correlation, confounds, fantasy football]
 image: "download.jpg"
 ---
 Note: The post image was obtained from [here](https://www.publicdomainpictures.net/en/view-image.php?image=310566&picture=gridiron-american-football-womens).
@@ -36,38 +36,35 @@ Link to AI Transcript: not applicable
 
 # Citations {#sec-references}
 
-All Fantasy Points (i.e., Projected and Actual FPTS) Data and Analyses came directly from ESPN:
-
-https://www.espn.com/fantasy/football/story/_/page/FFWeeklyPlayerRank25-46104572/nfl-fantasy-football-rankings-2025-dst-defense
+All Fantasy Points (i.e., Projected and Actual FPTS) Data and Analyses came directly from ESPN:https://www.espn.com/fantasy/football/story/_/page/FFWeeklyPlayerRank25-46104572/nfl-fantasy-football-rankings-2025-dst-defense
 
 # Abstract {#sec-abstract}
 
-**Background:** When choosing players for your fantasy football team, it can be challenging to know what exactly you should be looking at. Do you evaluate a player's age, injury history, team they're on, popularity, or past performance? Typically, one of the most widely used methods for selecting players is evaluating their past performance. But how accurate can past performance be in predicting future performance?
+**Background:** When choosing players for your Fantasy Football league, it can be challenging to know what exactly you should be looking at. Do you evaluate a player's age, injury history, team they're on, popularity, or past performance? Typically, my most widely used method for selecting players is evaluating the predicted projected points. But how accurate can projected points be in predicting actual points earned in a game?
 
-**Method:** In the present study, I will analyze my own players on my fantasy football team and evaluate how accurate their past performance is in predicting their future performance. 
+**Method:** In the present study, I will analyze players in my Fantasy Football League and evaluate how accurately projected points earned is in predicting actual points earned in a game.
 
+**Results:** The results of the study indicate that there isn't sufficient evidence to support a statistically significant relationship between projected points and actual points earned in a game. 
 
-**Results:** 
+**Discussion:** Although it's important to note that, with a larger sample size, there would be sufficient evidence to support the relationship. It should be noted that there is no single main factor to focus on, but rather multiple factors/variables (i.e., when choosing a player for your Fantasy Football League). 
 
-
-**Discussion:** 
-
-
+**Conclusion** Instead of fixating on only one factor (e.g., projected points) the best strategy is to examine a series of factors.  
 
 # Background {#sec-background}
 
-In fantasy football, there are dozens of factors that can be considered when choosing a player. As this is my first year participating in a fantasy football league (i.e., doing this all by myself), it can be challenging to know exactly what I should be looking at. Do you evaluate a player's age, injury history, team they're on, popularity, or past performance? Out of all these factors, past performance is likely the most popular factor—and it makes sense. But, statistically, how accurate can past performance be in predicting future performance? 
+In Fantasy Football, there are dozens of factors that can be considered when choosing a player. As this is my first year participating in a fantasy football league (i.e., doing this all by myself), it can be overwhelming/challenging to know exactly where to look and what I should be looking at. Do you evaluate a player's age, injury history, team they're on, popularity, or past performance? For this study, I have chosen to evaluate how accurately projected points are in predicting actual points earned in last week's game (Week 5). 
 
-In this study, I will investigate the statistical significance of past performance in predicting future performance. As for my hypothesis, past performance will not be statistically significant in predicting future performance. This hypothesis is justified because the estimated projected points that a player earns are consistently inaccurate for me when compared to the actual points they earn. Additionally, it's essential to note that these projections aren't meant to be completely accurate (i.e., in approximately 90% of all cases, this instance can be observed) due to dozens of factors that come into play. While these projections serve a purpose, people shouldn't rely on them so heavily as the main factor in choosing a player.
+As for my hypothesis, I hypothesized that projected points earned in will not be statistically significant in predicting actual points earned in Week 5. The justification for why I chose this hypothesis is based on one of my primary methods for selecting a player (i.e., projected points). Each week, it seemed I was going to win against my opponent, only to find out I had lost by over 40 points. So I have decided to see exactly how accurate these projections are in predicting actual points earned in a game. Additionally, it's essential to note that these projections aren't meant to be completely accurate (i.e., in approximately 90% of all cases, this instance can be observed) due to dozens of factors that come into play. While these projections serve a purpose, people shouldn't rely on them so heavily as the main factor in choosing a player.
 
 # Method {#sec-method}
 
-Each player has a series of season stat projections so to test this hypothesis, I will incorporate my own players from my fantasy football team (e.g., starting/benched players as well as defense) and evaluate how accurate each player's season stat projections have been so far. 
+Each player has a series of stats, and from these stats, projections are made for each week. In order to test my hypothesis, I will incorporate my own players from my Fantasy Football League (e.g., starting/benched players as well as defense) and evaluate how accurate projected points earned are in predicting actual points earned in Week 5. 
 
 # Data {#sec-data}
 
+To begin, I have created a data frame containing all the data I will use.
+
 ```{r}
-#| echo: false
 # create a data frame
 df <- data.frame(
 "Player_Name" = c("Jaxson Dart", "De'Von Achane", "Rico Dowdle", "Courtland Sutton", "Tre Tucker", "Sam LaPorta", "Nick Chubb", "Lions-Defense", "Spencer Shrader", "Jacory Croskey-Merritt", "Zach Ertz", "Bo Nix", "Darius Slayton", "Jaguars-Defense"),
@@ -78,22 +75,12 @@ df <- data.frame(
 
 ```{r}
 #| echo: false
-knitr::kable(df, caption = "My Fantasy Football Team - Projected vs. Actual Fantasy Points Earned According to ESPN")
+knitr::kable(df, caption = "My Fantasy Football Team - Projected vs. Actual Fantasy Points Earned For Week 5")
 ```
 
-
-## Statistical Analysis {#sec-statisticalAnalysis}
-
-As you can see in the data frame, I have listed each player along with projected vs. actual fantasy points earned. Let's evaluate the correlation of projected to actual fantasy points earned visually:
+As you can see, I have listed each player from my Fantasy Football League along with their projected vs. actual fantasy points for Week 5. Let's evaluate the correlation of projected points to actual points earned visually and statistically:
 
 ```{r}
-#| echo: false
-cor(df$Projected_FPTS, df$Actual_FPTS)
-```
-
-
-```{r}
-#| echo: false
 ggplot2::ggplot(
 data = df,
 aes (Projected_FPTS, Actual_FPTS, label = Player_Name)) +
@@ -120,45 +107,21 @@ theme_classic() +
 theme(axis.title.y = element_text(angle = 0, vjust = 0.5)) # horizontal y-axis title
 ```
 
-
 ```{r}
-#| echo: false
-df %>% 
-  dplyr::select(Projected_FPTS, Actual_FPTS) %>% 
-  dplyr::summarise(across(
-      everything(),
-      .fns = list(
-        n = ~ length(na.omit(.)),
-        missingness = ~ mean(is.na(.)) * 100,
-        M = ~ mean(., na.rm = TRUE),
-        SD = ~ sd(., na.rm = TRUE),
-        min = ~ min(., na.rm = TRUE),
-        max = ~ max(., na.rm = TRUE),
-        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
-        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
-        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
-        IQR = ~ IQR(., na.rm = TRUE),
-        MAD = ~ mad(., na.rm = TRUE),
-        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
-        median = ~ median(., na.rm = TRUE),
-        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
-        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
-        skewness = ~ psych::skew(., na.rm = TRUE),
-        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
-      .names = "{.col}.{.fn}")) %>%
-    tidyr::pivot_longer(
-      cols = everything(),
-      names_to = c("variable","index"),
-      names_sep = "\\.") %>% 
-    tidyr::pivot_wider(
-      names_from = index,
-      values_from = value)
+Player_Name <- c("Jaxson Dart", "De'Von Achane", "Rico Dowdle", "Courtland Sutton", "Tre Tucker", "Sam LaPorta", "Nick Chubb", "Lions-Defense", "Spencer Shrader", "Jacory Croskey-Merritt", "Zach Ertz", "Bo Nix", "Darius Slayton", "Jaguars-Defense")
+
+Projected_FPTS <- c(16.18, 19.63, 14.54, 12.90, 10.47, 10.09, 10.09, 7.18, 8.51, 7.77, 9.18, 16.09, 9.19, 4.92)
+
+Actual_FPTS <- c(15.58, 16.60, 32.40, 17.90, 11.10, 20.20, 12.10, 10.00, 2.00, 27.00, 0.00, 17.88, 4.10, 2.00)
+
+cor.test(Projected_FPTS, Actual_FPTS)
 ```
 
+# Results {#sec-results}
 
+Based on the correlation above, this indicates a moderate relationship between projected vs. actual fantasy points. Therefore, the projected points are somewhat predictive, neither completely incorrect nor 100% correct. Unfortunately, the p-value (p = 0.088) indicates there isn't enough evidence for a statistically significant relationship. Therefore, my hypothesis was proven to be correct. As for significance, the relationship would have been considered statistically significant if I had a larger sample size. 
 
-
-
+Regardless of whether the results are significant, I have taken it upon myself to introduce the potential confounds for each player. These confounds could explain why the actual points didn't match the projected points as closely.
 
 # Potential Confounds {#sec-confounds}
 
@@ -244,26 +207,27 @@ Analysis: Actual score was lower than projection but ended up winning against th
 
 Potential Confound: Tough Defense
 
-
-# Results {#sec-results}
-
-
-
-
 # Discussion {#sec-discussion}
 
+Based on the results of the study, there isn't enough evidence to support a statistically significant relationship between projected points earned vs. actual points earned in Fantasy Football. Although it's important to note that, with a larger sample size, there would be sufficient evidence to support the relationship. A callback to my background on the study, I mentioned how it can be difficult to pinpoint precisely what variables we should be looking at/considering when choosing a player for your Fantasy Football league. It should be noted that there is no single main factor to be looked at primarily, but instead multiple factors/variables. From the potential confounds section, you can see a variety of factors that effectively impacted the player's performance.  
 
+# Strengths and Limitations {#sec-strengthsLimitations}
 
+**Strengths**
 
-## Strengths and Limitations {#sec-strengthsLimitations}
+The results of my study could be statistically significant if a larger sample size were assessed, indicating that, (without looking at the sample size) the data would be statistically significant.  
 
+The implemented visuals help the reader see the differences between projected points and actual points earned in Week 5. 
 
+**Limitations**
 
+The study assessed only two variables (e.g., Projected and Actual Points), thereby decreasing its internal validity. Additionally, more variables would provide us with a more complex/deeper understanding of the relationship.
 
+A smaller sample size inevitably decreases the study's statistical significance, thereby lowering generalizability and external validity.
 
-## Conclusion {#sec-conclusion}
+# Conclusion {#sec-conclusion}
 
-
+In conclusion, the results of the study failed to provide sufficient evidence to support a statistically significant relationship between the predicted and actual points earned in the game. Thus, my hypothesis that there would be no statistically significant relationship between the two was correct. Although if I had added more players to the study, my results could have turned out differently. But perhaps the results aren't statistically significant because a variety of factors come into play, such as age, opponent's defensive strength, injury, etc. This suggests that there is no single factor to evaluate, but rather that examining a range of factors is the best approach. Therefore, in terms of strategies, the best approach is to avoid fixating on a single factor and instead evaluate several factors.
 
 # Session Info {#sec-sessionInfo}
 
