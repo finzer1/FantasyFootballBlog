@@ -9,7 +9,7 @@
 <meta name="author" content="Finley Jacobson">
 <meta name="dcterms.date" content="2025-10-09">
 
-<title>How Well Can Past Preformance Predict Future Preformance? – My Blog</title>
+<title>How Accurate Can Projected Points Be In Predicting Actual Points Earned In A Game? – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,10 +156,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">How Well Can Past Preformance Predict Future Preformance?</h1>
+      <h1 class="title">How Accurate Can Projected Points Be In Predicting Actual Points Earned In A Game?</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">correlation</div>
-                <div class="quarto-category">multiple regression</div>
+                <div class="quarto-category">confounds</div>
                 <div class="quarto-category">fantasy football</div>
               </div>
                   </div>
@@ -203,18 +203,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">4</span> Abstract</a></li>
   <li><a href="#sec-background" id="toc-sec-background" class="nav-link" data-scroll-target="#sec-background"><span class="header-section-number">5</span> Background</a></li>
   <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">6</span> Method</a></li>
-  <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">7</span> Data</a>
-  <ul class="collapse">
-  <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">7.1</span> Statistical Analysis</a></li>
-  </ul></li>
-  <li><a href="#sec-confounds" id="toc-sec-confounds" class="nav-link" data-scroll-target="#sec-confounds"><span class="header-section-number">8</span> Potential Confounds</a></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">9</span> Results</a></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">10</span> Discussion</a>
-  <ul class="collapse">
-  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">10.1</span> Strengths and Limitations</a></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">10.2</span> Conclusion</a></li>
-  </ul></li>
-  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">11</span> Session Info</a></li>
+  <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">7</span> Data</a></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">8</span> Results</a></li>
+  <li><a href="#sec-confounds" id="toc-sec-confounds" class="nav-link" data-scroll-target="#sec-confounds"><span class="header-section-number">9</span> Potential Confounds</a></li>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">10</span> Discussion</a></li>
+  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">11</span> Strengths and Limitations</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">12</span> Conclusion</a></li>
+  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">13</span> Session Info</a></li>
   </ul>
 </nav>
     </div>
@@ -255,31 +250,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-references" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Citations</h1>
-<p>All Fantasy Points (i.e., Projected and Actual FPTS) Data and Analyses came directly from ESPN:</p>
-<p>https://www.espn.com/fantasy/football/story/_/page/FFWeeklyPlayerRank25-46104572/nfl-fantasy-football-rankings-2025-dst-defense</p>
+<p>All Fantasy Points (i.e., Projected and Actual FPTS) Data and Analyses came directly from ESPN:https://www.espn.com/fantasy/football/story/_/page/FFWeeklyPlayerRank25-46104572/nfl-fantasy-football-rankings-2025-dst-defense</p>
 </section>
 <section id="sec-abstract" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Abstract</h1>
-<p><strong>Background:</strong> When choosing players for your fantasy football team, it can be challenging to know what exactly you should be looking at. Do you evaluate a player’s age, injury history, team they’re on, popularity, or past performance? Typically, one of the most widely used methods for selecting players is evaluating their past performance. But how accurate can past performance be in predicting future performance?</p>
-<p><strong>Method:</strong> In the present study, I will analyze my own players on my fantasy football team and evaluate how accurate their past performance is in predicting their future performance.</p>
-<p><strong>Results:</strong></p>
-<p><strong>Discussion:</strong></p>
+<p><strong>Background:</strong> When choosing players for your Fantasy Football league, it can be challenging to know what exactly you should be looking at. Do you evaluate a player’s age, injury history, team they’re on, popularity, or past performance? Typically, my most widely used method for selecting players is evaluating the predicted projected points. But how accurate can projected points be in predicting actual points earned in a game?</p>
+<p><strong>Method:</strong> In the present study, I will analyze players in my Fantasy Football League and evaluate how accurately projected points earned is in predicting actual points earned in a game.</p>
+<p><strong>Results:</strong> The results of the study indicate that there isn’t sufficient evidence to support a statistically significant relationship between projected points and actual points earned in a game.</p>
+<p><strong>Discussion:</strong> Although it’s important to note that, with a larger sample size, there would be sufficient evidence to support the relationship. It should be noted that there is no single main factor to focus on, but rather multiple factors/variables (i.e., when choosing a player for your Fantasy Football League).</p>
+<p><strong>Conclusion</strong> Instead of fixating on only one factor (e.g., projected points) the best strategy is to examine a series of factors.</p>
 </section>
 <section id="sec-background" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Background</h1>
-<p>In fantasy football, there are dozens of factors that can be considered when choosing a player. As this is my first year participating in a fantasy football league (i.e., doing this all by myself), it can be challenging to know exactly what I should be looking at. Do you evaluate a player’s age, injury history, team they’re on, popularity, or past performance? Out of all these factors, past performance is likely the most popular factor—and it makes sense. But, statistically, how accurate can past performance be in predicting future performance?</p>
-<p>In this study, I will investigate the statistical significance of past performance in predicting future performance. As for my hypothesis, past performance will not be statistically significant in predicting future performance. This hypothesis is justified because the estimated projected points that a player earns are consistently inaccurate for me when compared to the actual points they earn. Additionally, it’s essential to note that these projections aren’t meant to be completely accurate (i.e., in approximately 90% of all cases, this instance can be observed) due to dozens of factors that come into play. While these projections serve a purpose, people shouldn’t rely on them so heavily as the main factor in choosing a player.</p>
+<p>In Fantasy Football, there are dozens of factors that can be considered when choosing a player. As this is my first year participating in a fantasy football league (i.e., doing this all by myself), it can be overwhelming/challenging to know exactly where to look and what I should be looking at. Do you evaluate a player’s age, injury history, team they’re on, popularity, or past performance? For this study, I have chosen to evaluate how accurately projected points are in predicting actual points earned in last week’s game (Week 5).</p>
+<p>As for my hypothesis, I hypothesized that projected points earned in will not be statistically significant in predicting actual points earned in Week 5. The justification for why I chose this hypothesis is based on one of my primary methods for selecting a player (i.e., projected points). Each week, it seemed I was going to win against my opponent, only to find out I had lost by over 40 points. So I have decided to see exactly how accurate these projections are in predicting actual points earned in a game. Additionally, it’s essential to note that these projections aren’t meant to be completely accurate (i.e., in approximately 90% of all cases, this instance can be observed) due to dozens of factors that come into play. While these projections serve a purpose, people shouldn’t rely on them so heavily as the main factor in choosing a player.</p>
 </section>
 <section id="sec-method" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Method</h1>
-<p>Each player has a series of season stat projections so to test this hypothesis, I will incorporate my own players from my fantasy football team (e.g., starting/benched players as well as defense) and evaluate how accurate each player’s season stat projections have been so far.</p>
+<p>Each player has a series of stats, and from these stats, projections are made for each week. In order to test my hypothesis, I will incorporate my own players from my Fantasy Football League (e.g., starting/benched players as well as defense) and evaluate how accurate projected points earned are in predicting actual points earned in Week 5.</p>
 </section>
 <section id="sec-data" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Data</h1>
+<p>To begin, I have created a data frame containing all the data I will use.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Player_Name"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Jaxson Dart"</span>, <span class="st">"De'Von Achane"</span>, <span class="st">"Rico Dowdle"</span>, <span class="st">"Courtland Sutton"</span>, <span class="st">"Tre Tucker"</span>, <span class="st">"Sam LaPorta"</span>, <span class="st">"Nick Chubb"</span>, <span class="st">"Lions-Defense"</span>, <span class="st">"Spencer Shrader"</span>, <span class="st">"Jacory Croskey-Merritt"</span>, <span class="st">"Zach Ertz"</span>, <span class="st">"Bo Nix"</span>, <span class="st">"Darius Slayton"</span>, <span class="st">"Jaguars-Defense"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">"Projected_FPTS"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">16.18</span>, <span class="fl">19.63</span>, <span class="fl">14.54</span>, <span class="fl">12.90</span>, <span class="fl">10.47</span>, <span class="fl">10.09</span>, <span class="fl">10.09</span>, <span class="fl">7.18</span>, <span class="fl">8.51</span>, <span class="fl">7.77</span>, <span class="fl">9.18</span>, <span class="fl">16.09</span>, <span class="fl">9.19</span>, <span class="fl">4.92</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"Actual_FPTS"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">15.58</span>, <span class="fl">16.60</span>, <span class="fl">32.40</span>, <span class="fl">17.90</span>, <span class="fl">11.10</span>, <span class="fl">20.20</span>, <span class="fl">12.10</span>, <span class="fl">10.00</span>, <span class="fl">2.00</span>, <span class="fl">27.00</span>, <span class="fl">0.00</span>, <span class="fl">17.88</span>, <span class="fl">4.10</span>, <span class="fl">2.00</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>My Fantasy Football Team - Projected vs.&nbsp;Actual Fantasy Points Earned According to ESPN</caption>
+<caption>My Fantasy Football Team - Projected vs.&nbsp;Actual Fantasy Points Earned For Week 5</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Player_Name</th>
@@ -362,36 +369,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<section id="sec-statisticalAnalysis" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="sec-statisticalAnalysis"><span class="header-section-number">7.1</span> Statistical Analysis</h2>
-<p>As you can see in the data frame, I have listed each player along with projected vs.&nbsp;actual fantasy points earned. Let’s evaluate the correlation of projected to actual fantasy points earned visually:</p>
+<p>As you can see, I have listed each player from my Fantasy Football League along with their projected vs.&nbsp;actual fantasy points for Week 5. Let’s evaluate the correlation of projected points to actual points earned visually and statistically:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4720424</code></pre>
-</div>
-</div>
-<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> df,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span> (Projected_FPTS, Actual_FPTS, <span class="at">label =</span> Player_Name)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">slope =</span> <span class="dv">1</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">intercept =</span> <span class="dv">0</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"red"</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">1.0</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Projected_FPTS"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual_FPTS"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Projected vs. Actual Fantasy Points for Week 5"</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">expand_limits</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">min</span>(df<span class="sc">$</span>Projected_FPTS) <span class="sc">-</span> <span class="dv">5</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">max</span>(df<span class="sc">$</span>Actual_FPTS) <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="co"># horizontal y-axis title</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["variable"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["missingness"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["M"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["q10"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["q90"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["IQR"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["MAD"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["CV"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["pseudomedian"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["skewness"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"Projected_FPTS","2":"14","3":"0","4":"11.19571","5":"4.109465","6":"4.92","7":"19.63","8":"7.357","9":"16.153","10":"14.71","11":"5.4525","12":"3.802869","13":"0.3670570","14":"10.09","15":"10.86","16":"10.09","17":"0.5069666","18":"-0.8906879"},{"1":"Actual_FPTS","2":"14","3":"0","4":"13.49000","5":"9.575246","6":"0.00","7":"32.40","8":"2.000","9":"24.960","10":"32.40","11":"12.3200","12":"7.724346","13":"0.7098033","14":"13.84","15":"13.84","16":"2.00","17":"0.2737032","18":"-0.9606324"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Player_Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Jaxson Dart"</span>, <span class="st">"De'Von Achane"</span>, <span class="st">"Rico Dowdle"</span>, <span class="st">"Courtland Sutton"</span>, <span class="st">"Tre Tucker"</span>, <span class="st">"Sam LaPorta"</span>, <span class="st">"Nick Chubb"</span>, <span class="st">"Lions-Defense"</span>, <span class="st">"Spencer Shrader"</span>, <span class="st">"Jacory Croskey-Merritt"</span>, <span class="st">"Zach Ertz"</span>, <span class="st">"Bo Nix"</span>, <span class="st">"Darius Slayton"</span>, <span class="st">"Jaguars-Defense"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Projected_FPTS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">16.18</span>, <span class="fl">19.63</span>, <span class="fl">14.54</span>, <span class="fl">12.90</span>, <span class="fl">10.47</span>, <span class="fl">10.09</span>, <span class="fl">10.09</span>, <span class="fl">7.18</span>, <span class="fl">8.51</span>, <span class="fl">7.77</span>, <span class="fl">9.18</span>, <span class="fl">16.09</span>, <span class="fl">9.19</span>, <span class="fl">4.92</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Actual_FPTS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.58</span>, <span class="fl">16.60</span>, <span class="fl">32.40</span>, <span class="fl">17.90</span>, <span class="fl">11.10</span>, <span class="fl">20.20</span>, <span class="fl">12.10</span>, <span class="fl">10.00</span>, <span class="fl">2.00</span>, <span class="fl">27.00</span>, <span class="fl">0.00</span>, <span class="fl">17.88</span>, <span class="fl">4.10</span>, <span class="fl">2.00</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(Projected_FPTS, Actual_FPTS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  Projected_FPTS and Actual_FPTS
+t = 1.8549, df = 12, p-value = 0.08834
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.07809698  0.80180500
+sample estimates:
+      cor 
+0.4720424 </code></pre>
 </div>
 </div>
 </section>
+<section id="sec-results" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Results</h1>
+<p>Based on the correlation above, this indicates a moderate relationship between projected vs.&nbsp;actual fantasy points. Therefore, the projected points are somewhat predictive, neither completely incorrect nor 100% correct. Unfortunately, the p-value (p = 0.088) indicates there isn’t enough evidence for a statistically significant relationship. Therefore, my hypothesis was proven to be correct. As for significance, the relationship would have been considered statistically significant if I had a larger sample size.</p>
+<p>Regardless of whether the results are significant, I have taken it upon myself to introduce the potential confounds for each player. These confounds could explain why the actual points didn’t match the projected points as closely.</p>
 </section>
-<section id="sec-confounds" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Potential Confounds</h1>
+<section id="sec-confounds" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Potential Confounds</h1>
 <p><strong>Jaxson Dart</strong></p>
 <p>Analysis: “Though Tuesday’s session wasn’t conducted at full speed, Dart didn’t face any limitations and looks to be ready to play Thursday against the Eagles. Head coach Brian Daboll acknowledged as much prior to the walkthrough, telling Evan Barnes of Newsday that Dart’s sore left hamstring wasn’t viewed as much of a concern, even on a short week.”</p>
 <p>Potential Confound: Hamstring Injury</p>
@@ -434,24 +481,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Analysis: Actual score was lower than projection but ended up winning against the Chiefs 31-28.</p>
 <p>Potential Confound: Tough Defense</p>
 </section>
-<section id="sec-results" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Results</h1>
-</section>
 <section id="sec-discussion" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Discussion</h1>
-<section id="sec-strengthsLimitations" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">10.1</span> Strengths and Limitations</h2>
+<p>Based on the results of the study, there isn’t enough evidence to support a statistically significant relationship between projected points earned vs.&nbsp;actual points earned in Fantasy Football. Although it’s important to note that, with a larger sample size, there would be sufficient evidence to support the relationship. A callback to my background on the study, I mentioned how it can be difficult to pinpoint precisely what variables we should be looking at/considering when choosing a player for your Fantasy Football league. It should be noted that there is no single main factor to be looked at primarily, but instead multiple factors/variables. From the potential confounds section, you can see a variety of factors that effectively impacted the player’s performance.</p>
 </section>
-<section id="sec-conclusion" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">10.2</span> Conclusion</h2>
+<section id="sec-strengthsLimitations" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Strengths and Limitations</h1>
+<p><strong>Strengths</strong></p>
+<p>The results of my study could be statistically significant if a larger sample size were assessed, indicating that, (without looking at the sample size) the data would be statistically significant.</p>
+<p>The implemented visuals help the reader see the differences between projected points and actual points earned in Week 5.</p>
+<p><strong>Limitations</strong></p>
+<p>The study assessed only two variables (e.g., Projected and Actual Points), thereby decreasing its internal validity. Additionally, more variables would provide us with a more complex/deeper understanding of the relationship.</p>
+<p>A smaller sample size inevitably decreases the study’s statistical significance, thereby lowering generalizability and external validity.</p>
 </section>
+<section id="sec-conclusion" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Conclusion</h1>
+<p>In conclusion, the results of the study failed to provide sufficient evidence to support a statistically significant relationship between the predicted and actual points earned in the game. Thus, my hypothesis that there would be no statistically significant relationship between the two was correct. Although if I had added more players to the study, my results could have turned out differently. But perhaps the results aren’t statistically significant because a variety of factors come into play, such as age, opponent’s defensive strength, injury, etc. This suggests that there is no single factor to evaluate, but rather that examining a range of factors is the best approach. Therefore, in terms of strategies, the best approach is to avoid fixating on a single factor and instead evaluate several factors.</p>
 </section>
-<section id="sec-sessionInfo" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Session Info</h1>
+<section id="sec-sessionInfo" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Session Info</h1>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.1 (2025-06-13)
