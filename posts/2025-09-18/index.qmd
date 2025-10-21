@@ -45,7 +45,7 @@ By accessing only the career averages (i.e., completion percentage, yards per pa
 
 For my first hypothesis, I hypothesize that I will generate the same findings (i.e., rankings) as ESPN with only the career average statistics. My second hypothesize is that Lamar Jackson will be ranked the highest after analyzing the top five highest-ranked QBs and comparing them in terms of the center, spread, and shape of a distribution based on career averages, such as CMP% (i.e., completion percentage), AVG (i.e., yards per pass attempt), and RTG (i.e., passer rating).
 
-## Justification {#sec-justification} 
+# Justification {#sec-justification} 
 
 This hypothesis is justified, as the information can be found on ESPN.
 
@@ -55,7 +55,6 @@ In the present study, I take the top five highest-ranked QBs according to ESPN (
 
 
 ```{r}
-#| echo: false
 # create a data frame
 df <- data.frame(
 "Player_Name" = c("Lamar Jackson", "Josh Allen", "Jayden Daniels", "Jalen Hurts", "Joe Burrow"),
@@ -66,7 +65,6 @@ RTG = c(103.1, 93.9, 98.9, 93.7, 101.0)
 ```
 
 ```{r}
-#| echo: false
 knitr::kable(df, caption = "The Top Five Highest-Ranked QBs According To ESPN")
 ```
 
@@ -168,7 +166,8 @@ df %>%
       names_sep = "\\.") %>% 
     tidyr::pivot_wider(
       names_from = index,
-      values_from = value)
+      values_from = value
+)
 ```
 
 # Discussion and Results {#sec-discussion}
