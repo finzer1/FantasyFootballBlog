@@ -5,7 +5,7 @@ date: "9/18/2025"
 categories: [data analysis, fantasy football]
 image: "Lamar_Jackson_2021.jpg"
 ---
-This is an example blog post.
+
 Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:Lamar_Jackson_2021.jpg).
 
 ```{r}
@@ -34,18 +34,23 @@ Results: My first hypothesis was proven to be wrong, while my second hypothesis 
 Discussion: Due to my small sample size and minimal data usage, my results lack statistical significance. Most importantly, a player's stats are based on the player's past performance and don't guarantee that this will happen in the future. 
 
 # Background {#sec-background} 
+
 In the NFL, there are a total of 1,696 players across 32 football teams (i.e., 53 players on each team). On each football team, there is a primary/starting QB along with 1-2 backup QBs in case the primary/starting QB gets injured. Overall, QBs score the most individual points, so choosing a good QB is a big necessity. On ESPN, QBs (i.e., along with all other positions) are ranked based on the players' performance. According to ESPN, Lamar Jackson is the top QB out of all QBs. Based on career averages, would we produce the same or different rankings?
 
 # Research Question {#sec-question} 
+
 By accessing only the career averages (i.e., completion percentage, yards per pass attempt, and passer rating) from the top five ranked QBs according to ESPN, will I be able to produce the same results (i.e., rankings) as ESPN?
 
 # Hypothesis {#sec-hypothesis} 
+
 For my first hypothesis, I hypothesize that I will generate the same findings (i.e., rankings) as ESPN with only the career average statistics. My second hypothesize is that Lamar Jackson will be ranked the highest after analyzing the top five highest-ranked QBs and comparing them in terms of the center, spread, and shape of a distribution based on career averages, such as CMP% (i.e., completion percentage), AVG (i.e., yards per pass attempt), and RTG (i.e., passer rating).
 
 ## Justification {#sec-justification} 
+
 This hypothesis is justified, as the information can be found on ESPN.
 
 # Method {#sec-method} 
+
 In the present study, I take the top five highest-ranked QBs according to ESPN (i.e., Lamar Jackson, Josh Allen, Jayden Daniels, Jalen Hurts, and Joe Burrow) and compare them in terms of the center, spread, and shape of a distribution based on career averages, such as CMP% (i.e., completion percentage), AVG (i.e., yards per pass attempt), and RTG (i.e., passer rating).
 
 
@@ -166,7 +171,8 @@ df %>%
       values_from = value)
 ```
 
-## Discussion and Results {#sec-discussion}
+# Discussion and Results {#sec-discussion}
+
 According to the data, my first hypothesis—that I would find the same results as ESPN —was proven to be false. For instance, Joe Burrow, who was ranked fifth, ended up being in the top 3 for all surveyed statistics (i.e., completion percentage, yards per pass attempt, and passer rating). Another noticeable distinction is that Josh Allen, who was ranked number two by ESPN, performed poorly in all surveyed statistics.
 
 My second hypothesis was partially correct, as Lamar Jackson did rank the highest in AVG and RTG, but was ranked third in CMP%. 
