@@ -64,7 +64,7 @@ The data file includes
 # create a data frame
 df <- data.frame(
 "Player_Name" = c("Dak Prescott", "Josh Jacobs", "Rico Dowdle", "Michael Pittman", "Rashee Rice", "Sam LaPorta", "Javonte Williams", "Eddy Pineiro", "Caleb Williams", "Travis Etienne", "Breece Hall", "Xavier Worthy", "AJ Barner"),
-"Projected_Points" = c(20.0, 13.8, 11.0, 7.8, 9.1, 8.0, 13.2, 7.9, 19.1, 11.5, 12.8, 9.1, ),
+"Projected_Points" = c(20.0, 13.8, 11.0, 7.8, 9.1, 8.0, 13.2, 7.9, 19.1, 11.5, 12.8, 9.1),
 "Actual_FPTS" = c(15.58, 16.60, 32.40, 17.90, 11.10, 20.20, 12.10, 10.00, 2.00, 27.00, 0.00, 17.88, 4.10, 2.00)
 )
 ```

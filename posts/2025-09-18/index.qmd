@@ -174,12 +174,15 @@ df %>%
         pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
         mode = ~ petersenlab::Mode(., multipleModes = "mean"),
         skewness = ~ psych::skew(., na.rm = TRUE),
-        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
-      .names = "{.col}.{.fn}")) %>%
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)
+        ),
+      .names = "{.col}.{.fn}"
+      )) %>%
     tidyr::pivot_longer(
       cols = everything(),
       names_to = c("variable","index"),
-      names_sep = "\\.") %>% 
+      names_sep = "\\."
+      ) %>% 
     tidyr::pivot_wider(
       names_from = index,
       values_from = value
