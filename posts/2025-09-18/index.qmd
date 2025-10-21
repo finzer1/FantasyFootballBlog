@@ -5,12 +5,28 @@ date: "9/18/2025"
 categories: [data analysis, fantasy football]
 image: "Lamar_Jackson_2021.jpg"
 ---
-
 Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:Lamar_Jackson_2021.jpg).
 
+# Preamble {#sec-preamble}
+
+## Load Libraries {#sec-loadLibraries}
+
 ```{r}
-library("ggplot2")
+#| message: false
+#| warning: false
+
+library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("psych")
+library("DescTools")
+library("effectsize")
+library("broom")
+library("car")
+library("bestNormalize")
+library("lme4")
+library("lmerTest")
+library("GGally")
 library("tidyverse")
+library("ggplot2")
 ```
 
 # AI Disclosure {#sec-aiDisclosure}
