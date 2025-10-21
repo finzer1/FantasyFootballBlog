@@ -189,7 +189,6 @@ Limitations: Using only three of the many statistics provided, I severely decrea
 
 In conclusion, my first hypothesis was not supported by the data, while the data partially supported my second hypothesis. However, it's important to note that due to the small sample size and limited data, my results are not statistically significant. The results would be statistically significant if I utilized all factors. Regardless, even if all measures/variables were utilized, it's essential to note that these findings are based on the player's past performance and don't guarantee that the player will perform according to the results. 
 
-
 # Session Info {#sec-sessionInfo}
 
 ```{r}
