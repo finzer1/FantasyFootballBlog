@@ -60,6 +60,15 @@ To test the hypothesis, I examined
 Below, I load the data file used for this post.
 The data file includes
 
+```{r}
+# create a data frame
+df <- data.frame(
+"Player_Name" = c("Dak Prescott", "Josh Jacobs", "Rico Dowdle", "Michael Pittman", "Rashee Rice", "Sam LaPorta", "Javonte Williams", "Eddy Pineiro", "Caleb Williams", "Travis Etienne", "Breece Hall", "Xavier Worthy", "AJ Barner"),
+"Projected_Points" = c(20.0, 13.8, 11.0, 7.8, 9.1, 8.0, 13.2, 7.9, 19.1, 11.5, 12.8, 9.1, ),
+"Actual_FPTS" = c(15.58, 16.60, 32.40, 17.90, 11.10, 20.20, 12.10, 10.00, 2.00, 27.00, 0.00, 17.88, 4.10, 2.00)
+)
+```
+
 # Statistical Analysis {#sec-statisticalAnalysis}
 
 I used 
@@ -88,6 +97,8 @@ This possibility would be important for future work to consider.
 In conclusion, 
 
 # References {#sec-references}
+
+https://www.draftsharks.com/weekly-rankings/index?week=7
 
 # Session Info {#sec-sessionInfo}
 
