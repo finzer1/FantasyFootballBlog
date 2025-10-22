@@ -9,7 +9,7 @@
 <meta name="author" content="Finley Jacobson">
 <meta name="dcterms.date" content="2025-10-23">
 
-<title>Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points? – My Blog</title>
+<title>A Player’s Predicted Performance: Yay or Nay? – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,9 +156,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points?</h1>
+      <h1 class="title">A Player’s Predicted Performance: Yay or Nay?</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">fantasy football</div>
+                <div class="quarto-category">prediction</div>
+                <div class="quarto-category">binary outcomes</div>
+                <div class="quarto-category">forecasting accuracy</div>
               </div>
                   </div>
   </div>
@@ -204,14 +207,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">7</span> Data</a></li>
   <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">8</span> Statistical Analysis</a></li>
   <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">9</span> Results</a></li>
-  <li><a href="#main-analyses" id="toc-main-analyses" class="nav-link" data-scroll-target="#main-analyses"><span class="header-section-number">10</span> Main Analyses</a></li>
+  <li><a href="#sec-analysis" id="toc-sec-analysis" class="nav-link" data-scroll-target="#sec-analysis"><span class="header-section-number">10</span> Main Analyses</a></li>
   <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">11</span> Discussion</a>
   <ul class="collapse">
-  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">11.1</span> Strengths and Limitations</a></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">11.2</span> Conclusion</a></li>
+  <li><a href="#sec-strengthslimitations" id="toc-sec-strengthslimitations" class="nav-link" data-scroll-target="#sec-strengthslimitations"><span class="header-section-number">11.1</span> Strengths and Limitations</a></li>
   </ul></li>
-  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references"><span class="header-section-number">12</span> References</a></li>
-  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">13</span> Session Info</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">12</span> Conclusion</a></li>
+  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references"><span class="header-section-number">13</span> References</a></li>
+  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">14</span> Session Info</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>This is an example blog post. Note: The post image was obtained from <a href="https://www.flickr.com/photos/velo_city/1173356226">here</a>.</p>
+<p>Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:New_York_Giants_vs_Green_Bay_Packers_4.jpg.</p>
 <section id="sec-preamble" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Preamble</h1>
 <section id="sec-loadLibraries" class="level2" data-number="1.1">
@@ -269,6 +272,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-data" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Data</h1>
 <p>Below, I load the data file used for this post. The data file includes</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Player_Name"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Dak Prescott"</span>, <span class="st">"Josh Jacobs"</span>, <span class="st">"Rico Dowdle"</span>, <span class="st">"Michael Pittman"</span>, <span class="st">"Rashee Rice"</span>, <span class="st">"Sam LaPorta"</span>, <span class="st">"Javonte Williams"</span>, <span class="st">"Eddy Pineiro"</span>, <span class="st">"Caleb Williams"</span>, <span class="st">"Travis Etienne"</span>, <span class="st">"Breece Hall"</span>, <span class="st">"Xavier Worthy"</span>, <span class="st">"AJ Barner"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">"Projected_Points"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">20.0</span>, <span class="fl">13.8</span>, <span class="fl">11.0</span>, <span class="fl">7.8</span>, <span class="fl">9.1</span>, <span class="fl">8.0</span>, <span class="fl">13.2</span>, <span class="fl">7.9</span>, <span class="fl">19.1</span>, <span class="fl">11.5</span>, <span class="fl">12.8</span>, <span class="fl">9.1</span>, <span class="fl">5.4</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"Actual_FPTS"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">23.26</span>, <span class="fl">18.80</span>, <span class="fl">10.60</span>, <span class="fl">20.80</span>, <span class="fl">23.20</span>, <span class="fl">4.50</span>, <span class="fl">18.80</span>, <span class="fl">10.00</span>, <span class="fl">4.68</span>, <span class="fl">6.50</span>, <span class="fl">7.20</span>, <span class="fl">7.80</span>, <span class="fl">1.90</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
 <section id="sec-statisticalAnalysis" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Statistical Analysis</h1>
@@ -277,31 +291,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-results" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Results</h1>
 </section>
-<section id="main-analyses" class="level1" data-number="10">
+<section id="sec-analysis" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Main Analyses</h1>
 </section>
 <section id="sec-discussion" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> Discussion</h1>
 <p>In this article, I examined whether</p>
-<section id="sec-strengthsLimitations" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">11.1</span> Strengths and Limitations</h2>
+<section id="sec-strengthslimitations" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sec-strengthslimitations"><span class="header-section-number">11.1</span> Strengths and Limitations</h2>
 <p>The study had several strengths. First,</p>
 <p>The study also had limitations. First, This possibility would be important for future work to consider.</p>
 </section>
-<section id="sec-conclusion" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">11.2</span> Conclusion</h2>
+</section>
+<section id="sec-conclusion" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Conclusion</h1>
 <p>In conclusion,</p>
 </section>
+<section id="sec-references" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> References</h1>
+<p>https://www.draftsharks.com/weekly-rankings/index?week=7</p>
 </section>
-<section id="sec-references" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> References</h1>
-</section>
-<section id="sec-sessionInfo" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Session Info</h1>
+<section id="sec-sessionInfo" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Session Info</h1>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.1 (2025-06-13)
