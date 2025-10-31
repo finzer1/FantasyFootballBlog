@@ -43,7 +43,7 @@ Link to AI Transcript: not applicable
 
 **Results:** Based on the data, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. Specifically, DraftSharks tends to underestimate rather than overestimate their projections while also showing signs of overconfidence.
 
-**Discussion:**
+**Discussion:** An alternative explanation for why players' projected predictions weren't as close could be due to the unpredictability of certain factors, such as weather or injuries, during the game.
 
 # Background {#sec-background}
 
@@ -153,7 +153,7 @@ First, my small sample size (n = 13) severely limits my generalizability. Additi
 
 # Conclusion {#sec-conclusion}
 
-In conclusion, predicted projections on Fantasy Football sites can serve as a great predictor 
+Predicted projections on Fantasy Football sites can serve as a decently reliable source for predicting fantasy football points. Although it's essential to remember that projections aren't always completely accurate, they are generally accurate (e.g., within 1-5 fantasy points of projections). Additionally, these projections don't take into account potential weather issues or injuries that may occur during the game, which can severely impact the number of fantasy points your player will obtain.  
 
 # References {#sec-references}
 
