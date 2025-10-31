@@ -1,12 +1,12 @@
 ---
 title: "A Player's Predicted Performance: Yay or Nay?"
 author: "Finley Jacobson"
-date: "10/23/25"
-categories: [fantasy football, prediction, binary outcomes, forecasting accuracy]
+date: "10/30/25"
+categories: [fantasy football, prediction, overconfidence, forecasting accuracy]
 image: "download.jpg"
 ---
 
-Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:New_York_Giants_vs_Green_Bay_Packers_4.jpg.
+Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:New_York_Giants_vs_Green_Bay_Packers_4.jpg.)
 
 # Preamble {#sec-preamble}
 
@@ -37,27 +37,35 @@ Link to AI Transcript: not applicable
 
 # Abstract {#sec-abstract}
 
-**Background:** 
-**Method:**
-**Results:**
+**Background:** Most Fantasy Football League websites/platforms provide an estimated projection of how many fantasy points each player will obtain during that specific week. These projections are based on several factors, including the player's status (i.e., injuries), past game performance, practice performance, age, and the list goes on. But how accurate are these projections for Week 7?
+
+**Method:** In the present study, I examine my own Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7. Specifically, this process is done by evaluating predicted/forecasted accuracy for a continuous outcome while also considering the overconfidence of the predictions.
+
+**Results:** Based on the data, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. Specifically, DraftSharks tends to underestimate rather than overestimate their projections while also showing signs of overconfidence.
+
 **Discussion:**
 
 # Background {#sec-background}
 
+For the most part, Fantasy Football League sites provide predicted projected fantasy points for each player for that specific week. These predicted projections are based on a variety of factors, including past game performance, the player's status (i.e., any potential injuries), and power ranking. It's important to note that these predicted projections are not always entirely accurate, as certain factors (e.g., an opponent ramming into a player, causing the player to be injured) cannot be accurately predicted. With that being said, how accurate will Week 7 projected fantasy points be in comparison to actual fantasy points earned?
+
 # The Present Study {#sec-presentStudy}
 
-In the present study, I examined whether 
+In the present study, I examine my own Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7.
 
-I hypothesized that, 
+For my hypothesis, I hypothesize that actual fantasy points will be within five fantasy points of the projected fantasy points. My hypothesis is justified because I don't expect the predictions to be completely accurate, but rather the estimates will be in proximity to the actual fantasy points earned. Football can be unpredictable at times, but it is possible to accurately project fantasy points or at least close to the actual fantasy points.
 
 # Method {#sec-method}
 
-To test the hypothesis, I examined 
+To test the hypothesis, I will examine my Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7. Predicted projections of fantasy points were implemented from DraftSharks, while actual fantasy points earned were implemented from NFL Fantasy. 
+
+I will evaluate forecasting accuracy (i.e., how close predicted projected fantasy points are to actual fantasy points earned) and overconfidence (i.e., if predictions are too close to the mean).
+
+Specifically, my 13 players (i.e., not counting injured or players on a bye week) are classified as categorical, while my projected and actual fantasy points are classified as continuous. 
 
 # Data {#sec-data}
 
-Below, I load the data file used for this post.
-The data file includes
+To begin, let's create a visual aid so we can analyze the projected points vs. actual points earned for Week 7:
 
 ```{r}
 # create a data frame
@@ -68,32 +76,84 @@ df <- data.frame(
 )
 ```
 
-# Statistical Analysis {#sec-statisticalAnalysis}
+**Results**
 
-I used 
+Based on the data frame, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. We can continue to evaluate forecasting accuracy and the overconfidence of the data. 
 
-# Results {#sec-results}
+From here, we can pinpoint the rest of our descriptive variables:
 
-# Main Analyses {#sec-analysis}
+```{r}
+df %>% 
+  dplyr::select(Projected_Points, Actual_FPTS) %>% 
+  dplyr::summarise(across(
+      everything(),
+      .fns = list(
+        n = ~ length(na.omit(.)),
+        missingness = ~ mean(is.na(.)) * 100,
+        M = ~ mean(., na.rm = TRUE),
+        SD = ~ sd(., na.rm = TRUE),
+        min = ~ min(., na.rm = TRUE),
+        max = ~ max(., na.rm = TRUE),
+        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
+        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
+        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
+        IQR = ~ IQR(., na.rm = TRUE),
+        MAD = ~ mad(., na.rm = TRUE),
+        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
+        median = ~ median(., na.rm = TRUE),
+        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
+        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
+        skewness = ~ psych::skew(., na.rm = TRUE),
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)
+        ),
+      .names = "{.col}.{.fn}"
+      )) %>%
+    tidyr::pivot_longer(
+      cols = everything(),
+      names_to = c("variable","index"),
+      names_sep = "\\."
+      ) %>% 
+    tidyr::pivot_wider(
+      names_from = index,
+      values_from = value
+    )
+```
 
+**Results**
 
+Based on the results, the standard deviation for projected points was 4.4, while the standard deviation for actual fantasy points earned was 7.7. This depicts that DraftSharks' forecasts were showing signs of overconfidence or being too close to the mean. This suggests that DraftSharks (potentially) tends to underestimate the range of possible outcomes.
+
+Now, let's take a look at this from the perspective of each player:
+
+```{r}
+petersenlab::accuracyOverall(
+  predicted = df$Projected_Points,
+  actual = df$Actual_FPTS,
+  dropUndefined = TRUE
+)
+```
+
+**Results**
+
+These results further prove that DraftSharks tends to underestimate rather than overestimate their projections. But more importantly, the average magnitude of error (i.e., MAE) was approximately 3.27. This number falls within the range of my hypothesis, which allows individual errors to increase by up to 5 fantasy points. So, on average, the actual fantasy points were within 3.27 fantasy points of the predicted projected fantasy points. 
 
 # Discussion {#sec-discussion}
 
-In this article, I examined whether 
+In this article, I hypothesize that actual fantasy points will be within five fantasy points of the projected fantasy points. Additionally, I also examined DraftSharks' forecasting accuracy and potential signs of overconfidence. From the data, my hypothesis was partially correct, as DraftSharks was shown to exhibit signs of overconfidence while also tending to underestimate the range of possible outcomes. Regarding statistical significance, due to my small sample size, the results of my study would not be statistically significant. However, the practical significance of DraftSharks is shown to have practical significance. On an individual level (i.e., for each player), practical significance was shown to be less consistent/predictable. 
 
-## Strengths and Limitations {#sec-strengthslimitations}
+An alternative explanation for why players' projected predictions weren't as close could be due to the unpredictability of certain factors, such as weather or injuries, during the game.
+
+# Strengths and Limitations {#sec-strengthslimitations}
 
 The study had several strengths.
-First,
+First, I implemented several measuring metrics through my very own Fantasy Football League roster. By implementing a visual aid, readers can easily see the differences between projected and actual fantasy points earned. 
 
 The study also had limitations.
-First,
-This possibility would be important for future work to consider.
+First, my small sample size (n = 13) severely limits my generalizability. Additionally, unpredictable variables such as injuries could explain why some of my values are more extreme than others. Lastly, I only accessed one period rather than accessing overall trends. Next time, accessing several weeks and increasing the sample size would be a notable possibility for future work to consider.
 
 # Conclusion {#sec-conclusion}
 
-In conclusion, 
+In conclusion, predicted projections on Fantasy Football sites can serve as a great predictor 
 
 # References {#sec-references}
 
