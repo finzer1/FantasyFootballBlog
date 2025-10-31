@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Finley Jacobson">
-<meta name="dcterms.date" content="2025-10-23">
+<meta name="dcterms.date" content="2025-10-30">
 
 <title>A Player’s Predicted Performance: Yay or Nay? – My Blog</title>
 <style>
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                                 <div class="quarto-categories">
                 <div class="quarto-category">fantasy football</div>
                 <div class="quarto-category">prediction</div>
-                <div class="quarto-category">binary outcomes</div>
+                <div class="quarto-category">overconfidence</div>
                 <div class="quarto-category">forecasting accuracy</div>
               </div>
                   </div>
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 23, 2025</p>
+        <p class="date">October 30, 2025</p>
       </div>
     </div>
     
@@ -205,16 +205,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-presentStudy" id="toc-sec-presentStudy" class="nav-link" data-scroll-target="#sec-presentStudy"><span class="header-section-number">5</span> The Present Study</a></li>
   <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">6</span> Method</a></li>
   <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">7</span> Data</a></li>
-  <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">8</span> Statistical Analysis</a></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">9</span> Results</a></li>
-  <li><a href="#sec-analysis" id="toc-sec-analysis" class="nav-link" data-scroll-target="#sec-analysis"><span class="header-section-number">10</span> Main Analyses</a></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">11</span> Discussion</a>
-  <ul class="collapse">
-  <li><a href="#sec-strengthslimitations" id="toc-sec-strengthslimitations" class="nav-link" data-scroll-target="#sec-strengthslimitations"><span class="header-section-number">11.1</span> Strengths and Limitations</a></li>
-  </ul></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">12</span> Conclusion</a></li>
-  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references"><span class="header-section-number">13</span> References</a></li>
-  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">14</span> Session Info</a></li>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">8</span> Discussion</a></li>
+  <li><a href="#sec-strengthslimitations" id="toc-sec-strengthslimitations" class="nav-link" data-scroll-target="#sec-strengthslimitations"><span class="header-section-number">9</span> Strengths and Limitations</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
+  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">12</span> Session Info</a></li>
   </ul>
 </nav>
     </div>
@@ -225,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:New_York_Giants_vs_Green_Bay_Packers_4.jpg.</p>
+<p>Note: The post image was obtained from <a href="https://commons.wikimedia.org/wiki/File:New_York_Giants_vs_Green_Bay_Packers_4.jpg.">here</a></p>
 <section id="sec-preamble" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Preamble</h1>
 <section id="sec-loadLibraries" class="level2" data-number="1.1">
@@ -255,23 +250,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-abstract" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Abstract</h1>
-<p><strong>Background:</strong> <strong>Method:</strong> <strong>Results:</strong> <strong>Discussion:</strong></p>
+<p><strong>Background:</strong> Most Fantasy Football League websites/platforms provide an estimated projection of how many fantasy points each player will obtain during that specific week. These projections are based on several factors, including the player’s status (i.e., injuries), past game performance, practice performance, age, and the list goes on. But how accurate are these projections for Week 7?</p>
+<p><strong>Method:</strong> In the present study, I examine my own Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7. Specifically, this process is done by evaluating predicted/forecasted accuracy for a continuous outcome while also considering the overconfidence of the predictions.</p>
+<p><strong>Results:</strong> Based on the data, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. Specifically, DraftSharks tends to underestimate rather than overestimate their projections while also showing signs of overconfidence.</p>
+<p><strong>Discussion:</strong></p>
 </section>
 <section id="sec-background" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Background</h1>
+<p>For the most part, Fantasy Football League sites provide predicted projected fantasy points for each player for that specific week. These predicted projections are based on a variety of factors, including past game performance, the player’s status (i.e., any potential injuries), and power ranking. It’s important to note that these predicted projections are not always entirely accurate, as certain factors (e.g., an opponent ramming into a player, causing the player to be injured) cannot be accurately predicted. With that being said, how accurate will Week 7 projected fantasy points be in comparison to actual fantasy points earned?</p>
 </section>
 <section id="sec-presentStudy" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> The Present Study</h1>
-<p>In the present study, I examined whether</p>
-<p>I hypothesized that,</p>
+<p>In the present study, I examine my own Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7.</p>
+<p>For my hypothesis, I hypothesize that actual fantasy points will be within five fantasy points of the projected fantasy points. My hypothesis is justified because I don’t expect the predictions to be completely accurate, but rather the estimates will be in proximity to the actual fantasy points earned. Football can be unpredictable at times, but it is possible to accurately project fantasy points or at least close to the actual fantasy points.</p>
 </section>
 <section id="sec-method" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Method</h1>
-<p>To test the hypothesis, I examined</p>
+<p>To test the hypothesis, I will examine my Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7. Predicted projections of fantasy points were implemented from DraftSharks, while actual fantasy points earned were implemented from NFL Fantasy.</p>
+<p>I will evaluate forecasting accuracy (i.e., how close predicted projected fantasy points are to actual fantasy points earned) and overconfidence (i.e., if predictions are too close to the mean).</p>
+<p>Specifically, my 13 players (i.e., not counting injured or players on a bye week) are classified as categorical, while my projected and actual fantasy points are classified as continuous.</p>
 </section>
 <section id="sec-data" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Data</h1>
-<p>Below, I load the data file used for this post. The data file includes</p>
+<p>To begin, let’s create a visual aid so we can analyze the projected points vs.&nbsp;actual points earned for Week 7:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -283,40 +284,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section>
-<section id="sec-statisticalAnalysis" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Statistical Analysis</h1>
-<p>I used</p>
-</section>
-<section id="sec-results" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Results</h1>
-</section>
-<section id="sec-analysis" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Main Analyses</h1>
-</section>
-<section id="sec-discussion" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Discussion</h1>
-<p>In this article, I examined whether</p>
-<section id="sec-strengthslimitations" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="sec-strengthslimitations"><span class="header-section-number">11.1</span> Strengths and Limitations</h2>
-<p>The study had several strengths. First,</p>
-<p>The study also had limitations. First, This possibility would be important for future work to consider.</p>
-</section>
-</section>
-<section id="sec-conclusion" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Conclusion</h1>
-<p>In conclusion,</p>
-</section>
-<section id="sec-references" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> References</h1>
-<p>https://www.draftsharks.com/weekly-rankings/index?week=7</p>
-</section>
-<section id="sec-sessionInfo" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Session Info</h1>
+<p><strong>Results</strong></p>
+<p>Based on the data frame, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. We can continue to evaluate forecasting accuracy and the overconfidence of the data.</p>
+<p>From here, we can pinpoint the rest of our descriptive variables:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Projected_Points, Actual_FPTS) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="fu">across</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(.)),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">missingness =</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">is.na</span>(.)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">M =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">q10 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 10th quantile</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">q90 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 90th quantile</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">IQR =</span> <span class="sc">~</span> <span class="fu">IQR</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">MAD =</span> <span class="sc">~</span> <span class="fu">mad</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">CV =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">pseudomedian =</span> <span class="sc">~</span> DescTools<span class="sc">::</span><span class="fu">HodgesLehmann</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">mode =</span> <span class="sc">~</span> petersenlab<span class="sc">::</span><span class="fu">Mode</span>(., <span class="at">multipleModes =</span> <span class="st">"mean"</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">skewness =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">skew</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">kurtosis =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">kurtosi</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}.{.fn}"</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      )) <span class="sc">%&gt;%</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"index"</span>),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> index,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> value</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["variable"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["missingness"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["M"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["q10"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["q90"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["IQR"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["MAD"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["CV"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["pseudomedian"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["skewness"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"Projected_Points","2":"13","3":"0","4":"11.43846","5":"4.356133","6":"5.4","7":"20.00","8":"7.820","9":"18.04","10":"14.60","11":"5.2","12":"4.15128","13":"0.3808321","14":"11","15":"10.95","16":"9.1","17":"0.6695347","18":"-0.7091193"},{"1":"Actual_FPTS","2":"13","3":"0","4":"12.15692","5":"7.695019","6":"1.9","7":"23.26","8":"4.536","9":"22.72","10":"21.36","11":"12.3","12":"8.15430","13":"0.6329743","14":"10","15":"12.65","16":"18.8","17":"0.2704745","18":"-1.7014065"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><strong>Results</strong></p>
+<p>Based on the results, the standard deviation for projected points was 4.4, while the standard deviation for actual fantasy points earned was 7.7. This depicts that DraftSharks’ forecasts were showing signs of overconfidence or being too close to the mean. This suggests that DraftSharks (potentially) tends to underestimate the range of possible outcomes.</p>
+<p>Now, let’s take a look at this from the perspective of each player:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>petersenlab<span class="sc">::</span><span class="fu">accuracyOverall</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> df<span class="sc">$</span>Projected_Points,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">actual =</span> df<span class="sc">$</span>Actual_FPTS,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropUndefined =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["ME"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["MAE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["MdAE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["MSE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["RMSE"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["MPE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["MAPE"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sMAPE"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["MASE"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["RMSLE"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["rsquared"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["rsquaredAsPredictor"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["rsquaredAdjAsPredictor"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["rsquaredPredictiveAsPredictor"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"-0.7184615","2":"3.275385","3":"3.26","4":"14.35892","5":"3.789317","6":"-21.8405","7":"41.38571","8":"16.37274","9":"0.4830361","10":"0.3512762","11":"0.7372973","12":"0.8884953","13":"0.8783585","14":"0.8377972"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><strong>Results</strong></p>
+<p>These results further prove that DraftSharks tends to underestimate rather than overestimate their projections. But more importantly, the average magnitude of error (i.e., MAE) was approximately 3.27. This number falls within the range of my hypothesis, which allows individual errors to increase by up to 5 fantasy points. So, on average, the actual fantasy points were within 3.27 fantasy points of the predicted projected fantasy points.</p>
+</section>
+<section id="sec-discussion" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Discussion</h1>
+<p>In this article, I hypothesize that actual fantasy points will be within five fantasy points of the projected fantasy points. Additionally, I also examined DraftSharks’ forecasting accuracy and potential signs of overconfidence. From the data, my hypothesis was partially correct, as DraftSharks was shown to exhibit signs of overconfidence while also tending to underestimate the range of possible outcomes. Regarding statistical significance, due to my small sample size, the results of my study would not be statistically significant. However, the practical significance of DraftSharks is shown to have practical significance. On an individual level (i.e., for each player), practical significance was shown to be less consistent/predictable.</p>
+<p>An alternative explanation for why players’ projected predictions weren’t as close could be due to the unpredictability of certain factors, such as weather or injuries, during the game.</p>
+</section>
+<section id="sec-strengthslimitations" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Strengths and Limitations</h1>
+<p>The study had several strengths. First, I implemented several measuring metrics through my very own Fantasy Football League roster. By implementing a visual aid, readers can easily see the differences between projected and actual fantasy points earned.</p>
+<p>The study also had limitations. First, my small sample size (n = 13) severely limits my generalizability. Additionally, unpredictable variables such as injuries could explain why some of my values are more extreme than others. Lastly, I only accessed one period rather than accessing overall trends. Next time, accessing several weeks and increasing the sample size would be a notable possibility for future work to consider.</p>
+</section>
+<section id="sec-conclusion" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conclusion</h1>
+<p>In conclusion, predicted projections on Fantasy Football sites can serve as a great predictor</p>
+</section>
+<section id="sec-references" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> References</h1>
+<p>https://www.draftsharks.com/weekly-rankings/index?week=7</p>
+</section>
+<section id="sec-sessionInfo" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Session Info</h1>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.1 (2025-06-13)
@@ -357,7 +420,7 @@ loaded via a namespace (and not attached):
  [13] minqa_1.2.8         base64enc_0.1-3     butcher_0.3.6      
  [16] htmltools_0.5.8.1   haven_2.5.5         cellranger_1.1.0   
  [19] Formula_1.2-5       parallelly_1.45.1   htmlwidgets_1.6.4  
- [22] plyr_1.8.9          sandwich_3.1-1      emmeans_1.11.2-8   
+ [22] plyr_1.8.9          sandwich_3.1-1      emmeans_2.0.0      
  [25] rootSolve_1.8.2.4   zoo_1.8-14          lifecycle_1.0.4    
  [28] iterators_1.0.14    pkgconfig_2.0.3     R6_2.6.1           
  [31] fastmap_1.2.0       rbibutils_2.3       future_1.67.0      
@@ -367,7 +430,7 @@ loaded via a namespace (and not attached):
  [43] rngtools_1.5.2      proxy_0.4-27        withr_3.0.2        
  [46] doParallel_1.0.17   htmlTable_2.4.3     S7_0.2.0           
  [49] backports_1.5.0     DBI_1.2.3           ggstats_0.11.0     
- [52] MASS_7.3-65         lava_1.8.1          gld_2.6.8          
+ [52] MASS_7.3-65         lava_1.8.2          gld_2.6.8          
  [55] tools_4.5.1         pbivnorm_0.6.0      foreign_0.8-90     
  [58] future.apply_1.20.0 nnet_7.3-20         glue_1.8.0         
  [61] quadprog_1.5-8      nlme_3.1-168        grid_4.5.1         
@@ -377,8 +440,8 @@ loaded via a namespace (and not attached):
  [73] lmom_3.2            hms_1.1.4           foreach_1.5.2      
  [76] pillar_1.11.1       mitools_2.4         splines_4.5.1      
  [79] lattice_0.22-7      survival_3.8-3      tidyselect_1.2.1   
- [82] mix_1.0-13          knitr_1.50          reformulas_0.4.1   
- [85] gridExtra_2.3       stats4_4.5.1        xfun_0.53          
+ [82] mix_1.0-13          knitr_1.50          reformulas_0.4.2   
+ [85] gridExtra_2.3       stats4_4.5.1        xfun_0.54          
  [88] expm_1.0-0          hardhat_1.4.2       timeDate_4051.111  
  [91] stringi_1.8.7       yaml_2.3.10         boot_1.3-31        
  [94] evaluate_1.0.5      codetools_0.2-20    cli_3.6.5          
