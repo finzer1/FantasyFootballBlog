@@ -68,7 +68,6 @@ Specifically, my 13 players (i.e., not counting injured or players on a bye week
 To begin, let's create a visual aid so we can analyze the projected points vs. actual points earned for Week 7:
 
 ```{r}
-# create a data frame
 df <- data.frame(
 "Player_Name" = c("Dak Prescott", "Josh Jacobs", "Rico Dowdle", "Michael Pittman", "Rashee Rice", "Sam LaPorta", "Javonte Williams", "Eddy Pineiro", "Caleb Williams", "Travis Etienne", "Breece Hall", "Xavier Worthy", "AJ Barner"),
 "Projected_Points" = c(20.0, 13.8, 11.0, 7.8, 9.1, 8.0, 13.2, 7.9, 19.1, 11.5, 12.8, 9.1, 5.4),
@@ -76,6 +75,9 @@ df <- data.frame(
 )
 ```
 
+```{r}
+knitr::kable(df, caption = "Projected vs. Actual Fantasy Points Earned By My Fantasy Football Players During Week 7")
+```
 **Results**
 
 Based on the data frame, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. We can continue to evaluate forecasting accuracy and the overconfidence of the data. 
