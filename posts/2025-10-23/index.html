@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Background:</strong> Most Fantasy Football League websites/platforms provide an estimated projection of how many fantasy points each player will obtain during that specific week. These projections are based on several factors, including the player’s status (i.e., injuries), past game performance, practice performance, age, and the list goes on. But how accurate are these projections for Week 7?</p>
 <p><strong>Method:</strong> In the present study, I examine my own Fantasy Football League roster (i.e., starting and benched players) and compare projected fantasy points to actual fantasy points earned during Week 7. Specifically, this process is done by evaluating predicted/forecasted accuracy for a continuous outcome while also considering the overconfidence of the predictions.</p>
 <p><strong>Results:</strong> Based on the data, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. Specifically, DraftSharks tends to underestimate rather than overestimate their projections while also showing signs of overconfidence.</p>
-<p><strong>Discussion:</strong></p>
+<p><strong>Discussion:</strong> An alternative explanation for why players’ projected predictions weren’t as close could be due to the unpredictability of certain factors, such as weather or injuries, during the game.</p>
 </section>
 <section id="sec-background" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Background</h1>
@@ -276,13 +276,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Player_Name"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Dak Prescott"</span>, <span class="st">"Josh Jacobs"</span>, <span class="st">"Rico Dowdle"</span>, <span class="st">"Michael Pittman"</span>, <span class="st">"Rashee Rice"</span>, <span class="st">"Sam LaPorta"</span>, <span class="st">"Javonte Williams"</span>, <span class="st">"Eddy Pineiro"</span>, <span class="st">"Caleb Williams"</span>, <span class="st">"Travis Etienne"</span>, <span class="st">"Breece Hall"</span>, <span class="st">"Xavier Worthy"</span>, <span class="st">"AJ Barner"</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">"Projected_Points"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">20.0</span>, <span class="fl">13.8</span>, <span class="fl">11.0</span>, <span class="fl">7.8</span>, <span class="fl">9.1</span>, <span class="fl">8.0</span>, <span class="fl">13.2</span>, <span class="fl">7.9</span>, <span class="fl">19.1</span>, <span class="fl">11.5</span>, <span class="fl">12.8</span>, <span class="fl">9.1</span>, <span class="fl">5.4</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">"Actual_FPTS"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">23.26</span>, <span class="fl">18.80</span>, <span class="fl">10.60</span>, <span class="fl">20.80</span>, <span class="fl">23.20</span>, <span class="fl">4.50</span>, <span class="fl">18.80</span>, <span class="fl">10.00</span>, <span class="fl">4.68</span>, <span class="fl">6.50</span>, <span class="fl">7.20</span>, <span class="fl">7.80</span>, <span class="fl">1.90</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Player_Name"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Dak Prescott"</span>, <span class="st">"Josh Jacobs"</span>, <span class="st">"Rico Dowdle"</span>, <span class="st">"Michael Pittman"</span>, <span class="st">"Rashee Rice"</span>, <span class="st">"Sam LaPorta"</span>, <span class="st">"Javonte Williams"</span>, <span class="st">"Eddy Pineiro"</span>, <span class="st">"Caleb Williams"</span>, <span class="st">"Travis Etienne"</span>, <span class="st">"Breece Hall"</span>, <span class="st">"Xavier Worthy"</span>, <span class="st">"AJ Barner"</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">"Projected_Points"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">20.0</span>, <span class="fl">13.8</span>, <span class="fl">11.0</span>, <span class="fl">7.8</span>, <span class="fl">9.1</span>, <span class="fl">8.0</span>, <span class="fl">13.2</span>, <span class="fl">7.9</span>, <span class="fl">19.1</span>, <span class="fl">11.5</span>, <span class="fl">12.8</span>, <span class="fl">9.1</span>, <span class="fl">5.4</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">"Actual_FPTS"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">23.26</span>, <span class="fl">18.80</span>, <span class="fl">10.60</span>, <span class="fl">20.80</span>, <span class="fl">23.20</span>, <span class="fl">4.50</span>, <span class="fl">18.80</span>, <span class="fl">10.00</span>, <span class="fl">4.68</span>, <span class="fl">6.50</span>, <span class="fl">7.20</span>, <span class="fl">7.80</span>, <span class="fl">1.90</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df, <span class="at">caption =</span> <span class="st">"Projected vs. Actual Fantasy Points Earned By My Fantasy Football Players During Week 7"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Projected vs.&nbsp;Actual Fantasy Points Earned By My Fantasy Football Players During Week 7</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Player_Name</th>
+<th style="text-align: right;">Projected_Points</th>
+<th style="text-align: right;">Actual_FPTS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Dak Prescott</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">23.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Josh Jacobs</td>
+<td style="text-align: right;">13.8</td>
+<td style="text-align: right;">18.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rico Dowdle</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">10.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Michael Pittman</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">20.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rashee Rice</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">23.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sam LaPorta</td>
+<td style="text-align: right;">8.0</td>
+<td style="text-align: right;">4.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Javonte Williams</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">18.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eddy Pineiro</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">10.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Caleb Williams</td>
+<td style="text-align: right;">19.1</td>
+<td style="text-align: right;">4.68</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Travis Etienne</td>
+<td style="text-align: right;">11.5</td>
+<td style="text-align: right;">6.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Breece Hall</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">7.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Xavier Worthy</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">7.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AJ Barner</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">1.90</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <p><strong>Results</strong></p>
 <p>Based on the data frame, seven of my players fell within the range of five fantasy points, while the other six players were outside this range. Therefore, my hypothesis is partially correct. We can continue to evaluate forecasting accuracy and the overconfidence of the data.</p>
@@ -290,40 +374,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Projected_Points, Actual_FPTS) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="fu">across</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(.)),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">missingness =</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">is.na</span>(.)) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">M =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">q10 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 10th quantile</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">q90 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 90th quantile</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">IQR =</span> <span class="sc">~</span> <span class="fu">IQR</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">MAD =</span> <span class="sc">~</span> <span class="fu">mad</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">CV =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">pseudomedian =</span> <span class="sc">~</span> DescTools<span class="sc">::</span><span class="fu">HodgesLehmann</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">mode =</span> <span class="sc">~</span> petersenlab<span class="sc">::</span><span class="fu">Mode</span>(., <span class="at">multipleModes =</span> <span class="st">"mean"</span>),</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">skewness =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">skew</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">kurtosis =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">kurtosi</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}.{.fn}"</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      )) <span class="sc">%&gt;%</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"index"</span>),</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> index,</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> value</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Projected_Points, Actual_FPTS) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="fu">across</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(.)),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">missingness =</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">is.na</span>(.)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">M =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">q10 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 10th quantile</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">q90 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 90th quantile</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">IQR =</span> <span class="sc">~</span> <span class="fu">IQR</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">MAD =</span> <span class="sc">~</span> <span class="fu">mad</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">CV =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">pseudomedian =</span> <span class="sc">~</span> DescTools<span class="sc">::</span><span class="fu">HodgesLehmann</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">mode =</span> <span class="sc">~</span> petersenlab<span class="sc">::</span><span class="fu">Mode</span>(., <span class="at">multipleModes =</span> <span class="st">"mean"</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">skewness =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">skew</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">kurtosis =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">kurtosi</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}.{.fn}"</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      )) <span class="sc">%&gt;%</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"index"</span>),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> index,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> value</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -339,11 +423,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>petersenlab<span class="sc">::</span><span class="fu">accuracyOverall</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> df<span class="sc">$</span>Projected_Points,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">actual =</span> df<span class="sc">$</span>Actual_FPTS,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropUndefined =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>petersenlab<span class="sc">::</span><span class="fu">accuracyOverall</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">predicted =</span> df<span class="sc">$</span>Projected_Points,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">actual =</span> df<span class="sc">$</span>Actual_FPTS,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dropUndefined =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -368,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-conclusion" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Conclusion</h1>
-<p>In conclusion, predicted projections on Fantasy Football sites can serve as a great predictor</p>
+<p>Predicted projections on Fantasy Football sites can serve as a decently reliable source for predicting fantasy football points. Although it’s essential to remember that projections aren’t always completely accurate, they are generally accurate (e.g., within 1-5 fantasy points of projections). Additionally, these projections don’t take into account potential weather issues or injuries that may occur during the game, which can severely impact the number of fantasy points your player will obtain.</p>
 </section>
 <section id="sec-references" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> References</h1>
@@ -379,10 +463,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.5.1 (2025-06-13)
+<pre><code>R version 4.5.2 (2025-10-31)
 Platform: x86_64-pc-linux-gnu
 Running under: Ubuntu 24.04.3 LTS
 
@@ -407,7 +491,7 @@ other attached packages:
  [4] dplyr_1.1.4         purrr_1.1.0         readr_2.1.5        
  [7] tidyr_1.3.1         tibble_3.3.0        tidyverse_2.0.0    
 [10] GGally_2.4.0        ggplot2_4.0.0       lmerTest_3.1-3     
-[13] lme4_1.1-37         Matrix_1.7-3        bestNormalize_1.9.1
+[13] lme4_1.1-37         Matrix_1.7-4        bestNormalize_1.9.1
 [16] car_3.1-3           carData_3.0-5       broom_1.0.10       
 [19] effectsize_1.0.1    DescTools_0.99.60   psych_2.5.6        
 [22] petersenlab_1.2.0  
@@ -426,29 +510,29 @@ loaded via a namespace (and not attached):
  [31] fastmap_1.2.0       rbibutils_2.3       future_1.67.0      
  [34] numDeriv_2016.8-1.1 digest_0.6.37       Exact_3.3          
  [37] colorspace_2.1-2    Hmisc_5.2-4         timechange_0.3.0   
- [40] httr_1.4.7          abind_1.4-8         compiler_4.5.1     
+ [40] httr_1.4.7          abind_1.4-8         compiler_4.5.2     
  [43] rngtools_1.5.2      proxy_0.4-27        withr_3.0.2        
  [46] doParallel_1.0.17   htmlTable_2.4.3     S7_0.2.0           
  [49] backports_1.5.0     DBI_1.2.3           ggstats_0.11.0     
  [52] MASS_7.3-65         lava_1.8.2          gld_2.6.8          
- [55] tools_4.5.1         pbivnorm_0.6.0      foreign_0.8-90     
+ [55] tools_4.5.2         pbivnorm_0.6.0      foreign_0.8-90     
  [58] future.apply_1.20.0 nnet_7.3-20         glue_1.8.0         
- [61] quadprog_1.5-8      nlme_3.1-168        grid_4.5.1         
+ [61] quadprog_1.5-8      nlme_3.1-168        grid_4.5.2         
  [64] checkmate_2.3.3     cluster_2.1.8.1     reshape2_1.4.4     
  [67] generics_0.1.4      recipes_1.3.1       gtable_0.3.6       
  [70] tzdb_0.5.0          class_7.3-23        data.table_1.17.8  
  [73] lmom_3.2            hms_1.1.4           foreach_1.5.2      
- [76] pillar_1.11.1       mitools_2.4         splines_4.5.1      
+ [76] pillar_1.11.1       mitools_2.4         splines_4.5.2      
  [79] lattice_0.22-7      survival_3.8-3      tidyselect_1.2.1   
  [82] mix_1.0-13          knitr_1.50          reformulas_0.4.2   
- [85] gridExtra_2.3       stats4_4.5.1        xfun_0.54          
+ [85] gridExtra_2.3       stats4_4.5.2        xfun_0.54          
  [88] expm_1.0-0          hardhat_1.4.2       timeDate_4051.111  
- [91] stringi_1.8.7       yaml_2.3.10         boot_1.3-31        
+ [91] stringi_1.8.7       yaml_2.3.10         boot_1.3-32        
  [94] evaluate_1.0.5      codetools_0.2-20    cli_3.6.5          
  [97] rpart_4.1.24        xtable_1.8-4        parameters_0.28.2  
 [100] Rdpack_2.6.4        lavaan_0.6-20       Rcpp_1.1.0         
 [103] readxl_1.4.5        globals_0.18.0      coda_0.19-4.1      
-[106] parallel_4.5.1      gower_1.0.2         bayestestR_0.17.0  
+[106] parallel_4.5.2      gower_1.0.2         bayestestR_0.17.0  
 [109] doRNG_1.8.6.2       listenv_0.9.1       viridisLite_0.4.2  
 [112] mvtnorm_1.3-3       ipred_0.9-15        scales_1.4.0       
 [115] prodlim_2025.04.28  e1071_1.7-16        insight_1.4.2      
