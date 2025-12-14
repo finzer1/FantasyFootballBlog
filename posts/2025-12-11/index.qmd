@@ -1,12 +1,12 @@
 ---
 title: "Example Blog Post: Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points?"
-author: "Insert Author's Name Here"
-date: "7/14/2025"
-categories: [template, fantasy football]
-image: ""
+author: "Finley Jacobson"
+date: "12/11/2025"
+categories: [fantasy football]
+image: "images.jpg"
 ---
 
-Note: The post image was obtained from [here]().
+Note: The post image was obtained from [here](https://www.needpix.com/photo/download/660962/football-american-football-referee-touchdown-signal-end-zone-sport-game-football-american).
 
 # Preamble {#sec-preamble}
 

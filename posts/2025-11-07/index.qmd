@@ -1,12 +1,12 @@
 ---
-title: "Quarto Blog Post Template"
+title: "Quarto Blog Post"
 author: "Finley Jacobson"
 date: "11/07/2025"
 categories: [fantasy football]
-image: "fantasyFootball.jpg"
+image: "download.jpg"
 ---
 
-Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:Fantasy_Football_-1.jpg).
+Note: The post image was obtained from [here](https://www.pickpik.com/athletes-ball-field-football-football-players-game-13137).
 
 # Preamble {#sec-preamble}
 

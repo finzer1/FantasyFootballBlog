@@ -1,12 +1,12 @@
 ---
 title: "Example Blog Post: Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points?"
 author: "Finley Jacobson"
-date: "10/23/2025"
+date: "12/04/2025"
 categories: [fantasy football]
-image: "download.jpg"
+image: "download-1.jpg"
 ---
 
-Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:Indiana_vs._Michigan_football_2013_05_%28heavy_rain%29.jpg).
+Note: The post image was obtained from [here](https://www.publicdomainpictures.net/en/view-image.php?image=100995&picture=youth-football).
 
 # Preamble {#sec-preamble}
 
@@ -61,13 +61,18 @@ For a wide receiver, opportunity may encompass many aspects including how many s
 Another key aspect of opportunity is the depth of the targets they receive—because greater target depth provides greater opportunity for them to obtain receiving yards and fantasy points.
 
 
+Fantasy managers often must decide whether to trust a player's previous production or to consider opportunity metrics such as air yards.
+Understanding which better predicts future fantasy performance can improve weekly start/sit decisions and waiver pickups.
+One of the goals in fantasy football is to predict which players will do well before they "blow up" and have a big game.
+Relying on receiving yards, touchdowns, and fantasy points may not be the optimal prognostic indicator of future performance.
+Although analyzing a wide receiver's receiving yards or fantasy points tells us about the player's outcome, it does not indicate *how* they arrived at that outcome—i.e., how the team used the player, not just what the they caught.
+
 
 However, it is not known whether previous performance or opportunity is a stronger predictor of future performance.
 
 ## The Present Study {#sec-presentStudy}
 
-In the present study, I examined whether previous performance or previous opportunity is a stronger predictor of future performance among wide receivers.
-For the predictors, 
+In the present study, I examined whether 
 I hypothesized that, due to natural variability from week-to-week that, in part, reflects randomness and is consistent with the statistical principle of regression to the mean, opportunity would be a stronger influence of subsequent performance than previous performance.
 If the hypothesis is true, I predict that air yards will be a stronger predictor, compared to actual receiving yards, in predicting future fantasy points.
 Testing this possibility is important for determining what factors may be used to best identify players who, despite not gaining many receiving yards in a given week, may do well in future weeks.
@@ -79,6 +84,9 @@ To test the hypothesis, I examined whether a wide receiver's air yards in a give
 ## Data {#sec-data}
 
 Below, I load the data file used for this post.
+The data file includes weekly player statistics, including air yards, receiving yards, and fantasy points.
+
+
 
 
 Second, to prepare the data for analysis, I created a lagged variable for fantasy points so that fantasy points in a subsequent year (e.g., 2024) are in the same row as player performance from the prior year (e.g., 2023).
@@ -88,6 +96,9 @@ The original data set includes only those rows for weeks in which a given player
 For instance, if a player played weeks 9 and 11 but missed week 10 due to injury, they would have rows for only week 9 and 11.
 However, this is a problem if we were to lag a variable (fantasy points) up a row because, in this instance, it would be lagging the variable two weeks (from week 11 to week 9), rather than one week.
 To ensure that the lagged variable lags only 1 week (and not more weeks), I added missing rows for the missing weeks for given player-season combinations, to ensure each player-season combination had all 18 weeks represented.
+
+
+
 
 ## Statistical Analysis {#sec-statisticalAnalysis}
 
@@ -102,15 +113,13 @@ Specifically, I compared the standardized regression coefficients for the two pr
 ## Sensitivity Analyses
 
 I evaluated assumptions of multiple regression: 1) linear association, 2) homoscedasticity, 3) uncorrelated residuals, and 4) normally distributed residuals.
+To evaluate the assumption of a linear association between the predictor variables and outcome variable, I examined the shape of the associations of air yards and receiving yards with fantasy points using line graphs.
 
-
-To evaluate the assumption of homoscedasticity, I examined residual and spread-level plots.
-
+The results of the regression model are below:
 
 The pattern of findings did not differ substantially when transforming the outcome variable to be more normally distributed.
 
 Because the data were nested within players (i.e., longitudinal) and thus violated the assumption of uncorrelated residuals, we also conducted a sensitivity analysis using a mixed model to account for the nested data.
-
 
 In sum, the pattern of findings held after conducting sensitivity analyses to account for potential violations of assumptions of multiple regression.
 
