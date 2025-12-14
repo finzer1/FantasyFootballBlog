@@ -2,15 +2,19 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2025-12-11/index.html",
+      "/posts/2025-12-04/index.html",
+      "/posts/2025-11-20/index.html",
       "/posts/2025-11-07/index.html",
       "/posts/2025-10-30/index.html",
+      "/posts/2025-10-23/index.html",
       "/posts/2025-10-09/index.html",
+      "/posts/2025-09-30/index.html",
       "/posts/2025-09-18/index.html",
       "/posts/2025-09-12/index.html",
       "/posts/welcome/index.html",
       "/posts/example/index.html",
       "/posts/template/index.html",
-      "/posts/2025-11-07/index copy.html",
       "/posts/quarto-instructions/index.html"
     ]
   }

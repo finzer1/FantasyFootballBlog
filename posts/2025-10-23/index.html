@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Insert Author’s Name Here">
-<meta name="dcterms.date" content="2024-07-10">
+<meta name="author" content="Finley Jacobson">
+<meta name="dcterms.date" content="2025-10-23">
 
-<title>Quarto Blog Post Template – My Blog</title>
+<title>Example Blog Post: Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points? – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -119,8 +119,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">My Blog</span>
     </a>
@@ -156,9 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Quarto Blog Post Template</h1>
+      <h1 class="title">Example Blog Post: Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points?</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">template</div>
                 <div class="quarto-category">fantasy football</div>
               </div>
                   </div>
@@ -170,14 +167,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Insert Author’s Name Here </p>
+               <p>Finley Jacobson </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 10, 2024</p>
+        <p class="date">October 23, 2025</p>
       </div>
     </div>
     
@@ -208,7 +205,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">5.1</span> Data</a></li>
   <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">5.2</span> Statistical Analysis</a></li>
   </ul></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">6</span> Results</a></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">6</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#main-analyses" id="toc-main-analyses" class="nav-link" data-scroll-target="#main-analyses"><span class="header-section-number">6.1</span> Main Analyses</a></li>
+  <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">6.2</span> Sensitivity Analyses</a></li>
+  </ul></li>
   <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">7</span> Discussion</a>
   <ul class="collapse">
   <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">7.1</span> Strengths and Limitations</a></li>
@@ -226,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>This is a template <a href="https://quarto.org">Quarto</a> file for your blog posts. Note: The post image was obtained from <a href="https://commons.wikimedia.org/wiki/File:Fantasy_Football_-1.jpg">here</a>.</p>
+<p>Note: The post image was obtained from <a href="https://commons.wikimedia.org/wiki/File:Indiana_vs._Michigan_football_2013_05_%28heavy_rain%29.jpg">here</a>.</p>
 <section id="sec-preamble" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Preamble</h1>
 <section id="sec-loadLibraries" class="level2" data-number="1.1">
@@ -234,67 +235,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"psych"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DescTools"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"effectsize"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"broom"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"car"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"bestNormalize"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lmerTest"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"GGally"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 </section>
 <section id="sec-aiDisclosure" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> AI Disclosure</h1>
-<p>AI Disclosure: AI was used for [SPECIFY ONE OR MORE AMONG THE FOLLOWING]: Mentoring, Code, and Editing. (Or, “AI was not used.”)</p>
-<p>Link to AI Transcript: [INSERT URL]</p>
+<p>AI Disclosure: AI was not used.</p>
+<p>Link to AI Transcript: not applicable</p>
 </section>
 <section id="sec-abstract" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Abstract</h1>
-<p>The Abstract is be a brief summary of your article. It should briefly summarize the background, method, results, discussion, and conclusion. The slashes in the Abstract template below make a new line (without creating a new paragraph).</p>
-<p><strong>Background:</strong> INSERT.<br>
-<strong>Method:</strong> INSERT.<br>
-<strong>Results:</strong> INSERT.<br>
-<strong>Discussion:</strong> INSERT.</p>
+<p><strong>Background:</strong> Due to natural variability of players’ fantasy points from week to week, it is possible that a player’s opportunity (i.e., volume) may be a stronger influence of future performance than previous performance. However, this possibility has not been tested.<br>
+<strong>Method:</strong> In the present study, I compared predictors to determine which is a stronger predictor of future performance among wide receivers: previous performance or previous opportunity. For the predictors, I examined air yards as the index of a wide receiver’s opportunity and receiving yards as the index of player performance. For the criterion, I examined wide receivers’ fantasy points in the subsequent game.<br>
+<strong>Results:</strong> I found that previous performance (i.e., receiving yards) was a stronger predictor of fantasy performance (i.e., fantasy points) than was previous opportunity (i.e., air yards). Nevertheless, both previous receiving yards and air yards accounted for unique variance in future fantasy points.<br>
+<strong>Discussion:</strong> In conclusion, both previous performance and opportunity are important predictors of fantasy performance and should be considered.</p>
 </section>
 <section id="sec-background" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Background</h1>
-<p>This section should provide a background on the topic and why it is important.</p>
+<p>In football, like many other domains, a key predictor of future performance is past performance. Wide receivers who gain many receiving yards in a given week or season are more likely than other players to gain many receiving yards and score many points in future weeks or seasons. However, previous performance is not the only important predictor of future performance.</p>
+<p>Early in the fantasy football season, there is considerable uncertainty regarding how players will perform.</p>
+<p>Thus, it is important to consider factors in addition to previous performance that predict player performance. Key influences of player performance, in addition to player ability, include opportunity, usage, and volume. For a wide receiver, opportunity may encompass many aspects including how many snaps they receive, how many routes they run, how many targets they receive, and so on. Another key aspect of opportunity is the depth of the targets they receive—because greater target depth provides greater opportunity for them to obtain receiving yards and fantasy points.</p>
+<p>However, it is not known whether previous performance or opportunity is a stronger predictor of future performance.</p>
 <section id="sec-presentStudy" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-presentStudy"><span class="header-section-number">4.1</span> The Present Study</h2>
-<p>This section should describe your research question(s), hypotheses, and predictions, and should provide a justification for each hypothesis—ideally based on prior work, theory, etc. It should also describe why your study is innovative and important. The research question(s), hypotheses, and predictions should be clear. The hypothesis should provide a proposed explanation. The prediction(s) should be specific and testable.</p>
+<p>In the present study, I examined whether previous performance or previous opportunity is a stronger predictor of future performance among wide receivers. For the predictors, I hypothesized that, due to natural variability from week-to-week that, in part, reflects randomness and is consistent with the statistical principle of regression to the mean, opportunity would be a stronger influence of subsequent performance than previous performance. If the hypothesis is true, I predict that air yards will be a stronger predictor, compared to actual receiving yards, in predicting future fantasy points. Testing this possibility is important for determining what factors may be used to best identify players who, despite not gaining many receiving yards in a given week, may do well in future weeks.</p>
 </section>
 </section>
 <section id="sec-method" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Method</h1>
-<p>This section should describe how you tested your research question(s), including several subsections. A strong method section should allow any research to replicate your findings. That is, readers should know enough detail of how you conducted your study so that they can get the same answer. Traditionally, this section would include several subsections, including a) Participants, b) Procedure, c) Measures, and d) <a href="#sec-statisticalAnalysis">Statistical Analysis</a>. However, for this class and purpose, we will adapt the Method section to include the following subsections.</p>
+<p>To test the hypothesis, I examined whether a wide receiver’s air yards in a given week was a better predictor than their actual receiving yards of the player’s fantasy points the following week.</p>
 <section id="sec-data" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">5.1</span> Data</h2>
-<p>This section describes the data you used—including the subset of players, positions, seasons, and indices you examined—how you obtained them, and any cleaning/processing/subsetting of the data you performed.</p>
+<p>Below, I load the data file used for this post.</p>
+<p>Second, to prepare the data for analysis, I created a lagged variable for fantasy points so that fantasy points in a subsequent year (e.g., 2024) are in the same row as player performance from the prior year (e.g., 2023). Creation of a lagged variable allowed using previous performance to predict future fantasy points.</p>
+<p>The original data set includes only those rows for weeks in which a given player played. For instance, if a player played weeks 9 and 11 but missed week 10 due to injury, they would have rows for only week 9 and 11. However, this is a problem if we were to lag a variable (fantasy points) up a row because, in this instance, it would be lagging the variable two weeks (from week 11 to week 9), rather than one week. To ensure that the lagged variable lags only 1 week (and not more weeks), I added missing rows for the missing weeks for given player-season combinations, to ensure each player-season combination had all 18 weeks represented.</p>
 </section>
 <section id="sec-statisticalAnalysis" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-statisticalAnalysis"><span class="header-section-number">5.2</span> Statistical Analysis</h2>
-<p>This section describes the statistical approach you used, including the packages, key functions, and settings you used.</p>
+<p>I used multiple regression to test the hypothesis. Specifically, I compared the standardized regression coefficients for the two predictors of interest: air yards versus receiving yards.</p>
 </section>
 </section>
 <section id="sec-results" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Results</h1>
-<p>This section presents the results of the statistical analysis, including output, figures, and basic description of the findings. The section should include <code>R</code> code/analyses to test the research question(s) and hypotheses, and it should include a written description of the findings all inline with the code and output.</p>
+<section id="main-analyses" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="main-analyses"><span class="header-section-number">6.1</span> Main Analyses</h2>
+</section>
+<section id="sensitivity-analyses" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sensitivity-analyses"><span class="header-section-number">6.2</span> Sensitivity Analyses</h2>
+<p>I evaluated assumptions of multiple regression: 1) linear association, 2) homoscedasticity, 3) uncorrelated residuals, and 4) normally distributed residuals.</p>
+<p>To evaluate the assumption of homoscedasticity, I examined residual and spread-level plots.</p>
+<p>The pattern of findings did not differ substantially when transforming the outcome variable to be more normally distributed.</p>
+<p>Because the data were nested within players (i.e., longitudinal) and thus violated the assumption of uncorrelated residuals, we also conducted a sensitivity analysis using a mixed model to account for the nested data.</p>
+<p>In sum, the pattern of findings held after conducting sensitivity analyses to account for potential violations of assumptions of multiple regression.</p>
+</section>
 </section>
 <section id="sec-discussion" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Discussion</h1>
-<p>This section summarizes the findings and relates the findings back to background you provided at the beginning of the article.</p>
+<p>In this article, I examined whether previous performance or opportunity is a stronger predictor of future fantasy performance among wide receivers. For the predictors, I operationalized the wide receiver’s performance as their receiving yards. I operationalized a wide receiver’s opportunity as their air yards, an index of the depth of targets the player received. For the criterion of fantasy performance, I examined wide receivers’ fantasy points in the subsequent game. I hypothesized that opportunity would be a stronger influence of subsequent performance than previous performance and that, as a result, air yards will be a stronger predictor, compared to actual receiving yards, in predicting future fantasy points among wide receivers. Contrary to my hypothesis, however, I found that receiving yards was a stronger predictor than air yards in predicting wide receivers’ fantasy points the following week. Receiving yards had a medium effect size; air yards had a small effect size.</p>
+<p>Nevertheless, both previous fantasy points and air yards accounted for unique variance in future fantasy points. The findings held when conducting sensitivity analyses, including transforming the outcome variable to be more normally distributed and using a mixed model to account for the longitudinal nature of the data. Thus, findings suggest that, although previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers, both previous performance and opportunity are important predictors of fantasy performance that should be considered. A possible alternative interpretation of the findings is that previous performance reflects other causal processes (such as ability and opportunity) and that previous performance does not influence future performance per se.</p>
 <section id="sec-strengthsLimitations" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">7.1</span> Strengths and Limitations</h2>
-<p>This section describes the strengths and limitations of the study.</p>
+<p>The study had several strengths. First, I examined data from all seasons since 1999, thus providing strong statistical power to detect differences in the strength of associations. Second, I conducted several sensitivity analyses, providing additional rigor in the methods and additional confidence in the findings.</p>
+<p>The study also had limitations. First, air yards and other statistical indexes depend on many factors such as the game script and, in a given game, may not be representative of a player’s role in the offense. Second, a player’s inclusion of a given week in the analysis required the player to play in the given game and the following week. Player availability could depend, in part, due to usage; for instance, receivers who run more routes, receive more targets, and obtain more air/receiving yards could be more likely to miss a subsequent game due to injury and thus could be missing systematically from my analysis. This possibility would be important for future work to consider.</p>
 </section>
 <section id="sec-conclusion" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">7.2</span> Conclusion</h2>
-<p>This sections provides an overall conclusion given the findings of the study, including take-away messages, implications, etc.</p>
+<p>In conclusion, previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers. However, both previous performance and opportunity are important predictors of fantasy performance and should be considered when predicting wide receiver fantasy performance. Among underperforming players, air yards—as an index of opportunity—may be a useful way of identifying those who may bounce back in subsequent weeks.</p>
 </section>
 </section>
 <section id="sec-references" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> References</h1>
-<p>This section provides a list of references that you cited above.</p>
 </section>
 <section id="sec-sessionInfo" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Session Info</h1>
-<p>This section provides your session info for reproducibility.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -322,29 +347,57 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] petersenlab_1.2.0
+ [1] lubridate_1.9.4     forcats_1.0.1       stringr_1.6.0      
+ [4] dplyr_1.1.4         purrr_1.2.0         readr_2.1.6        
+ [7] tidyr_1.3.1         tibble_3.3.0        tidyverse_2.0.0    
+[10] GGally_2.4.0        ggplot2_4.0.1       lmerTest_3.1-3     
+[13] lme4_1.1-38         Matrix_1.7-4        bestNormalize_1.9.2
+[16] car_3.1-3           carData_3.0-5       broom_1.0.11       
+[19] effectsize_1.0.1    DescTools_0.99.60   psych_2.5.6        
+[22] petersenlab_1.2.2  
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.6       xfun_0.54          ggplot2_4.0.0      htmlwidgets_1.6.4 
- [5] psych_2.5.6        lattice_0.22-7     quadprog_1.5-8     vctrs_0.6.5       
- [9] tools_4.5.2        Rdpack_2.6.4       generics_0.1.4     parallel_4.5.2    
-[13] stats4_4.5.2       tibble_3.3.0       cluster_2.1.8.1    pkgconfig_2.0.3   
-[17] Matrix_1.7-4       data.table_1.17.8  checkmate_2.3.3    RColorBrewer_1.1-3
-[21] S7_0.2.0           lifecycle_1.0.4    compiler_4.5.2     farver_2.1.2      
-[25] stringr_1.6.0      mnormt_2.1.1       mitools_2.4        htmltools_0.5.8.1 
-[29] yaml_2.3.10        htmlTable_2.4.3    Formula_1.2-5      pillar_1.11.1     
-[33] nloptr_2.2.1       MASS_7.3-65        Hmisc_5.2-4        reformulas_0.4.2  
-[37] rpart_4.1.24       boot_1.3-32        nlme_3.1-168       lavaan_0.6-20     
-[41] tidyselect_1.2.1   digest_0.6.37      mvtnorm_1.3-3      stringi_1.8.7     
-[45] reshape2_1.4.4     purrr_1.2.0        dplyr_1.1.4        splines_4.5.2     
-[49] fastmap_1.2.0      grid_4.5.2         colorspace_2.1-2   cli_3.6.5         
-[53] magrittr_2.0.4     base64enc_0.1-3    pbivnorm_0.6.0     foreign_0.8-90    
-[57] scales_1.4.0       backports_1.5.0    rmarkdown_2.30     nnet_7.3-20       
-[61] lme4_1.1-37        gridExtra_2.3      evaluate_1.0.5     knitr_1.50        
-[65] rbibutils_2.3      mix_1.0-13         viridisLite_0.4.2  rlang_1.1.6       
-[69] Rcpp_1.1.0         xtable_1.8-4       glue_1.8.0         DBI_1.2.3         
-[73] rstudioapi_0.17.1  minqa_1.2.8        jsonlite_2.0.0     R6_2.6.1          
-[77] plyr_1.8.9        </code></pre>
+  [1] RColorBrewer_1.1-3  rstudioapi_0.17.1   jsonlite_2.0.0     
+  [4] datawizard_1.3.0    magrittr_2.0.4      TH.data_1.1-5      
+  [7] estimability_1.5.1  farver_2.1.2        nloptr_2.2.1       
+ [10] rmarkdown_2.30      fs_1.6.6            vctrs_0.6.5        
+ [13] minqa_1.2.8         base64enc_0.1-3     butcher_0.4.0      
+ [16] htmltools_0.5.9     progress_1.2.3      haven_2.5.5        
+ [19] cellranger_1.1.0    Formula_1.2-5       parallelly_1.46.0  
+ [22] htmlwidgets_1.6.4   plyr_1.8.9          sandwich_3.1-1     
+ [25] emmeans_2.0.0       rootSolve_1.8.2.4   zoo_1.8-14         
+ [28] lifecycle_1.0.4     iterators_1.0.14    pkgconfig_2.0.3    
+ [31] R6_2.6.1            fastmap_1.2.0       future_1.68.0      
+ [34] rbibutils_2.4       numDeriv_2016.8-1.1 digest_0.6.39      
+ [37] Exact_3.3           colorspace_2.1-2    Hmisc_5.2-4        
+ [40] timechange_0.3.0    httr_1.4.7          abind_1.4-8        
+ [43] compiler_4.5.2      rngtools_1.5.2      proxy_0.4-28       
+ [46] withr_3.0.2         doParallel_1.0.17   htmlTable_2.4.3    
+ [49] S7_0.2.1            backports_1.5.0     DBI_1.2.3          
+ [52] ggstats_0.11.0      MASS_7.3-65         lava_1.8.2         
+ [55] gld_2.6.8           tools_4.5.2         pbivnorm_0.6.0     
+ [58] foreign_0.8-90      future.apply_1.20.1 nnet_7.3-20        
+ [61] glue_1.8.0          quadprog_1.5-8      nlme_3.1-168       
+ [64] grid_4.5.2          checkmate_2.3.3     cluster_2.1.8.1    
+ [67] reshape2_1.4.5      generics_0.1.4      recipes_1.3.1      
+ [70] gtable_0.3.6        tzdb_0.5.0          class_7.3-23       
+ [73] data.table_1.17.8   lmom_3.2            hms_1.1.4          
+ [76] foreach_1.5.2       pillar_1.11.1       mitools_2.4        
+ [79] splines_4.5.2       lattice_0.22-7      survival_3.8-3     
+ [82] tidyselect_1.2.1    mix_1.0-13          knitr_1.50         
+ [85] reformulas_0.4.2    gridExtra_2.3       stats4_4.5.2       
+ [88] xfun_0.54           expm_1.0-0          hardhat_1.4.2      
+ [91] timeDate_4051.111   stringi_1.8.7       yaml_2.3.12        
+ [94] boot_1.3-32         evaluate_1.0.5      codetools_0.2-20   
+ [97] cli_3.6.5           rpart_4.1.24        xtable_1.8-4       
+[100] parameters_0.28.3   Rdpack_2.6.4        lavaan_0.6-20      
+[103] Rcpp_1.1.0          readxl_1.4.5        globals_0.18.0     
+[106] coda_0.19-4.1       parallel_4.5.2      gower_1.0.2        
+[109] prettyunits_1.2.0   bayestestR_0.17.0   doRNG_1.8.6.2      
+[112] listenv_0.10.0      viridisLite_0.4.2   mvtnorm_1.3-3      
+[115] ipred_0.9-15        scales_1.4.0        prodlim_2025.04.28 
+[118] e1071_1.7-16        insight_1.4.4       crayon_1.5.3       
+[121] rlang_1.1.6         multcomp_1.4-29     mnormt_2.1.1       </code></pre>
 </div>
 </div>
 
