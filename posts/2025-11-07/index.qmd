@@ -65,52 +65,6 @@ This section describes the data you used—including the subset of players, posi
 
 
 
-```{r}
-load("~/Documents/FantasyFootballBlog/data/player_stats_weekly.RData")
-```
-
-
-```{r}
-player_stats_weekly_example <- player_stats_weekly %>% 
-  filter(position == "WR") %>% 
-  arrange(player_id, season, week) %>% 
-  group_by(player_id, season) %>% 
-  mutate(fantasyPoints_nextGame = lead(fantasyPoints)) %>% # obtain a player's rushing yards from their prior game using the dplyr::lag() function
-  ungroup() %>% 
-  select(player_id, season, week, fantasyPoints, fantasyPoints_nextGame, ageCentered20, ageCentered20Quadratic, years_of_experience, receiving_yards, receiving_tds, receiving_air_yards, receiving_yards_after_catch, racr, targets, target_share) %>% 
-  na.omit() # drop rows with missing values (machine learning cannot handle missing values; an alternative approach if you don't want to drop rows with missing values would be to impute missing values)
-
-player_stats_weekly_example %>% 
-  select(player_id, season, week, fantasyPoints, fantasyPoints_nextGame) %>% 
-  head()
-
-model_predictions <- data.frame(
-  actual = player_stats_weekly_example$fantasyPoints_nextGame
-)
-
-```
-
-```{r}
-linearRegression_onePredictor <- lm(
-  INSERT ~ INSERT,
-  data = INSERT,
-  na.action = "na.exclude"
-)
-
-summary(linearRegression_onePredictor)
-
-print(effectsize::standardize_parameters(linearRegression_onePredictor), digits = 2)
-
-model_predictions$linearRegression_onePredictor <- predict(linearRegression_onePredictor)
-
-# Evaluate Accuracy of Predictions
-petersenlab::accuracyOverall(
-  predicted = model_predictions$linearRegression_onePredictor,
-  actual = model_predictions$actual,
-  dropUndefined = TRUE
-)
-```
-
 
 
 This section describes the statistical approach you used, including the packages, key functions, and settings you used.

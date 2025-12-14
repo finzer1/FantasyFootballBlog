@@ -1,13 +1,12 @@
 ---
 title: "Quarto Blog Post Template"
-author: "Insert Author's Name Here"
-date: "7/10/2024"
-categories: [template, fantasy football]
-image: "fantasyFootball.jpg"
+author: "Finley Jacobson"
+date: "9/30/2025"
+categories: [fantasy football, regression, correlation]
+image: "download.jpg"
 ---
 
-This is a template [Quarto](https://quarto.org) file for your blog posts.
-Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:Fantasy_Football_-1.jpg).
+Note: The post image was obtained from [here](https://www.publicdomainpictures.net/en/view-image.php?image=212694&picture=american-football).
 
 # Preamble {#sec-preamble}
 
@@ -25,7 +24,7 @@ library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
 AI Disclosure: AI was used for [SPECIFY ONE OR MORE AMONG THE FOLLOWING]: Mentoring, Code, and Editing.
 (Or, "AI was not used.")
 
-Link to AI Transcript: [INSERT URL]
+Link to AI Transcript:  [INSERT URL]
 
 # Abstract {#sec-abstract}
 
