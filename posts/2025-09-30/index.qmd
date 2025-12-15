@@ -83,7 +83,7 @@ Below, I load the data file used for this post. The data file contains 437,309 w
 Note: Sample sizes: (Pearson's correlation, n = 12,426), (Simple regression, n = 15,371) and (Multiple regression, n = 15,256).
 
 ```{r}
-load("~/Documents/FantasyFootballBlog/data/player_stats_weekly.RData")
+load("Documents/FantasyFootballBlog/data/player_stats_weekly.RData")
 ```
 
 First, I subset the data to Quarterbacks:
@@ -247,7 +247,7 @@ Above, I have included a visualization of completion percentage by passing attem
 
 # Discussion {#sec-discussion}
 
-After reviewing all of my findings, hypotheses #2 and #3 were supported (i.e., results were statistically significant) as well as predictions #2 and #3 (i.e., general direction was predicted accurately) while hypothesis #1 was partially supported (i.e., results were statistically significant) and prediction #1 was not supported (general direction was not predicted accurately). Statistical significance is apparent in the study but could very well be due to how large the sample size was. These findings are important because it can potentially help people choose a quarterback based on the results of real-life data. These results can also help  coaches when determining who their quarterback should be. 
+After reviewing all of my findings, hypotheses #2 and #3 were supported (i.e., results were statistically significant) as well as predictions #2 and #3 (i.e., general direction was predicted accurately) while hypothesis #1 was partially supported (i.e., results were statistically significant) and prediction #1 was not supported (general direction was not predicted accurately). Statistical significance is apparent in the study, but it could very well be due to the large sample size. The study has practical significance, but the effects are small and could be limited. These findings are important because they can help people choose a quarterback based on real-world data. These results can also help coaches determine who their quarterback should be. 
 
 # Strengths and Limitations {#sec-strengthsLimitations}
 
