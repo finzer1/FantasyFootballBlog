@@ -1,5 +1,5 @@
 ---
-title: "Assessing Past QB Data Using Correlation and Regression"
+title: "Assessing Past Quarterback Data Using Correlation and Regression"
 author: "Finley Jacobson"
 date: "9/30/2025"
 categories: [fantasy football, regression, correlation]
@@ -42,7 +42,7 @@ library("knitr")
 
 AI Disclosure: AI was not used
 
-Link to AI Transcript: not appliable
+Link to AI Transcript: not applicable
 
 # Abstract {#sec-abstract}
 
@@ -50,7 +50,7 @@ Link to AI Transcript: not appliable
 
 **Method:** In the present study, I assess whether quarterbacks' completion percentages, passing attempts, and age are associated with one another and with fantasy football performance.
 
-**Results:** Hypothesis #1 was partially correct while hypotheses #2 and #3 were correct. Prediction #1 was predicted incorrectly while predictions #2 and #3 were predicted correctly.
+**Results:** Hypothesis #1 was partially correct, while hypotheses #2 and #3 were correct. Prediction #1 was predicted incorrectly, while predictions #2 and #3 were predicted correctly.
 
 **Discussion:** Overall, the study concluded statistically significant results for completion percentage, passing attempts, and age. Positive associations were found for all except one (i.e., target shares and fantasy points).
 
@@ -148,7 +148,7 @@ I used Pearson correlation to examine the relationship between target share and 
 
 # Main Analyses {sec-mainAnalyses}
 
-Below, we are able to see the association of target share and fantasy points among quarterbacks.
+Below, we can see the association between target share and fantasy points among quarterbacks.
 
 ```{r}
 cor.test(
@@ -157,7 +157,7 @@ cor.test(
 )
 ```
 
-According to the results, this indicates a very weak negative linear correlation between the two variables (i.e., as target_share increases, fantasyPoints decreases). Additionally, the results also show a statistically significant relationship. 
+According to the results, this indicates a very weak negative linear correlation between the two variables (i.e., as target share increases, fantasy football points decrease). Additionally, the results also show a statistically significant relationship.
 
 ```{r}
 ggplot2::ggplot(
@@ -182,7 +182,7 @@ ggplot2::ggplot(
 
 Above, I have included a scatterplot so we are able to see the results 'visually'. 
 
-Below, we have a linear regression model with one predictor, pass attempts, predicting completion percentage among Quarterbacks.
+Below is a linear regression model with one predictor, pass attempts, predicting completion percentage among Quarterbacks.
 
 ```{r}
 regressionOnePredictor <- lm(
@@ -195,9 +195,9 @@ summary(regressionOnePredictor)
 print(effectsize::standardize_parameters(regressionOnePredictor, method = "refit"), digits = 4)
 ```
 
-According to the results, predicting completion percentage was positively associated with the number of passing attempts (i.e., quarterbacks who complete passes at a higher rate tend attempt more passes than quarterbacks who complete fewer passes). This relationship is also statistically significant. 
+According to the results, predicting completion percentage was positively associated with the number of passing attempts (i.e., quarterbacks who complete passes at a higher rate tend attempt more passes than quarterbacks who complete fewer passes). This relationship is also statistically significant.
 
-Below, we have a linear regression model that adds the player's age as a covariate to control for age.
+Below, is a linear regression model that adds the player’s age as a covariate to control for age.
 
 ```{r}
 regressionTwoPredictors <- lm(
@@ -247,7 +247,7 @@ Above, I have included a visualization of completion percentage by passing attem
 
 # Discussion {#sec-discussion}
 
-After reviewing all of my findings, hypotheses #2 and #3 were supported (i.e., results were statistically significant) as well as predictions #2 and #3 (i.e., general direction was predicted accurately) while hypothesis #1 was partially supported (i.e., results were statistically significant) and prediction #1 was not supported (general direction was not predicted accurately). These findings are important because it can potentially help people choose a quarterback based on the results of real-life data. These results can also help  coaches when determining who their quarterback should be. 
+After reviewing all of my findings, hypotheses #2 and #3 were supported (i.e., results were statistically significant) as well as predictions #2 and #3 (i.e., general direction was predicted accurately) while hypothesis #1 was partially supported (i.e., results were statistically significant) and prediction #1 was not supported (general direction was not predicted accurately). Statistical significance is apparent in the study but could very well be due to how large the sample size was. These findings are important because it can potentially help people choose a quarterback based on the results of real-life data. These results can also help  coaches when determining who their quarterback should be. 
 
 # Strengths and Limitations {#sec-strengthsLimitations}
 
