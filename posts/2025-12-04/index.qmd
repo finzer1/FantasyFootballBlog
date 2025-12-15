@@ -70,7 +70,7 @@ Although analyzing a wide receiver's receiving yards or fantasy points tells us 
 
 However, it is not known whether previous performance or opportunity is a stronger predictor of future performance.
 
-## The Present Study {#sec-presentStudy}
+# The Present Study {#sec-presentStudy}
 
 In the present study, I examined whether 
 I hypothesized that, due to natural variability from week-to-week that, in part, reflects randomness and is consistent with the statistical principle of regression to the mean, opportunity would be a stronger influence of subsequent performance than previous performance.
@@ -81,7 +81,7 @@ Testing this possibility is important for determining what factors may be used t
 
 To test the hypothesis, I examined whether a wide receiver's air yards in a given week was a better predictor than their actual receiving yards of the player's fantasy points the following week.
 
-## Data {#sec-data}
+# Data {#sec-data}
 
 Below, I load the data file used for this post.
 The data file includes weekly player statistics, including air yards, receiving yards, and fantasy points.
@@ -100,7 +100,7 @@ To ensure that the lagged variable lags only 1 week (and not more weeks), I adde
 
 
 
-## Statistical Analysis {#sec-statisticalAnalysis}
+# Statistical Analysis {#sec-statisticalAnalysis}
 
 I used multiple regression to test the hypothesis.
 Specifically, I compared the standardized regression coefficients for the two predictors of interest: air yards versus receiving yards.
@@ -138,7 +138,7 @@ The findings held when conducting sensitivity analyses, including transforming t
 Thus, findings suggest that, although previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers, both previous performance and opportunity are important predictors of fantasy performance that should be considered.
 A possible alternative interpretation of the findings is that previous performance reflects other causal processes (such as ability and opportunity) and that previous performance does not influence future performance per se.
 
-## Strengths and Limitations {#sec-strengthsLimitations}
+# Strengths and Limitations {#sec-strengthsLimitations}
 
 The study had several strengths.
 First, I examined data from all seasons since 1999, thus providing strong statistical power to detect differences in the strength of associations.
@@ -150,7 +150,7 @@ Second, a player's inclusion of a given week in the analysis required the player
 Player availability could depend, in part, due to usage; for instance, receivers who run more routes, receive more targets, and obtain more air/receiving yards could be more likely to miss a subsequent game due to injury and thus could be missing systematically from my analysis.
 This possibility would be important for future work to consider.
 
-## Conclusion {#sec-conclusion}
+# Conclusion {#sec-conclusion}
 
 In conclusion, previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers.
 However, both previous performance and opportunity are important predictors of fantasy performance and should be considered when predicting wide receiver fantasy performance.

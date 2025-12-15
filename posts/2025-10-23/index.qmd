@@ -129,7 +129,7 @@ The findings held when conducting sensitivity analyses, including transforming t
 Thus, findings suggest that, although previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers, both previous performance and opportunity are important predictors of fantasy performance that should be considered.
 A possible alternative interpretation of the findings is that previous performance reflects other causal processes (such as ability and opportunity) and that previous performance does not influence future performance per se.
 
-## Strengths and Limitations {#sec-strengthsLimitations}
+# Strengths and Limitations {#sec-strengthsLimitations}
 
 The study had several strengths.
 First, I examined data from all seasons since 1999, thus providing strong statistical power to detect differences in the strength of associations.

@@ -1,5 +1,5 @@
 ---
-title: "Quarto Blog Post Template"
+title: "Assessing Past QB Data Using Correlation and Regression"
 author: "Finley Jacobson"
 date: "9/30/2025"
 categories: [fantasy football, regression, correlation]
@@ -17,74 +17,253 @@ Note: The post image was obtained from [here](https://www.publicdomainpictures.n
 #| warning: false
 
 library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("rms")
+library("car")
+library("bestNormalize")
+library("lme4")
+library("performance")
+library("lavaan")
+library("mice")
+library("miceadds")
+library("interactions")
+library("brms")
+library("parallelly")
+library("robustbase")
+library("ordinal")
+library("MASS")
+library("broom")
+library("effectsize")
+library("tidymodels")
+library("tidyverse")
+library("knitr")
 ```
 
 # AI Disclosure {#sec-aiDisclosure}
 
-AI Disclosure: AI was used for [SPECIFY ONE OR MORE AMONG THE FOLLOWING]: Mentoring, Code, and Editing.
-(Or, "AI was not used.")
+AI Disclosure: AI was not used
 
-Link to AI Transcript:  [INSERT URL]
+Link to AI Transcript: not appliable
 
 # Abstract {#sec-abstract}
 
-The Abstract is be a brief summary of your article.
-It should briefly summarize the background, method, results, discussion, and conclusion.
-The slashes in the Abstract template below make a new line (without creating a new paragraph).
+**Background:** Fantasy football involves assessing several factors and variables. Choosing the wrong player can easily be the sole reason you look at a particular week. That's why I'm assessing some quarterback variables to determine, for fantasy football participants and even football coaches, the best approach to evaluating a player. 
 
-**Background:** INSERT.\
-**Method:** INSERT.\
-**Results:** INSERT.\
-**Discussion:** INSERT.
+**Method:** In the present study, I assess whether quarterbacks' completion percentages, passing attempts, and age are associated with one another and with fantasy football performance.
+
+**Results:** Hypothesis #1 was partially correct while hypotheses #2 and #3 were correct. Prediction #1 was predicted incorrectly while predictions #2 and #3 were predicted correctly.
+
+**Discussion:** Overall, the study concluded statistically significant results for completion percentage, passing attempts, and age. Positive associations were found for all except one (i.e., target shares and fantasy points).
 
 # Background {#sec-background}
 
-This section should provide a background on the topic and why it is important.
+As a person who just joined a fantasy football league this year for the first time, it can be confusing about what you should be looking at when considering a player for your team. Especially when picking quarterbacks, since they can earn quite a bit of points for your team. But choosing the wrong quarterback could result in a tremendous loss of points for your team. So what should you be looking at? Well, in this study, I have chosen to assess whether a quarterback's completion percentage, passing attempts, and age are associated with one another (i.e., positively or negatively). Knowing the typical associations these factors have with each other can further improve your performance in your fantasy football league (i.e., or at least gauge you in the right direction when choosing a quarterback). Even coaches can use this information in their decision-making. Because people who participate in fantasy football and coaches of a football team all have something in common: they want their players to perform well. 
 
 ## The Present Study {#sec-presentStudy}
 
-This section should describe your research question(s), hypotheses, and predictions, and should provide a justification for each hypothesis—ideally based on prior work, theory, etc.
-It should also describe why your study is innovative and important.
-The research question(s), hypotheses, and predictions should be clear.
-The hypothesis should provide a proposed explanation.
-The prediction(s) should be specific and testable.
+In the present study, I assess whether quarterbacks' completion percentages, passing attempts, and age are associated with one another and with fantasy football performance (i.e., points earned).
+
+Research Question: Is completion percentage associated (i.e., negatively or positively) with passing attempts and fantasy football points for quarterbacks?
+Prediction #1: Quarterbacks with higher target shares will score higher fantasy football points vs. quarterbacks with lower target shares.
+Prediction #2: Quarterbacks with higher completion percentages will attempt more passes than quarterbacks with lower completion percentages.
+Prediction #3: Quarterbacks with more passing attempts who are older will have higher completion percentages than quarterbacks with fewer passing attempts who are younger. 
+Hypothesis #1: Target share is significantly associated with fantasy football points among quarterbacks.
+Hypothesis #2: Completion percentage will significantly predict passing attempts among quarterbacks.
+Hypothesis #3: Passing attempts and age will both significantly predict completion percentage. 
+
+I chose these hypotheses for a couple of reasons. First, I wanted to use the larger data codes provided in class rather than ESPN or DraftShark. Not only did I decide to challenge myself, but I figured a large sample size would be easier to analyze than a data set of only ten football players. Additionally, similar data analyses were provided during in-class activities, so I used those codes but focused only on quarterbacks rather than other positions. This study is innovative and important and can be used to (potentially) improve a person's fantasy football roster, provide useful information for football teams (i.e., if they are choosing a new quarterback), and involves statistical data analysis of over a thousand quarterbacks.
 
 # Method {#sec-method}
 
-This section should describe how you tested your research question(s), including several subsections.
-A strong method section should allow any research to replicate your findings.
-That is, readers should know enough detail of how you conducted your study so that they can get the same answer.
-Traditionally, this section would include several subsections, including a) Participants, b) Procedure, c) Measures, and d) [Statistical Analysis](#sec-statisticalAnalysis).
-However, for this class and purpose, we will adapt the Method section to include the following subsections.
+To test the hypotheses, I first examine whether the target share is associated (i.e., positively or negatively) with quarterbacks earning fantasy football points. Next, I examine whether complete percentages predict passing attempts for quarterbacks. Lastly, I examine whether passing attempts and age will both predict completion percentage for quarterbacks.
 
-## Data {#sec-data}
+# Data {#sec-data}
 
-This section describes the data you used—including the subset of players, positions, seasons, and indices you examined—how you obtained them, and any cleaning/processing/subsetting of the data you performed.
+Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and Empiricism Using R” (Petersen, 2025).
+
+Note: Sample sizes: (Pearson's correlation, n = 12,426), (Simple regression, n = 15,371) and (Multiple regression, n = 15,256).
+
+```{r}
+load("~/Documents/FantasyFootballBlog/data/player_stats_weekly.RData")
+```
+
+First, I subset the data to Quarterbacks:
+
+```{r}
+analysisData <- player_stats_weekly %>% 
+  filter(position_group == "QB")
+```
+
+Now, we only have the weekly players' stats of Quarterbacks, and this data includes all seasons since 1999 (i.e., currently 1999–2024): 
+
+```{r}
+analysisData %>% 
+  arrange(season) %>% 
+  select(season) %>% 
+  pull() %>% 
+  unique()
+```
+
+Descriptive statistics for the variables that are the focus of this article:
+
+```{r}
+modelVars <- c("target_share", "fantasyPoints","pass_comp_pct", "age")
+
+analysisData %>% 
+  dplyr::select(all_of(modelVars)) %>% 
+  dplyr::summarise(across(
+      everything(),
+      .fns = list(
+        n = ~ length(na.omit(.)),
+        missingness = ~ mean(is.na(.)) * 100,
+        M = ~ mean(., na.rm = TRUE),
+        SD = ~ sd(., na.rm = TRUE),
+        min = ~ min(., na.rm = TRUE),
+        max = ~ max(., na.rm = TRUE),
+        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
+        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
+        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
+        IQR = ~ IQR(., na.rm = TRUE),
+        MAD = ~ mad(., na.rm = TRUE),
+        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
+        median = ~ median(., na.rm = TRUE),
+        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
+        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
+        skewness = ~ psych::skew(., na.rm = TRUE),
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
+      .names = "{.col}.{.fn}")) %>%
+    tidyr::pivot_longer(
+      cols = everything(),
+      names_to = c("variable","index"),
+      names_sep = "\\.") %>% 
+    tidyr::pivot_wider(
+      names_from = index,
+      values_from = value)
+```
 
 ## Statistical Analysis {#sec-statisticalAnalysis}
 
-This section describes the statistical approach you used, including the packages, key functions, and settings you used.
+I used Pearson correlation to examine the relationship between target share and fantasy points among quarterbacks. I used multiple regression to predict completion percentage from passing attempts and age.
 
 # Results {#sec-results}
 
-This section presents the results of the statistical analysis, including output, figures, and basic description of the findings.
-The section should include `R` code/analyses to test the research question(s) and hypotheses, and it should include a written description of the findings all inline with the code and output.
+# Main Analyses {sec-mainAnalyses}
+
+Below, we are able to see the association of target share and fantasy points among quarterbacks.
+
+```{r}
+cor.test(
+  ~ target_share + fantasyPoints,
+  data = player_stats_weekly %>% filter(position == "QB")
+)
+```
+
+According to the results, this indicates a very weak negative linear correlation between the two variables (i.e., as target_share increases, fantasyPoints decreases). Additionally, the results also show a statistically significant relationship. 
+
+```{r}
+ggplot2::ggplot(
+  data = player_stats_weekly %>% filter(position == "QB"),
+  aes(
+    x = target_share,
+    y = fantasyPoints)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",  # linear best-fit line
+    color = "red") +
+  geom_smooth(
+    method = "gam", # nonlinear best-fit line
+    color = "blue"
+  ) +
+  labs(
+    x = "Target Share",
+    y = "Fantasy Points",
+    title = "Association Between Target Share and Fantasy Points among QBs"
+  )
+```
+
+Above, I have included a scatterplot so we are able to see the results 'visually'. 
+
+Below, we have a linear regression model with one predictor, pass attempts, predicting completion percentage among Quarterbacks.
+
+```{r}
+regressionOnePredictor <- lm(
+  attempts ~ pass_comp_pct,
+  data = player_stats_weekly %>% filter(position %in% c("QB")),
+  na.action = "na.exclude"
+)
+
+summary(regressionOnePredictor)
+print(effectsize::standardize_parameters(regressionOnePredictor, method = "refit"), digits = 4)
+```
+
+According to the results, predicting completion percentage was positively associated with the number of passing attempts (i.e., quarterbacks who complete passes at a higher rate tend attempt more passes than quarterbacks who complete fewer passes). This relationship is also statistically significant. 
+
+Below, we have a linear regression model that adds the player's age as a covariate to control for age.
+
+```{r}
+regressionTwoPredictors <- lm(
+  pass_comp_pct ~ attempts + age,
+  data = player_stats_weekly %>% filter(position %in% c("QB")),
+  na.action = "na.exclude"
+)
+
+summary(regressionTwoPredictors)
+print(effectsize::standardize_parameters(regressionTwoPredictors, method = "refit"), digits = 4)
+```
+
+According to the results, attempts and age are positively associated with predicting completion percentage among QBs. These results were also statistically significant.
+
+```{r}
+newdata1 <- data.frame(
+  attempts = seq(
+    from = min(player_stats_weekly$attempts[which(player_stats_weekly$position == "QB")], na.rm = TRUE),
+    to = max(player_stats_weekly$attempts[which(player_stats_weekly$position == "QB")], na.rm = TRUE),
+    length.out = 1000
+  ),
+  age = mean(player_stats_weekly$age[which(player_stats_weekly$position == "QB")], na.rm = TRUE)
+)
+
+newdata1$pass_comp_pct <- predict(
+  regressionTwoPredictors,
+  newdata = newdata1
+)
+
+ggplot2::ggplot(
+  data = newdata1,
+  aes(
+    x = pass_comp_pct,
+    y = attempts)) +
+  geom_smooth() +
+  coord_cartesian(
+    ylim = c(0, NA),
+    expand = FALSE) +
+  labs(
+    x = "Passing Attempts",
+    y = "Prediciting Completion Percentage",
+    title = "Pass Attempts and Predicting Completion Percentage Among QBs"
+  )
+```
+
+Above, I have included a visualization of completion percentage by passing attempts. Now you can 'visually' see how attempts and age are positively associated with completion percentage among QBs
 
 # Discussion {#sec-discussion}
 
-This section summarizes the findings and relates the findings back to background you provided at the beginning of the article.
+After reviewing all of my findings, hypotheses #2 and #3 were supported (i.e., results were statistically significant) as well as predictions #2 and #3 (i.e., general direction was predicted accurately) while hypothesis #1 was partially supported (i.e., results were statistically significant) and prediction #1 was not supported (general direction was not predicted accurately). These findings are important because it can potentially help people choose a quarterback based on the results of real-life data. These results can also help  coaches when determining who their quarterback should be. 
 
-## Strengths and Limitations {#sec-strengthsLimitations}
+# Strengths and Limitations {#sec-strengthsLimitations}
 
-This section describes the strengths and limitations of the study.
+Strengths: The study utilized thousands of quarterbacks, which contributed toward greater reliability and generalizability. The data used was real-world data, dating back to 1999. 
+
+Limitations: The study did not incorporate other similar research to support predictions, hypotheses, or findings. Results may be due to other external factors, such as weather, physical health (e.g., injury status), and/or the defensive strength of the other team. The study assessed only quarterbacks, so the data may be generalizable only to quarterbacks. 
 
 ## Conclusion {#sec-conclusion}
 
-This sections provides an overall conclusion given the findings of the study, including take-away messages, implications, etc.
+If the study were to be repeated, I would incorporate more variables and cover other football positions, rather than just one, to make the findings even more generalizable. But overall, the study concluded statistically significant results for completion percentage, passing attempts, and age. Positive associations were found for all except one (i.e., target shares and fantasy points). So the next time you are choosing a quarterback (e.g., whether it's for fantasy football or if you are a coach for a football team), keeping the tested variables in mind might actually prove to be beneficial for you.
 
 # References {#sec-references}
 
-This section provides a list of references that you cited above.
+::: {#ref-Petersen2025}
+Petersen, I. T. (2025). *Fantasy football analytics: Statistics, prediction, and empiricism using R*. University of Iowa Libraries. <https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook>
+:::
 
 # Session Info {#sec-sessionInfo}
 
