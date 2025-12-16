@@ -2,7 +2,7 @@
 title: "Assessing Past Quarterback Data Using Correlation and Regression"
 author: "Finley Jacobson"
 date: "9/30/2025"
-categories: [fantasy football, regression, correlation]
+categories: [Fantasy Football, Regression, Correlation]
 image: "download.jpg"
 ---
 
