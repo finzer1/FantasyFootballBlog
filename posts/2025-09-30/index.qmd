@@ -10,6 +10,16 @@ Note: The post image was obtained from [here](https://www.publicdomainpictures.n
 
 # Preamble {#sec-preamble}
 
+## Install Libraries
+
+```{r}
+#install.packages("remotes")
+#remotes::install_github("DevPsyLab/petersenlab")
+#remotes::install_github("FantasyFootballAnalytics/ffanalytics")
+
+#update.packages(ask = FALSE)
+```
+
 ## Load Libraries {#sec-loadLibraries}
 
 ```{r}
