@@ -83,8 +83,7 @@ Below, I load the data file used for this post. The data file contains 437,309 w
 Note: Sample sizes: (Pearson's correlation, n = 12,426), (Simple regression, n = 15,371) and (Multiple regression, n = 15,256).
 
 ```{r}
-setwd("/Users/finleyjacobson/Documents/FantasyFootballBlog")
-load("data/player_stats_weekly.RData")
+load("~/Documents/FantasyFootballBlog/posts/2025-09-30/player_stats_weekly.RData")
 ```
 
 First, I subset the data to quarterbacks:
