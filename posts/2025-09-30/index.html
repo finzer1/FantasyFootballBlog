@@ -9,7 +9,7 @@
 <meta name="author" content="Finley Jacobson">
 <meta name="dcterms.date" content="2025-09-30">
 
-<title>Quarto Blog Post Template – My Blog</title>
+<title>Assessing Past Quarterback Data Using Correlation and Regression – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,11 +154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Quarto Blog Post Template</h1>
+      <h1 class="title">Assessing Past Quarterback Data Using Correlation and Regression</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">fantasy football</div>
-                <div class="quarto-category">regression</div>
-                <div class="quarto-category">correlation</div>
+                <div class="quarto-category">Fantasy Football</div>
+                <div class="quarto-category">Regression</div>
+                <div class="quarto-category">Correlation</div>
               </div>
                   </div>
   </div>
@@ -194,7 +194,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#sec-preamble" id="toc-sec-preamble" class="nav-link active" data-scroll-target="#sec-preamble"><span class="header-section-number">1</span> Preamble</a>
   <ul class="collapse">
-  <li><a href="#sec-loadLibraries" id="toc-sec-loadLibraries" class="nav-link" data-scroll-target="#sec-loadLibraries"><span class="header-section-number">1.1</span> Load Libraries</a></li>
+  <li><a href="#install-libraries" id="toc-install-libraries" class="nav-link" data-scroll-target="#install-libraries"><span class="header-section-number">1.1</span> Install Libraries</a></li>
+  <li><a href="#sec-loadLibraries" id="toc-sec-loadLibraries" class="nav-link" data-scroll-target="#sec-loadLibraries"><span class="header-section-number">1.2</span> Load Libraries</a></li>
   </ul></li>
   <li><a href="#sec-aiDisclosure" id="toc-sec-aiDisclosure" class="nav-link" data-scroll-target="#sec-aiDisclosure"><span class="header-section-number">2</span> AI Disclosure</a></li>
   <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">3</span> Abstract</a></li>
@@ -202,19 +203,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#sec-presentStudy" id="toc-sec-presentStudy" class="nav-link" data-scroll-target="#sec-presentStudy"><span class="header-section-number">4.1</span> The Present Study</a></li>
   </ul></li>
-  <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">5</span> Method</a>
+  <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">5</span> Method</a></li>
+  <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">6</span> Data</a>
   <ul class="collapse">
-  <li><a href="#sec-data" id="toc-sec-data" class="nav-link" data-scroll-target="#sec-data"><span class="header-section-number">5.1</span> Data</a></li>
-  <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">5.2</span> Statistical Analysis</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">6.1</span> Load Data</a></li>
+  <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">6.2</span> Statistical Analysis</a></li>
   </ul></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">6</span> Results</a></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">7</span> Discussion</a>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">7</span> Results</a></li>
+  <li><a href="#main-analyses-sec-mainanalyses" id="toc-main-analyses-sec-mainanalyses" class="nav-link" data-scroll-target="#main-analyses-sec-mainanalyses"><span class="header-section-number">8</span> Main Analyses {sec-mainAnalyses}</a></li>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">9</span> Discussion</a></li>
+  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">10</span> Strengths and Limitations</a>
   <ul class="collapse">
-  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">7.1</span> Strengths and Limitations</a></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">7.2</span> Conclusion</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">10.1</span> Conclusion</a></li>
   </ul></li>
-  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references"><span class="header-section-number">8</span> References</a></li>
-  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">9</span> Session Info</a></li>
+  <li><a href="#sec-references" id="toc-sec-references" class="nav-link" data-scroll-target="#sec-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">12</span> Session Info</a></li>
   </ul>
 </nav>
     </div>
@@ -228,76 +231,407 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note: The post image was obtained from <a href="https://www.publicdomainpictures.net/en/view-image.php?image=212694&amp;picture=american-football">here</a>.</p>
 <section id="sec-preamble" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Preamble</h1>
-<section id="sec-loadLibraries" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="sec-loadLibraries"><span class="header-section-number">1.1</span> Load Libraries</h2>
+<section id="install-libraries" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="install-libraries"><span class="header-section-number">1.1</span> Install Libraries</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("remotes")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github("DevPsyLab/petersenlab")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github("FantasyFootballAnalytics/ffanalytics")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#update.packages(ask = FALSE)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="sec-loadLibraries" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-loadLibraries"><span class="header-section-number">1.2</span> Load Libraries</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rms"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"car"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"bestNormalize"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lme4"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"performance"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lavaan"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"mice"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"miceadds"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"interactions"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"brms"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"parallelly"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"robustbase"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ordinal"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"MASS"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"broom"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"effectsize"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidymodels"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"knitr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 </section>
 <section id="sec-aiDisclosure" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> AI Disclosure</h1>
-<p>AI Disclosure: AI was used for [SPECIFY ONE OR MORE AMONG THE FOLLOWING]: Mentoring, Code, and Editing. (Or, “AI was not used.”)</p>
-<p>Link to AI Transcript: [INSERT URL]</p>
+<p>AI Disclosure: AI was not used</p>
+<p>Link to AI Transcript: not applicable</p>
 </section>
 <section id="sec-abstract" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Abstract</h1>
-<p>The Abstract is be a brief summary of your article. It should briefly summarize the background, method, results, discussion, and conclusion. The slashes in the Abstract template below make a new line (without creating a new paragraph).</p>
-<p><strong>Background:</strong> INSERT.<br>
-<strong>Method:</strong> INSERT.<br>
-<strong>Results:</strong> INSERT.<br>
-<strong>Discussion:</strong> INSERT.</p>
+<p><strong>Background:</strong> Fantasy football involves assessing several factors and variables. Choosing the wrong player can easily be the sole reason you look at a particular week. That’s why I’m assessing some quarterback variables to determine, for fantasy football participants and even football coaches, the best approach to evaluating a player.</p>
+<p><strong>Method:</strong> In the present study, I assess whether quarterbacks’ completion percentages, passing attempts, and age are associated with one another and with fantasy football performance.</p>
+<p><strong>Results:</strong> Hypothesis #1 was partially correct, while hypotheses #2 and #3 were correct. Prediction #1 was predicted incorrectly, while predictions #2 and #3 were predicted correctly.</p>
+<p><strong>Discussion:</strong> Overall, the study concluded statistically significant results for completion percentage, passing attempts, and age. Positive associations were found for all except one (i.e., target shares and fantasy points).</p>
 </section>
 <section id="sec-background" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Background</h1>
-<p>This section should provide a background on the topic and why it is important.</p>
+<p>As a person who just joined a fantasy football league this year for the first time, it can be confusing about what you should be looking at when considering a player for your team. Especially when picking quarterbacks, since they can earn quite a bit of points for your team. But choosing the wrong quarterback could result in a tremendous loss of points for your team. So what should you be looking at? Well, in this study, I have chosen to assess whether a quarterback’s completion percentage, passing attempts, and age are associated with one another (i.e., positively or negatively). Knowing the typical associations these factors have with each other can further improve your performance in your fantasy football league (i.e., or at least gauge you in the right direction when choosing a quarterback). Even coaches can use this information in their decision-making. Because people who participate in fantasy football and coaches of a football team all have something in common: they want their players to perform well.</p>
 <section id="sec-presentStudy" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-presentStudy"><span class="header-section-number">4.1</span> The Present Study</h2>
-<p>This section should describe your research question(s), hypotheses, and predictions, and should provide a justification for each hypothesis—ideally based on prior work, theory, etc. It should also describe why your study is innovative and important. The research question(s), hypotheses, and predictions should be clear. The hypothesis should provide a proposed explanation. The prediction(s) should be specific and testable.</p>
+<p>In the present study, I assess whether quarterbacks’ completion percentages, passing attempts, and age are associated with one another and with fantasy football performance (i.e., points earned).</p>
+<p>Research Question: Is completion percentage associated (i.e., negatively or positively) with passing attempts and fantasy football points for quarterbacks? Prediction #1: Quarterbacks with higher target shares will score higher fantasy football points vs.&nbsp;quarterbacks with lower target shares. Prediction #2: Quarterbacks with higher completion percentages will attempt more passes than quarterbacks with lower completion percentages. Prediction #3: Quarterbacks with more passing attempts who are older will have higher completion percentages than quarterbacks with fewer passing attempts who are younger. Hypothesis #1: Target share is significantly associated with fantasy football points among quarterbacks. Hypothesis #2: Completion percentage will significantly predict passing attempts among quarterbacks. Hypothesis #3: Passing attempts and age will both significantly predict completion percentage.</p>
+<p>I chose these hypotheses for a couple of reasons. First, I wanted to use the larger data codes provided in class rather than ESPN or DraftShark. Not only did I decide to challenge myself, but I figured a large sample size would be easier to analyze than a data set of only ten football players. Additionally, similar data analyses were provided during in-class activities, so I used those codes but focused only on quarterbacks rather than other positions. This study is innovative and important and can be used to (potentially) improve a person’s fantasy football roster, provide useful information for football teams (i.e., if they are choosing a new quarterback), and involves statistical data analysis of over a thousand quarterbacks.</p>
 </section>
 </section>
 <section id="sec-method" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Method</h1>
-<p>This section should describe how you tested your research question(s), including several subsections. A strong method section should allow any research to replicate your findings. That is, readers should know enough detail of how you conducted your study so that they can get the same answer. Traditionally, this section would include several subsections, including a) Participants, b) Procedure, c) Measures, and d) <a href="#sec-statisticalAnalysis">Statistical Analysis</a>. However, for this class and purpose, we will adapt the Method section to include the following subsections.</p>
-<section id="sec-data" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">5.1</span> Data</h2>
-<p>This section describes the data you used—including the subset of players, positions, seasons, and indices you examined—how you obtained them, and any cleaning/processing/subsetting of the data you performed.</p>
+<p>To test the hypotheses, I first examine whether the target share is associated (i.e., positively or negatively) with quarterbacks earning fantasy football points. Next, I examine whether complete percentages predict passing attempts for quarterbacks. Lastly, I examine whether passing attempts and age will both predict completion percentage for quarterbacks.</p>
 </section>
-<section id="sec-statisticalAnalysis" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="sec-statisticalAnalysis"><span class="header-section-number">5.2</span> Statistical Analysis</h2>
-<p>This section describes the statistical approach you used, including the packages, key functions, and settings you used.</p>
+<section id="sec-data" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Data</h1>
+<p>Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and Empiricism Using R” (Petersen, 2025).</p>
+<p>Note: Sample sizes: (Pearson’s correlation, n = 12,426), (Simple regression, n = 15,371) and (Multiple regression, n = 15,256).</p>
+<section id="load-data" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="load-data"><span class="header-section-number">6.1</span> Load Data</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../../data/player_stats_weekly.RData"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>First, I subset the data to quarterbacks:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>analysisData <span class="ot">&lt;-</span> player_stats_weekly <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(position_group <span class="sc">==</span> <span class="st">"QB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Now, we only have the weekly players’ stats of Quarterbacks, and this data includes all seasons since 1999 (i.e., currently 1999–2024):</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>analysisData <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(season) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(season) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013
+[16] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024</code></pre>
+</div>
+</div>
+<p>Descriptive statistics for the variables that are the focus of this article:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>modelVars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"target_share"</span>, <span class="st">"fantasyPoints"</span>,<span class="st">"pass_comp_pct"</span>, <span class="st">"age"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>analysisData <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(modelVars)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="fu">across</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(.)),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">missingness =</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">is.na</span>(.)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">M =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">q10 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 10th quantile</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">q90 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 90th quantile</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">IQR =</span> <span class="sc">~</span> <span class="fu">IQR</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">MAD =</span> <span class="sc">~</span> <span class="fu">mad</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">CV =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">pseudomedian =</span> <span class="sc">~</span> DescTools<span class="sc">::</span><span class="fu">HodgesLehmann</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">mode =</span> <span class="sc">~</span> petersenlab<span class="sc">::</span><span class="fu">Mode</span>(., <span class="at">multipleModes =</span> <span class="st">"mean"</span>),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">skewness =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">skew</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">kurtosis =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">kurtosi</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}.{.fn}"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"index"</span>),</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> index,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["variable"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["missingness"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["M"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["q10"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["q90"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["IQR"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["MAD"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["CV"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["pseudomedian"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["skewness"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"target_share","2":"12426","3":"22.8342545","4":"7.144089e-04","5":"0.00668031","6":"0.00000","7":"0.2307692","8":"0.00000","9":"0.00000","10":"0.2307692","11":"0.000000","12":"0.0000000","13":"9.3508210","14":"0.00000","15":"0.000000","16":"0.00000","17":"15.9149130","18":"363.89950172"},{"1":"fantasyPoints","2":"16103","3":"0.0000000","4":"1.329284e+01","5":"8.88358490","6":"-6.72000","7":"51.8800000","8":"0.76000","9":"25.02000","10":"58.6000000","11":"12.820000","12":"9.4589880","13":"0.6682984","14":"13.16000","15":"13.080000","16":"0.00000","17":"0.3171302","18":"-0.33900107"},{"1":"pass_comp_pct","2":"15371","3":"4.5457368","4":"6.095124e-01","5":"0.14691583","6":"0.00000","7":"1.0000000","8":"0.46429","9":"0.75758","10":"1.0000000","11":"0.147990","12":"0.1099496","13":"0.2410383","14":"0.61702","15":"0.615665","16":"0.66667","17":"-0.9828451","18":"4.41781905"},{"1":"age","2":"15984","3":"0.7389927","4":"2.889393e+01","5":"4.52315613","6":"21.20548","7":"45.4328767","8":"23.69672","9":"35.47781","10":"24.2273973","11":"6.631294","12":"4.6994780","13":"0.1565435","14":"28.07934","15":"28.595621","16":"26.85753","17":"0.7023582","18":"-0.06934509"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-statisticalAnalysis" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-statisticalAnalysis"><span class="header-section-number">6.2</span> Statistical Analysis</h2>
+<p>I used Pearson correlation to examine the relationship between target share and fantasy points among quarterbacks. I used multiple regression to predict completion percentage from passing attempts and age.</p>
 </section>
 </section>
-<section id="sec-results" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Results</h1>
-<p>This section presents the results of the statistical analysis, including output, figures, and basic description of the findings. The section should include <code>R</code> code/analyses to test the research question(s) and hypotheses, and it should include a written description of the findings all inline with the code and output.</p>
+<section id="sec-results" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Results</h1>
 </section>
-<section id="sec-discussion" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Discussion</h1>
-<p>This section summarizes the findings and relates the findings back to background you provided at the beginning of the article.</p>
-<section id="sec-strengthsLimitations" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">7.1</span> Strengths and Limitations</h2>
-<p>This section describes the strengths and limitations of the study.</p>
+<section id="main-analyses-sec-mainanalyses" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Main Analyses {sec-mainAnalyses}</h1>
+<p>Below, we can see the association between target share and fantasy points among quarterbacks.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> target_share <span class="sc">+</span> fantasyPoints,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> player_stats_weekly <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position <span class="sc">==</span> <span class="st">"QB"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  target_share and fantasyPoints
+t = -2.7274, df = 12424, p-value = 0.006392
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.042026765 -0.006882035
+sample estimates:
+        cor 
+-0.02446196 </code></pre>
+</div>
+</div>
+<p>According to the results, this indicates a very weak negative linear correlation between the two variables (i.e., as target share increases, fantasy football points decrease). Additionally, the results also show a statistically significant relationship.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> player_stats_weekly <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position <span class="sc">==</span> <span class="st">"QB"</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> target_share,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> fantasyPoints)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,  <span class="co"># linear best-fit line</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"gam"</span>, <span class="co"># nonlinear best-fit line</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Target Share"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Fantasy Points"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Association Between Target Share and Fantasy Points among QBs"</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3677 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3677 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3677 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Above, I have included a scatterplot so we are able to see the results ‘visually’.</p>
+<p>Below is a linear regression model with one predictor, pass attempts, predicting completion percentage among Quarterbacks.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>regressionOnePredictor <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  attempts <span class="sc">~</span> pass_comp_pct,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> player_stats_weekly <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"QB"</span>)),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.action =</span> <span class="st">"na.exclude"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regressionOnePredictor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = attempts ~ pass_comp_pct, data = player_stats_weekly %&gt;% 
+    filter(position %in% c("QB")), na.action = "na.exclude")
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-32.209  -6.256   1.286   7.982  40.623 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    23.1062     0.4157   55.58   &lt;2e-16 ***
+pass_comp_pct  10.1024     0.6631   15.23   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 12.08 on 15369 degrees of freedom
+  (732 observations deleted due to missingness)
+Multiple R-squared:  0.01488,   Adjusted R-squared:  0.01481 
+F-statistic: 232.1 on 1 and 15369 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effectsize<span class="sc">::</span><span class="fu">standardize_parameters</span>(regressionOnePredictor, <span class="at">method =</span> <span class="st">"refit"</span>), <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># Standardization method: refit
+
+Parameter     | Std. Coef. |            95% CI
+----------------------------------------------
+(Intercept)   | 8.8401e-17 | [-0.0157, 0.0157]
+pass comp pct |     0.1220 | [ 0.1063, 0.1377]</code></pre>
+</div>
+</div>
+<p>According to the results, predicting completion percentage was positively associated with the number of passing attempts (i.e., quarterbacks who complete passes at a higher rate tend attempt more passes than quarterbacks who complete fewer passes). This relationship is also statistically significant.</p>
+<p>Below, is a linear regression model that adds the player’s age as a covariate to control for age.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>regressionTwoPredictors <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  pass_comp_pct <span class="sc">~</span> attempts <span class="sc">+</span> age,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> player_stats_weekly <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"QB"</span>)),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.action =</span> <span class="st">"na.exclude"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regressionTwoPredictors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = pass_comp_pct ~ attempts + age, data = player_stats_weekly %&gt;% 
+    filter(position %in% c("QB")), na.action = "na.exclude")
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.59830 -0.07129  0.00215  0.07863  0.44616 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.5045473  0.0078727   64.09   &lt;2e-16 ***
+attempts    0.0013703  0.0000973   14.08   &lt;2e-16 ***
+age         0.0022449  0.0002607    8.61   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1455 on 15253 degrees of freedom
+  (847 observations deleted due to missingness)
+Multiple R-squared:  0.01934,   Adjusted R-squared:  0.01921 
+F-statistic: 150.4 on 2 and 15253 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effectsize<span class="sc">::</span><span class="fu">standardize_parameters</span>(regressionTwoPredictors, <span class="at">method =</span> <span class="st">"refit"</span>), <span class="at">digits =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># Standardization method: refit
+
+Parameter   | Std. Coef. |            95% CI
+--------------------------------------------
+(Intercept) | 3.9758e-16 | [-0.0157, 0.0157]
+attempts    |     0.1135 | [ 0.0977, 0.1293]
+age         |     0.0694 | [ 0.0536, 0.0852]</code></pre>
+</div>
+</div>
+<p>According to the results, attempts and age are positively associated with predicting completion percentage among QBs. These results were also statistically significant.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>newdata1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">attempts =</span> <span class="fu">seq</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">min</span>(player_stats_weekly<span class="sc">$</span>attempts[<span class="fu">which</span>(player_stats_weekly<span class="sc">$</span>position <span class="sc">==</span> <span class="st">"QB"</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">max</span>(player_stats_weekly<span class="sc">$</span>attempts[<span class="fu">which</span>(player_stats_weekly<span class="sc">$</span>position <span class="sc">==</span> <span class="st">"QB"</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">1000</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">mean</span>(player_stats_weekly<span class="sc">$</span>age[<span class="fu">which</span>(player_stats_weekly<span class="sc">$</span>position <span class="sc">==</span> <span class="st">"QB"</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>newdata1<span class="sc">$</span>pass_comp_pct <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  regressionTwoPredictors,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> newdata1</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> newdata1,</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> pass_comp_pct,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> attempts)) <span class="sc">+</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>),</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Passing Attempts"</span>,</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Prediciting Completion Percentage"</span>,</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Pass Attempts and Predicting Completion Percentage Among QBs"</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Above, I have included a visualization of completion percentage by passing attempts. Now you can ‘visually’ see how attempts and age are positively associated with completion percentage among QBs</p>
 </section>
-<section id="sec-conclusion" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">7.2</span> Conclusion</h2>
-<p>This sections provides an overall conclusion given the findings of the study, including take-away messages, implications, etc.</p>
+<section id="sec-discussion" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Discussion</h1>
+<p>After reviewing all of my findings, hypotheses #2 and #3 were supported (i.e., results were statistically significant) as well as predictions #2 and #3 (i.e., general direction was predicted accurately) while hypothesis #1 was partially supported (i.e., results were statistically significant) and prediction #1 was not supported (general direction was not predicted accurately). Statistical significance is apparent in the study, but it could very well be due to the large sample size. The study has practical significance, but the effects are small and could be limited. These findings are important because they can help people choose a quarterback based on real-world data. These results can also help coaches determine who their quarterback should be.</p>
+</section>
+<section id="sec-strengthsLimitations" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Strengths and Limitations</h1>
+<p>Strengths: The study utilized thousands of quarterbacks, which contributed toward greater reliability and generalizability. The data used was real-world data, dating back to 1999.</p>
+<p>Limitations: The study did not incorporate other similar research to support predictions, hypotheses, or findings. Results may be due to other external factors, such as weather, physical health (e.g., injury status), and/or the defensive strength of the other team. The study assessed only quarterbacks, so the data may be generalizable only to quarterbacks.</p>
+<section id="sec-conclusion" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">10.1</span> Conclusion</h2>
+<p>If the study were to be repeated, I would incorporate more variables and cover other football positions, rather than just one, to make the findings even more generalizable. But overall, the study concluded statistically significant results for completion percentage, passing attempts, and age. Positive associations were found for all except one (i.e., target shares and fantasy points). So the next time you are choosing a quarterback (e.g., whether it’s for fantasy football or if you are a coach for a football team), keeping the tested variables in mind might actually prove to be beneficial for you.</p>
 </section>
 </section>
-<section id="sec-references" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> References</h1>
-<p>This section provides a list of references that you cited above.</p>
+<section id="sec-references" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> References</h1>
+<div id="ref-Petersen2025">
+<p>Petersen, I. T. (2025). <em>Fantasy football analytics: Statistics, prediction, and empiricism using R</em>. University of Iowa Libraries. <a href="https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook" class="uri">https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook</a></p>
+</div>
 </section>
-<section id="sec-sessionInfo" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Session Info</h1>
+<section id="sec-sessionInfo" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Session Info</h1>
 <p>This section provides your session info for reproducibility.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
@@ -321,29 +655,72 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] petersenlab_1.2.2
+ [1] knitr_1.50          lubridate_1.9.4     forcats_1.0.1      
+ [4] stringr_1.6.0       readr_2.1.6         tibble_3.3.0       
+ [7] tidyverse_2.0.0     yardstick_1.3.2     workflowsets_1.1.1 
+[10] workflows_1.3.0     tune_2.0.1          tidyr_1.3.1        
+[13] tailor_0.1.0        rsample_1.3.1       recipes_1.3.1      
+[16] purrr_1.2.0         parsnip_1.4.0       modeldata_1.5.1    
+[19] infer_1.0.9         ggplot2_4.0.1       dplyr_1.1.4        
+[22] dials_1.4.2         scales_1.4.0        tidymodels_1.4.1   
+[25] effectsize_1.0.1    broom_1.0.11        MASS_7.3-65        
+[28] ordinal_2023.12-4.1 robustbase_0.99-6   parallelly_1.46.0  
+[31] brms_2.23.0         Rcpp_1.1.0          interactions_1.2.0 
+[34] miceadds_3.18-36    mice_3.19.0         lavaan_0.6-20      
+[37] performance_0.15.3  lme4_1.1-38         Matrix_1.7-4       
+[40] bestNormalize_1.9.2 car_3.1-3           carData_3.0-5      
+[43] rms_8.1-0           Hmisc_5.2-4         petersenlab_1.2.2  
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.6       xfun_0.54          ggplot2_4.0.1      htmlwidgets_1.6.4 
- [5] psych_2.5.6        lattice_0.22-7     quadprog_1.5-8     vctrs_0.6.5       
- [9] tools_4.5.2        Rdpack_2.6.4       generics_0.1.4     parallel_4.5.2    
-[13] stats4_4.5.2       tibble_3.3.0       cluster_2.1.8.1    pkgconfig_2.0.3   
-[17] Matrix_1.7-4       data.table_1.17.8  checkmate_2.3.3    RColorBrewer_1.1-3
-[21] S7_0.2.1           lifecycle_1.0.4    compiler_4.5.2     farver_2.1.2      
-[25] stringr_1.6.0      mnormt_2.1.1       mitools_2.4        htmltools_0.5.9   
-[29] yaml_2.3.12        htmlTable_2.4.3    Formula_1.2-5      pillar_1.11.1     
-[33] nloptr_2.2.1       MASS_7.3-65        Hmisc_5.2-4        reformulas_0.4.2  
-[37] rpart_4.1.24       boot_1.3-32        nlme_3.1-168       lavaan_0.6-20     
-[41] tidyselect_1.2.1   digest_0.6.39      mvtnorm_1.3-3      stringi_1.8.7     
-[45] reshape2_1.4.5     purrr_1.2.0        dplyr_1.1.4        splines_4.5.2     
-[49] fastmap_1.2.0      grid_4.5.2         colorspace_2.1-2   cli_3.6.5         
-[53] magrittr_2.0.4     base64enc_0.1-3    pbivnorm_0.6.0     foreign_0.8-90    
-[57] scales_1.4.0       backports_1.5.0    rmarkdown_2.30     nnet_7.3-20       
-[61] lme4_1.1-38        gridExtra_2.3      evaluate_1.0.5     knitr_1.50        
-[65] rbibutils_2.4      mix_1.0-13         viridisLite_0.4.2  rlang_1.1.6       
-[69] Rcpp_1.1.0         xtable_1.8-4       glue_1.8.0         DBI_1.2.3         
-[73] rstudioapi_0.17.1  minqa_1.2.8        jsonlite_2.0.0     R6_2.6.1          
-[77] plyr_1.8.9        </code></pre>
+  [1] splines_4.5.2         polspline_1.1.25      cellranger_1.1.0     
+  [4] datawizard_1.3.0      hardhat_1.4.2         rpart_4.1.24         
+  [7] lifecycle_1.0.4       Rdpack_2.6.4          doParallel_1.0.17    
+ [10] globals_0.18.0        lattice_0.22-7        insight_1.4.4        
+ [13] backports_1.5.0       magrittr_2.0.4        rmarkdown_2.30       
+ [16] yaml_2.3.12           doRNG_1.8.6.2         gld_2.6.8            
+ [19] DBI_1.2.3             minqa_1.2.8           RColorBrewer_1.1-3   
+ [22] multcomp_1.4-29       abind_1.4-8           expm_1.0-0           
+ [25] quadprog_1.5-8        nnet_7.3-20           TH.data_1.1-5        
+ [28] tensorA_0.36.2.1      sandwich_3.1-1        jtools_2.3.0         
+ [31] ipred_0.9-15          lava_1.8.2            listenv_0.10.0       
+ [34] MatrixModels_0.5-4    bridgesampling_1.2-1  codetools_0.2-20     
+ [37] tidyselect_1.2.1      shape_1.4.6.1         bayesplot_1.15.0     
+ [40] farver_2.1.2          broom.mixed_0.2.9.6   matrixStats_1.5.0    
+ [43] stats4_4.5.2          base64enc_0.1-3       butcher_0.4.0        
+ [46] jsonlite_2.0.0        e1071_1.7-16          mitml_0.4-5          
+ [49] Formula_1.2-5         survival_3.8-3        iterators_1.0.14     
+ [52] emmeans_2.0.1         foreach_1.5.2         tools_4.5.2          
+ [55] progress_1.2.3        DescTools_0.99.60     glue_1.8.0           
+ [58] mnormt_2.1.1          prodlim_2025.04.28    gridExtra_2.3        
+ [61] pan_1.9               mgcv_1.9-3            xfun_0.55            
+ [64] distributional_0.5.0  withr_3.0.2           loo_2.8.0            
+ [67] numDeriv_2016.8-1.1   fastmap_1.2.0         mitools_2.4          
+ [70] boot_1.3-32           SparseM_1.84-2        digest_0.6.39        
+ [73] timechange_0.3.0      R6_2.6.1              estimability_1.5.1   
+ [76] colorspace_2.1-2      mix_1.0-13            generics_0.1.4       
+ [79] data.table_1.17.8     class_7.3-23          httr_1.4.7           
+ [82] prettyunits_1.2.0     htmlwidgets_1.6.4     parameters_0.28.3    
+ [85] pkgconfig_2.0.3       Exact_3.3             gtable_0.3.6         
+ [88] timeDate_4051.111     GPfit_1.0-9           S7_0.2.1             
+ [91] furrr_0.3.1           htmltools_0.5.9       lmom_3.2             
+ [94] posterior_1.6.1       gower_1.0.2           reformulas_0.4.2     
+ [97] rstudioapi_0.17.1     tzdb_0.5.0            reshape2_1.4.5       
+[100] coda_0.19-4.1         checkmate_2.3.3       nlme_3.1-168         
+[103] nloptr_2.2.1          proxy_0.4-28          zoo_1.8-15           
+[106] rootSolve_1.8.2.4     parallel_4.5.2        foreign_0.8-90       
+[109] pillar_1.11.1         grid_4.5.2            vctrs_0.6.5          
+[112] jomo_2.7-6            ucminf_1.2.2          lhs_1.2.0            
+[115] xtable_1.8-4          cluster_2.1.8.1       htmlTable_2.4.3      
+[118] evaluate_1.0.5        pbivnorm_0.6.0        mvtnorm_1.3-3        
+[121] cli_3.6.5             compiler_4.5.2        rlang_1.1.6          
+[124] crayon_1.5.3          rngtools_1.5.2        rstantools_2.5.0     
+[127] future.apply_1.20.1   labeling_0.4.3        fs_1.6.6             
+[130] plyr_1.8.9            stringi_1.8.7         psych_2.5.6          
+[133] pander_0.6.6          viridisLite_0.4.2     glmnet_4.1-10        
+[136] Brobdingnag_1.2-9     bayestestR_0.17.0     quantreg_6.1         
+[139] hms_1.1.4             future_1.68.0         haven_2.5.5          
+[142] rbibutils_2.4         RcppParallel_5.1.11-1 DEoptimR_1.1-4       
+[145] readxl_1.4.5          DiceDesign_1.10      </code></pre>
 </div>
 </div>
 
