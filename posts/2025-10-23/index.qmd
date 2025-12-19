@@ -51,8 +51,7 @@ Prediction: A quarterback’s passing yards in the previous game will accurately
 
 # Method {#sec-method}
 
-To test these hypotheses, I first examine whether a cutoff-based classification system, combined with diagnostic accuracy metrics and ROC analysis, can assess how well past-game passing yards discriminate between different yard games. 
-
+To test the hypothesis, I first examined whether a cutoff-based classification system, combined with diagnostic accuracy metrics and ROC analysis, can assess how well quarterbacks' passing yards from their previous game can predict a 300-yard passing performance in the next game.
 
 ## Specify Options
 
@@ -71,10 +70,7 @@ load("../../data/players_projections_weekly.RData")
 
 ## Data {#sec-data}
 
-Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled
-columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the
-Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and
-Empiricism Using R” (Petersen, 2025).
+Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and Empiricism Using R” (Petersen, 2025).
 
 First, I subset the data to quarterbacks:
 
@@ -279,31 +275,11 @@ plot(
 
 The chart before, with all those rows, has been turned into a graph so we can better see what this actually looks like visually!
 
-## Statistical Analysis {#sec-statisticalAnalysis}
-
-I used multiple regression to test the hypothesis.
-Specifically, I compared the standardized regression coefficients for the two predictors of interest: air yards versus receiving yards.
-
 # Results {#sec-results}
 
 
 ## Main Analyses
 
-
-## Sensitivity Analyses
-
-I evaluated assumptions of multiple regression: 1) linear association, 2) homoscedasticity, 3) uncorrelated residuals, and 4) normally distributed residuals.
-
-
-To evaluate the assumption of homoscedasticity, I examined residual and spread-level plots.
-
-
-The pattern of findings did not differ substantially when transforming the outcome variable to be more normally distributed.
-
-Because the data were nested within players (i.e., longitudinal) and thus violated the assumption of uncorrelated residuals, we also conducted a sensitivity analysis using a mixed model to account for the nested data.
-
-
-In sum, the pattern of findings held after conducting sensitivity analyses to account for potential violations of assumptions of multiple regression.
 
 # Discussion {#sec-discussion}
 
@@ -325,6 +301,9 @@ just quarterbacks, to make the findings more generalizable.
 
 # References {#sec-references}
 
+::: {#ref-Petersen2025}
+Petersen, I. T. (2025). *Fantasy football analytics: Statistics, prediction, and empiricism using R*. University of Iowa Libraries. <https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook>
+:::
 
 # Session Info {#sec-sessionInfo}
 
