@@ -45,9 +45,11 @@ Link to AI Transcript: not applicable
 
 In the present study, I examined
 
+That a quarterback’s passing yards in the previous game can be used to predict whether they will throw for 300+ yards in a subsequent game.
+
 # Method {#sec-method}
 
-To test these hypotheses, I first examine whether 
+To test these hypotheses, I first examine whether using a cutoff-based classification system with evaluation of diagnostic accuracy metrics plus a ROC analysis can assess how well past-game passing yards discriminated between differents yard games. 
 
 
 ## Specify Options
@@ -72,6 +74,58 @@ columns, including variables such as air yards, receiving yards, and fantasy poi
 Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and
 Empiricism Using R” (Petersen, 2025).
 
+First, I subset the data to quarterbacks:
+
+```{r}
+analysisData <- player_stats_weekly %>% 
+  filter(position_group == "QB")
+```
+
+Now, we only have the weekly players' stats of Quarterbacks, and this data includes all seasons since 1999 (i.e., currently 1999–2024): 
+
+```{r}
+analysisData %>% 
+  arrange(season) %>% 
+  select(season) %>% 
+  pull() %>% 
+  unique()
+```
+
+Descriptive statistics for the variables that are the focus of this article:
+
+```{r}
+modelVars <- c("passing_yards_priorGame", "pass_300_yds","passing_yards")
+analysisData %>% 
+  dplyr::select(all_of(modelVars)) %>% 
+  dplyr::summarise(across(
+      everything(),
+      .fns = list(
+        n = ~ length(na.omit(.)),
+        missingness = ~ mean(is.na(.)) * 100,
+        M = ~ mean(., na.rm = TRUE),
+        SD = ~ sd(., na.rm = TRUE),
+        min = ~ min(., na.rm = TRUE),
+        max = ~ max(., na.rm = TRUE),
+        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
+        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
+        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
+        IQR = ~ IQR(., na.rm = TRUE),
+        MAD = ~ mad(., na.rm = TRUE),
+        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
+        median = ~ median(., na.rm = TRUE),
+        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
+        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
+        skewness = ~ psych::skew(., na.rm = TRUE),
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
+      .names = "{.col}.{.fn}")) %>%
+    tidyr::pivot_longer(
+      cols = everything(),
+      names_to = c("variable","index"),
+      names_sep = "\\.") %>% 
+    tidyr::pivot_wider(
+      names_from = index,
+      values_from = value)
+```
 
 ```{r}
 player_stats_weekly_subset <- player_stats_weekly %>%
@@ -127,7 +181,7 @@ crowdAveragedProjectionsWithActuals_weekly <- crowdAveragedProjectionsWithActual
 
 # Predicting Whether a QB Will Get 300+ Passing Yards in a Game
 
-Using a Quarter Back's passing yards in a given game, we will predict whether or not the Quarter back will get 300+ passing yards in their next game:
+Let's use the Quarter Back's passing yards in a given game, and  predict whether or not the Quarter back will get 300+ passing yards in their next game:
 
 ```{r}
 player_stats_weekly_example <- player_stats_weekly %>% 
@@ -170,9 +224,9 @@ petersenlab::accuracyAtCutoff(
 )
 ```
 
-Based on the results above, the sensitivity increased significantly while the specificity decreased tremendously therefore increasing the chance of more false positives. This indicates that having a low cutoff puts too much faith into predicting rare outcomes which we do not want (i.e., sensitivity = true positive rates--identifying actual 300 yard games vs specificity = true negative rates--identifying non-300-yard games).
+Based on the results above, the sensitivity increased significantly while the specificity decreased tremendously therefore increasing the chance of more false positives. This indicates that having a low cutoff puts too much faith into predicting rare outcomes which we do not want (i.e., sensitivity = true positive rates--identifying actual 300 yard games vs specificity = true negative rates--identifying non-300-yard games). Additionally the balanced accuracy was raised slightly to about 0.572. So overall, still not great results. 
 
-Let's raise the cutoff to 150 passing yards from their previous game to see if we get better results:
+Let's keep trying and raise the cutoff one more time to 150 passing yards from their previous game to see if we get better results:
 
 ```{r}
 petersenlab::accuracyAtCutoff(
@@ -182,7 +236,7 @@ petersenlab::accuracyAtCutoff(
 )
 ```
 
-The sensitivity is lowered by almost 10% and the specificity is raised similarily. So far, a cutoff of 150 yards has appeared to demonstrate the most statistical 
+The sensitivity is lowered by almost 10% and the specificity is raised similarily. But, we got a balanced accuracy of 0.595! So far, a cutoff of 150 yards has appeared to demonstrate the most statistical trade off!
 
 Let's see if we can identity what the best possible cutoff point is: 
 
@@ -214,6 +268,62 @@ plot(
   print.auc = TRUE)
 ```
 
+The chart before, with all those rows, has been turned into a graph so we can better see what this actually looks like visually!
+
+Additionally, here are the descriptive variables we used:
+
+```{r}
+analysisData <- player_stats_weekly_example
+```
+
+
+```{r}
+analysisData <- player_stats_weekly %>% 
+  filter(position_group == "QB")
+```
+
+```{r}
+analysisData %>% 
+  arrange(season) %>% 
+  select(season) %>% 
+  pull() %>% 
+  unique()
+```
+
+```{r}
+modelVars <- c("passing_yards_priorGame", "pass_300_yds","passing_yards")
+
+analysisData %>% 
+  dplyr::select(all_of(modelVars)) %>% 
+  dplyr::summarise(across(
+      everything(),
+      .fns = list(
+        n = ~ length(na.omit(.)),
+        missingness = ~ mean(is.na(.)) * 100,
+        M = ~ mean(., na.rm = TRUE),
+        SD = ~ sd(., na.rm = TRUE),
+        min = ~ min(., na.rm = TRUE),
+        max = ~ max(., na.rm = TRUE),
+        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
+        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
+        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
+        IQR = ~ IQR(., na.rm = TRUE),
+        MAD = ~ mad(., na.rm = TRUE),
+        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
+        median = ~ median(., na.rm = TRUE),
+        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
+        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
+        skewness = ~ psych::skew(., na.rm = TRUE),
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
+      .names = "{.col}.{.fn}")) %>%
+    tidyr::pivot_longer(
+      cols = everything(),
+      names_to = c("variable","index"),
+      names_sep = "\\.") %>% 
+    tidyr::pivot_wider(
+      names_from = index,
+      values_from = value)
+```
 
 ## Statistical Analysis {#sec-statisticalAnalysis}
 
@@ -221,6 +331,7 @@ I used multiple regression to test the hypothesis.
 Specifically, I compared the standardized regression coefficients for the two predictors of interest: air yards versus receiving yards.
 
 # Results {#sec-results}
+
 
 ## Main Analyses
 
