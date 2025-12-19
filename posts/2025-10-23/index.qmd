@@ -72,64 +72,6 @@ load("../../data/players_projections_weekly.RData")
 
 Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and Empiricism Using R” (Petersen, 2025).
 
-First, I subset the data to quarterbacks:
-
-```{r}
-analysisData <- player_stats_weekly %>% 
-  filter(position_group == "QB")
-```
-
-Now, we only have the weekly players' stats of Quarterbacks, and this data includes all seasons since 1999 (i.e., currently 1999–2024): 
-
-```{r}
-analysisData %>% 
-  arrange(season) %>% 
-  select(season) %>% 
-  pull() %>% 
-  unique()
-```
-
-```{r}
-analysisData <- player_stats_weekly_example
-```
-
-Descriptive statistics for the variables that are the focus of this article:
-
-```{r}
-modelVars <- c("passing_yards_priorGame", "pass_300_yds","passing_yards")
-
-analysisData %>% 
-  dplyr::select(all_of(modelVars)) %>% 
-  dplyr::summarise(across(
-      everything(),
-      .fns = list(
-        n = ~ length(na.omit(.)),
-        missingness = ~ mean(is.na(.)) * 100,
-        M = ~ mean(., na.rm = TRUE),
-        SD = ~ sd(., na.rm = TRUE),
-        min = ~ min(., na.rm = TRUE),
-        max = ~ max(., na.rm = TRUE),
-        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
-        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
-        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
-        IQR = ~ IQR(., na.rm = TRUE),
-        MAD = ~ mad(., na.rm = TRUE),
-        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
-        median = ~ median(., na.rm = TRUE),
-        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
-        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
-        skewness = ~ psych::skew(., na.rm = TRUE),
-        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
-      .names = "{.col}.{.fn}")) %>%
-    tidyr::pivot_longer(
-      cols = everything(),
-      names_to = c("variable","index"),
-      names_sep = "\\.") %>% 
-    tidyr::pivot_wider(
-      names_from = index,
-      values_from = value)
-```
-
 Now, we can prepare the data!
 
 ```{r}
@@ -274,6 +216,60 @@ plot(
 ```
 
 The chart before, with all those rows, has been turned into a graph so we can better see what this actually looks like visually!
+
+Down below, we have our descriptive variables for this article:
+
+```{r}
+analysisData <- player_stats_weekly %>% 
+  filter(position_group == "QB")
+```
+
+```{r}
+analysisData %>% 
+  arrange(season) %>% 
+  select(season) %>% 
+  pull() %>% 
+  unique()
+```
+
+```{r}
+analysisData <- player_stats_weekly_example
+```
+
+```{r}
+modelVars <- c("passing_yards_priorGame", "pass_300_yds","passing_yards")
+
+analysisData %>% 
+  dplyr::select(all_of(modelVars)) %>% 
+  dplyr::summarise(across(
+      everything(),
+      .fns = list(
+        n = ~ length(na.omit(.)),
+        missingness = ~ mean(is.na(.)) * 100,
+        M = ~ mean(., na.rm = TRUE),
+        SD = ~ sd(., na.rm = TRUE),
+        min = ~ min(., na.rm = TRUE),
+        max = ~ max(., na.rm = TRUE),
+        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
+        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
+        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
+        IQR = ~ IQR(., na.rm = TRUE),
+        MAD = ~ mad(., na.rm = TRUE),
+        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
+        median = ~ median(., na.rm = TRUE),
+        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
+        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
+        skewness = ~ psych::skew(., na.rm = TRUE),
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
+      .names = "{.col}.{.fn}")) %>%
+    tidyr::pivot_longer(
+      cols = everything(),
+      names_to = c("variable","index"),
+      names_sep = "\\.") %>% 
+    tidyr::pivot_wider(
+      names_from = index,
+      values_from = value)
+```
 
 # Results {#sec-results}
 
