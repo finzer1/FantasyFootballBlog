@@ -9,7 +9,7 @@
 <meta name="author" content="Finley Jacobson">
 <meta name="dcterms.date" content="2025-10-23">
 
-<title>Example Blog Post: Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points? – My Blog</title>
+<title>Predicting 300-Yard Passing Performances Using Prior-Game Data – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,9 +154,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Example Blog Post: Are Air Yards or Receiving Yards a Better Predictor of Future Fantasy Points?</h1>
+      <h1 class="title">Predicting 300-Yard Passing Performances Using Prior-Game Data</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">fantasy football</div>
+                <div class="quarto-category">binary classification</div>
+                <div class="quarto-category">prediction</div>
+                <div class="quarto-category">forecasting accuracy</div>
               </div>
                   </div>
   </div>
@@ -211,12 +214,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#accuracy-at-a-particular-cutoff" id="toc-accuracy-at-a-particular-cutoff" class="nav-link" data-scroll-target="#accuracy-at-a-particular-cutoff"><span class="header-section-number">6.1</span> Accuracy at a Particular Cutoff</a></li>
   <li><a href="#accuracy-at-each-possible-cutoff" id="toc-accuracy-at-each-possible-cutoff" class="nav-link" data-scroll-target="#accuracy-at-each-possible-cutoff"><span class="header-section-number">6.2</span> Accuracy at Each Possible Cutoff</a></li>
   <li><a href="#receiver-operating-characteristic-roc-curve" id="toc-receiver-operating-characteristic-roc-curve" class="nav-link" data-scroll-target="#receiver-operating-characteristic-roc-curve"><span class="header-section-number">6.3</span> Receiver Operating Characteristic (ROC) Curve</a></li>
-  <li><a href="#sec-statisticalAnalysis" id="toc-sec-statisticalAnalysis" class="nav-link" data-scroll-target="#sec-statisticalAnalysis"><span class="header-section-number">6.4</span> Statistical Analysis</a></li>
   </ul></li>
   <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">7</span> Results</a>
   <ul class="collapse">
   <li><a href="#main-analyses" id="toc-main-analyses" class="nav-link" data-scroll-target="#main-analyses"><span class="header-section-number">7.1</span> Main Analyses</a></li>
-  <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">7.2</span> Sensitivity Analyses</a></li>
   </ul></li>
   <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">8</span> Discussion</a></li>
   <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">9</span> Strengths and Limitations</a>
@@ -262,18 +263,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-abstract" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Abstract</h1>
-<p><strong>Background:</strong> <strong>Method:</strong> In the present study, I compared <strong>Results:</strong> I found that <strong>Discussion:</strong> In conclusion,</p>
+<p><strong>Background:</strong> <strong>Method:</strong> <strong>Results:</strong> <strong>Discussion:</strong></p>
 </section>
 <section id="sec-background" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Background</h1>
 <section id="sec-presentStudy" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-presentStudy"><span class="header-section-number">4.1</span> The Present Study</h2>
-<p>In the present study, I examined</p>
+<p>In the present study, I examined quarterbacks’ past performance (i.e., passing yards) and whether it can predict whether they will throw for 300+ yards in the next game. Research Question: Can a quarterback’s passing yards in the previous game predict whether they will throw for 300 or more passing yards in the next game? Hypothesis: Quarterbacks who throw more passing yards in their previous game are more likely to throw 300 or more passing yards in their next game. Prediction: A quarterback’s passing yards in the previous game will accurately predict whether they achieve a 300-yard passing performance in the next game.</p>
 </section>
 </section>
 <section id="sec-method" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Method</h1>
-<p>To test these hypotheses, I first examine whether</p>
+<p>To test the hypothesis, I first examined whether a cutoff-based classification system, combined with diagnostic accuracy metrics and ROC analysis, can assess how well quarterbacks’ passing yards from their previous game can predict a 300-yard passing performance in the next game.</p>
 <section id="specify-options" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="specify-options"><span class="header-section-number">5.1</span> Specify Options</h2>
 <div class="cell">
@@ -297,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-data" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-data"><span class="header-section-number">5.3</span> Data</h2>
 <p>Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and Empiricism Using R” (Petersen, 2025).</p>
+<p>Now, we can prepare the data!</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -355,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="predicting-whether-a-qb-will-get-300-passing-yards-in-a-game" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Predicting Whether a QB Will Get 300+ Passing Yards in a Game</h1>
-<p>Using a Quarter Back’s passing yards in a given game, we will predict whether or not the Quarter back will get 300+ passing yards in their next game:</p>
+<p>Let’s use the Quarter Back’s passing yards in a given game, and predict whether or not the Quarter back will get 300+ passing yards in their next game:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -419,8 +421,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Based on the results above, the sensitivity increased significantly while the specificity decreased tremendously therefore increasing the chance of more false positives. This indicates that having a low cutoff puts too much faith into predicting rare outcomes which we do not want (i.e., sensitivity = true positive rates–identifying actual 300 yard games vs specificity = true negative rates–identifying non-300-yard games).</p>
-<p>Let’s raise the cutoff to 150 passing yards from their previous game to see if we get better results:</p>
+<p>Based on the results above, the sensitivity increased significantly while the specificity decreased tremendously therefore increasing the chance of more false positives. This indicates that having a low cutoff puts too much faith into predicting rare outcomes which we do not want (i.e., sensitivity = true positive rates–identifying actual 300 yard games vs specificity = true negative rates–identifying non-300-yard games). Additionally the balanced accuracy was raised slightly to about 0.572. So overall, still not great results.</p>
+<p>Let’s keep trying and raise the cutoff one more time to 150 passing yards from their previous game to see if we get better results:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -438,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The sensitivity is lowered by almost 10% and the specificity is raised similarily. So far, a cutoff of 150 yards has appeared to demonstrate the most statistical</p>
+<p>The sensitivity is lowered by almost 10% and the specificity is raised similarily. But, we got a balanced accuracy of 0.595! So far, a cutoff of 150 yards has appeared to demonstrate the most statistical trade off!</p>
 <p>Let’s see if we can identity what the best possible cutoff point is:</p>
 </section>
 <section id="accuracy-at-each-possible-cutoff" class="level2" data-number="6.2">
@@ -500,24 +502,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="sec-statisticalAnalysis" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="sec-statisticalAnalysis"><span class="header-section-number">6.4</span> Statistical Analysis</h2>
-<p>I used multiple regression to test the hypothesis. Specifically, I compared the standardized regression coefficients for the two predictors of interest: air yards versus receiving yards.</p>
+<p>The chart before, with all those rows, has been turned into a graph so we can better see what this actually looks like visually!</p>
+<p>Down below, we have our descriptive variables for this article:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>analysisData <span class="ot">&lt;-</span> player_stats_weekly <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(position_group <span class="sc">==</span> <span class="st">"QB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>analysisData <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(season) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(season) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013
+[16] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>analysisData <span class="ot">&lt;-</span> player_stats_weekly_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>modelVars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"passing_yards_priorGame"</span>, <span class="st">"pass_300_yds"</span>,<span class="st">"passing_yards"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>analysisData <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(modelVars)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="fu">across</span>(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> <span class="sc">~</span> <span class="fu">length</span>(<span class="fu">na.omit</span>(.)),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">missingness =</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">is.na</span>(.)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">M =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">q10 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 10th quantile</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">q90 =</span> <span class="sc">~</span> <span class="fu">quantile</span>(., .<span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># 90th quantile</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">IQR =</span> <span class="sc">~</span> <span class="fu">IQR</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">MAD =</span> <span class="sc">~</span> <span class="fu">mad</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">CV =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">pseudomedian =</span> <span class="sc">~</span> DescTools<span class="sc">::</span><span class="fu">HodgesLehmann</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">mode =</span> <span class="sc">~</span> petersenlab<span class="sc">::</span><span class="fu">Mode</span>(., <span class="at">multipleModes =</span> <span class="st">"mean"</span>),</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">skewness =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">skew</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">kurtosis =</span> <span class="sc">~</span> psych<span class="sc">::</span><span class="fu">kurtosi</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}.{.fn}"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"index"</span>),</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_from =</span> index,</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_from =</span> value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["variable"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["missingness"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["M"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["q10"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["q90"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["IQR"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["MAD"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["CV"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["pseudomedian"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["mode"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["skewness"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[18],"type":["dbl"],"align":["right"]}],"data":[{"1":"passing_yards_priorGame","2":"14101","3":"12.43247","4":"204.3088433","5":"102.3559510","6":"-7","7":"527","8":"36","9":"329","10":"534","11":"128","12":"93.4038","13":"0.5009864","14":"214","15":"208.5","16":"0","17":"-0.2674644","18":"-0.2691881"},{"1":"pass_300_yds","2":"16103","3":"0.00000","4":"0.1576725","5":"0.3644449","6":"0","7":"1","8":"0","9":"1","10":"1","11":"0","12":"0.0000","13":"2.3114049","14":"0","15":"0.0","16":"0","17":"1.8785074","18":"1.5288849"},{"1":"passing_yards","2":"16103","3":"0.00000","4":"195.8686580","5":"105.4881995","6":"-7","7":"527","8":"20","9":"324","10":"534","11":"138","12":"100.8168","13":"0.5385660","14":"207","15":"199.5","16":"0","17":"-0.2066430","18":"-0.4672657"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-results" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Results</h1>
 <section id="main-analyses" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="main-analyses"><span class="header-section-number">7.1</span> Main Analyses</h2>
-</section>
-<section id="sensitivity-analyses" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="sensitivity-analyses"><span class="header-section-number">7.2</span> Sensitivity Analyses</h2>
-<p>I evaluated assumptions of multiple regression: 1) linear association, 2) homoscedasticity, 3) uncorrelated residuals, and 4) normally distributed residuals.</p>
-<p>To evaluate the assumption of homoscedasticity, I examined residual and spread-level plots.</p>
-<p>The pattern of findings did not differ substantially when transforming the outcome variable to be more normally distributed.</p>
-<p>Because the data were nested within players (i.e., longitudinal) and thus violated the assumption of uncorrelated residuals, we also conducted a sensitivity analysis using a mixed model to account for the nested data.</p>
-<p>In sum, the pattern of findings held after conducting sensitivity analyses to account for potential violations of assumptions of multiple regression.</p>
 </section>
 </section>
 <section id="sec-discussion" class="level1" data-number="8">
@@ -535,13 +598,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-references" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> References</h1>
+<div id="ref-Petersen2025">
+<p>Petersen, I. T. (2025). <em>Fantasy football analytics: Statistics, prediction, and empiricism using R</em>. University of Iowa Libraries. <a href="https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook" class="uri">https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook</a></p>
+</div>
 </section>
 <section id="sec-sessionInfo" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> Session Info</h1>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
@@ -575,37 +641,41 @@ other attached packages:
 [29] pROC_1.19.0.1      petersenlab_1.2.2 
 
 loaded via a namespace (and not attached):
- [1] Rdpack_2.6.4        DBI_1.2.3           mnormt_2.1.1       
- [4] gridExtra_2.3       rlang_1.1.6         furrr_0.3.1        
- [7] compiler_4.5.2      vctrs_0.6.5         reshape2_1.4.5     
-[10] lhs_1.2.0           quadprog_1.5-8      pkgconfig_2.0.3    
-[13] fastmap_1.2.0       backports_1.5.0     pbivnorm_0.6.0     
-[16] rmarkdown_2.30      tzdb_0.5.0          prodlim_2025.04.28 
-[19] nloptr_2.2.1        xfun_0.55           jsonlite_2.0.0     
-[22] psych_2.5.6         parallel_4.5.2      lavaan_0.6-20      
-[25] cluster_2.1.8.1     R6_2.6.1            stringi_1.8.7      
-[28] RColorBrewer_1.1-3  parallelly_1.46.0   boot_1.3-32        
-[31] rpart_4.1.24        Rcpp_1.1.0          knitr_1.50         
-[34] future.apply_1.20.1 base64enc_0.1-3     timechange_0.3.0   
-[37] Matrix_1.7-4        splines_4.5.2       nnet_7.3-20        
-[40] tidyselect_1.2.1    rstudioapi_0.17.1   yaml_2.3.12        
-[43] timeDate_4051.111   codetools_0.2-20    listenv_0.10.0     
-[46] lattice_0.22-7      plyr_1.8.9          withr_3.0.2        
-[49] S7_0.2.1            evaluate_1.0.5      foreign_0.8-90     
-[52] future_1.68.0       survival_3.8-3      mclust_6.1.2       
-[55] pillar_1.11.1       checkmate_2.3.3     stats4_4.5.2       
-[58] reformulas_0.4.3    generics_0.1.4      hms_1.1.4          
-[61] mix_1.0-13          minqa_1.2.8         globals_0.18.0     
-[64] xtable_1.8-4        class_7.3-23        glue_1.8.0         
-[67] Hmisc_5.2-4         tools_4.5.2         data.table_1.17.8  
-[70] lme4_1.1-38         gower_1.0.2         mvtnorm_1.3-3      
-[73] grid_4.5.2          mitools_2.4         rbibutils_2.4      
-[76] ipred_0.9-15        colorspace_2.1-2    nlme_3.1-168       
-[79] htmlTable_2.4.3     Formula_1.2-5       cli_3.6.5          
-[82] DiceDesign_1.10     lava_1.8.2          gtable_0.3.6       
-[85] GPfit_1.0-9         digest_0.6.39       htmlwidgets_1.6.4  
-[88] farver_2.1.2        htmltools_0.5.9     lifecycle_1.0.4    
-[91] hardhat_1.4.2       MASS_7.3-65        </code></pre>
+  [1] RColorBrewer_1.1-3  rstudioapi_0.17.1   jsonlite_2.0.0     
+  [4] farver_2.1.2        nloptr_2.2.1        rmarkdown_2.30     
+  [7] fs_1.6.6            vctrs_0.6.5         minqa_1.2.8        
+ [10] base64enc_0.1-3     htmltools_0.5.9     haven_2.5.5        
+ [13] cellranger_1.1.0    Formula_1.2-5       parallelly_1.46.0  
+ [16] htmlwidgets_1.6.4   plyr_1.8.9          rootSolve_1.8.2.4  
+ [19] lifecycle_1.0.4     pkgconfig_2.0.3     Matrix_1.7-4       
+ [22] R6_2.6.1            fastmap_1.2.0       rbibutils_2.4      
+ [25] future_1.68.0       Exact_3.3           digest_0.6.39      
+ [28] colorspace_2.1-2    furrr_0.3.1         Hmisc_5.2-4        
+ [31] timechange_0.3.0    httr_1.4.7          compiler_4.5.2     
+ [34] proxy_0.4-28        withr_3.0.2         htmlTable_2.4.3    
+ [37] S7_0.2.1            backports_1.5.0     DBI_1.2.3          
+ [40] psych_2.5.6         MASS_7.3-65         lava_1.8.2         
+ [43] gld_2.6.8           tools_4.5.2         pbivnorm_0.6.0     
+ [46] foreign_0.8-90      future.apply_1.20.1 nnet_7.3-20        
+ [49] glue_1.8.0          quadprog_1.5-8      nlme_3.1-168       
+ [52] grid_4.5.2          checkmate_2.3.3     cluster_2.1.8.1    
+ [55] reshape2_1.4.5      generics_0.1.4      gtable_0.3.6       
+ [58] tzdb_0.5.0          class_7.3-23        data.table_1.17.8  
+ [61] lmom_3.2            hms_1.1.4           pillar_1.11.1      
+ [64] mitools_2.4         splines_4.5.2       lhs_1.2.0          
+ [67] lattice_0.22-7      survival_3.8-3      tidyselect_1.2.1   
+ [70] mix_1.0-13          knitr_1.50          reformulas_0.4.3   
+ [73] gridExtra_2.3       stats4_4.5.2        xfun_0.55          
+ [76] expm_1.0-0          hardhat_1.4.2       timeDate_4051.111  
+ [79] stringi_1.8.7       DiceDesign_1.10     yaml_2.3.12        
+ [82] boot_1.3-32         evaluate_1.0.5      codetools_0.2-20   
+ [85] cli_3.6.5           rpart_4.1.24        xtable_1.8-4       
+ [88] DescTools_0.99.60   Rdpack_2.6.4        lavaan_0.6-20      
+ [91] readxl_1.4.5        Rcpp_1.1.0          globals_0.18.0     
+ [94] parallel_4.5.2      gower_1.0.2         mclust_6.1.2       
+ [97] GPfit_1.0-9         lme4_1.1-38         listenv_0.10.0     
+[100] mvtnorm_1.3-3       ipred_0.9-15        prodlim_2025.04.28 
+[103] e1071_1.7-17        rlang_1.1.6         mnormt_2.1.1       </code></pre>
 </div>
 </div>
 
