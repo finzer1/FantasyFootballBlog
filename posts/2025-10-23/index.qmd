@@ -16,16 +16,13 @@ Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki
 #| message: false
 #| warning: false
 
-library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
-library("psych")
-library("DescTools")
-library("effectsize")
-library("broom")
-library("car")
-library("bestNormalize")
-library("lme4")
-library("lmerTest")
-library("GGally")
+library("petersenlab")
+library("pROC")
+library("magrittr")
+library("viridis")
+library("viridisLite")
+library("msir")
+library("tidymodels")
 library("tidyverse")
 ```
 
@@ -37,57 +34,186 @@ Link to AI Transcript: not applicable
 
 # Abstract {#sec-abstract}
 
-**Background:** Due to natural variability of players' fantasy points from week to week, it is possible that a player's opportunity (i.e., volume) may be a stronger influence of future performance than previous performance.
-However, this possibility has not been tested.\
-**Method:** In the present study, I compared predictors to determine which is a stronger predictor of future performance among wide receivers: previous performance or previous opportunity.
-For the predictors, I examined air yards as the index of a wide receiver's opportunity and receiving yards as the index of player performance.
-For the criterion, I examined wide receivers' fantasy points in the subsequent game.\
-**Results:** I found that previous performance (i.e., receiving yards) was a stronger predictor of fantasy performance (i.e., fantasy points) than was previous opportunity (i.e., air yards).
-Nevertheless, both previous receiving yards and air yards accounted for unique variance in future fantasy points.\
-**Discussion:** In conclusion, both previous performance and opportunity are important predictors of fantasy performance and should be considered.
+**Background:** 
+**Method:** In the present study, I compared 
+**Results:** I found that 
+**Discussion:** In conclusion,
 
 # Background {#sec-background}
 
-In football, like many other domains, a key predictor of future performance is past performance.
-Wide receivers who gain many receiving yards in a given week or season are more likely than other players to gain many receiving yards and score many points in future weeks or seasons.
-However, previous performance is not the only important predictor of future performance.
-
-Early in the fantasy football season, there is considerable uncertainty regarding how players will perform.
-
-
-Thus, it is important to consider factors in addition to previous performance that predict player performance.
-Key influences of player performance, in addition to player ability, include opportunity, usage, and volume.
-For a wide receiver, opportunity may encompass many aspects including how many snaps they receive, how many routes they run, how many targets they receive, and so on.
-Another key aspect of opportunity is the depth of the targets they receive—because greater target depth provides greater opportunity for them to obtain receiving yards and fantasy points.
-
-
-
-However, it is not known whether previous performance or opportunity is a stronger predictor of future performance.
-
 ## The Present Study {#sec-presentStudy}
 
-In the present study, I examined whether previous performance or previous opportunity is a stronger predictor of future performance among wide receivers.
-For the predictors, 
-I hypothesized that, due to natural variability from week-to-week that, in part, reflects randomness and is consistent with the statistical principle of regression to the mean, opportunity would be a stronger influence of subsequent performance than previous performance.
-If the hypothesis is true, I predict that air yards will be a stronger predictor, compared to actual receiving yards, in predicting future fantasy points.
-Testing this possibility is important for determining what factors may be used to best identify players who, despite not gaining many receiving yards in a given week, may do well in future weeks.
+In the present study, I examined
 
 # Method {#sec-method}
 
-To test the hypothesis, I examined whether a wide receiver's air yards in a given week was a better predictor than their actual receiving yards of the player's fantasy points the following week.
+To test these hypotheses, I first examine whether 
+
+
+## Specify Options
+
+```{r}
+options(scipen = 999) # prevent scientific notation
+```
+
+## Load Data
+
+```{r}
+load("../../data/player_stats_weekly.RData")
+load("../../data/nfl_playerIDs.RData")
+load("../../data/players_projections_weekly.RData")
+```
+
 
 ## Data {#sec-data}
 
-Below, I load the data file used for this post.
+Below, I load the data file used for this post. The data file contains 437,309 weekly player statistics and 167 labeled
+columns, including variables such as air yards, receiving yards, and fantasy points. I obtained the data file from the
+Open Science Framework repository for the textbook, “Fantasy Football Analytics: Statistics, Prediction, and
+Empiricism Using R” (Petersen, 2025).
 
 
-Second, to prepare the data for analysis, I created a lagged variable for fantasy points so that fantasy points in a subsequent year (e.g., 2024) are in the same row as player performance from the prior year (e.g., 2023).
-Creation of a lagged variable allowed using previous performance to predict future fantasy points.
+```{r}
+player_stats_weekly_subset <- player_stats_weekly %>%
+  filter(!is.na(player_id))
 
-The original data set includes only those rows for weeks in which a given player played.
-For instance, if a player played weeks 9 and 11 but missed week 10 due to injury, they would have rows for only week 9 and 11.
-However, this is a problem if we were to lag a variable (fantasy points) up a row because, in this instance, it would be lagging the variable two weeks (from week 11 to week 9), rather than one week.
-To ensure that the lagged variable lags only 1 week (and not more weeks), I added missing rows for the missing weeks for given player-season combinations, to ensure each player-season combination had all 18 weeks represented.
+nfl_playerIDs_subset <- nfl_playerIDs %>% 
+  filter(!is.na(gsis_id)) %>% 
+  distinct(gsis_id, .keep_all = TRUE) %>% # keep only rows that do not have duplicate values of gsis_id
+  select(-all_of(c("team", "position", "height", "weight", "age")))
+
+players_projectedPoints_weekly_combined$season <- as.integer(players_projectedPoints_weekly_combined$season)
+players_projections_weekly_average_merged$season <- as.integer(players_projections_weekly_average_merged$season)
+
+player_stats_weekly_subset_IDs <- left_join(
+  player_stats_weekly_subset,
+  nfl_playerIDs_subset,
+  by = c("player_id" = "gsis_id")
+) %>% 
+  filter(!is.na(mfl_id))
+
+projectionsWithActuals_weekly <- full_join(
+  player_stats_weekly_subset_IDs,
+  players_projectedPoints_weekly_combined,
+  by = c("mfl_id" = "id", "season", "week"),
+  suffix = c("", "_proj"),
+)
+
+crowdAveragedProjectionsWithActuals_weekly <- full_join(
+  player_stats_weekly_subset_IDs,
+  players_projections_weekly_average_merged,
+  by = c("mfl_id" = "id", "season", "week"),
+  suffix = c("", "_proj"),
+)
+
+projectionsWithActuals_weekly <- projectionsWithActuals_weekly %>% 
+  unite(
+    "player_id_season_week",
+    player_id,
+    season,
+    week,
+    remove = FALSE
+  )
+
+crowdAveragedProjectionsWithActuals_weekly <- crowdAveragedProjectionsWithActuals_weekly %>% 
+  unite(
+    "player_id_season_week",
+    player_id,
+    season,
+    week,
+    remove = FALSE
+  )
+```
+
+# Predicting Whether a QB Will Get 300+ Passing Yards in a Game
+
+Using a Quarter Back's passing yards in a given game, we will predict whether or not the Quarter back will get 300+ passing yards in their next game:
+
+```{r}
+player_stats_weekly_example <- player_stats_weekly %>% 
+  filter(position == "QB") %>% 
+  arrange(player_id, season, week) %>% 
+  group_by(player_id, season) %>% 
+  mutate(passing_yards_priorGame = lag(passing_yards)) %>% # obtain a player's passing yards from their prior game using the dplyr::lag() function
+  ungroup()
+
+player_stats_weekly_example %>% 
+  select(player_id, season, week, passing_yards, passing_yards_priorGame) %>% 
+  head()
+```
+
+## Accuracy at a Particular Cutoff
+
+Providing the accuracy for predicting whether or not the Quarter Back will get 300+ passing yards in their next game:
+
+```{r}
+petersenlab::accuracyAtCutoff(
+  predicted = player_stats_weekly_example$passing_yards_priorGame, # predictor variable
+  actual = player_stats_weekly_example$pass_300_yds, # outcome variable
+  cutoff = 300
+)
+```
+
+Based on the results, using the quarterback’s passing yards from the previous game to predict whether they would throw for 300+ yards resulted in an overall accuracy of 75.66% but, but only about 16.75% of games result in 300+ yards...
+
+Accuracy by chance (i.e., randomly guessing) rate sits at a 72.02% while the accuracy predicting from base rate (i.e., giving an answer based on what has the better chance at happening) sits at a 83.25%.
+
+Additionally, the sensitivity is low (i.e., the model will identity only about one in four 300+ games), but the specificity is high (i.e., meaning it's very good at pointing out the games that won't exceed 300+ yards). As a result, this gives us a balanced accuracy of 0.565 so just slightly above better than chance.
+
+Lets lower the cutoff to 100 passing yards from their previous game:
+
+```{r}
+petersenlab::accuracyAtCutoff(
+  predicted = player_stats_weekly_example$passing_yards_priorGame, # predictor variable
+  actual = player_stats_weekly_example$pass_300_yds, # outcome variable
+  cutoff = 100
+)
+```
+
+Based on the results above, the sensitivity increased significantly while the specificity decreased tremendously therefore increasing the chance of more false positives. This indicates that having a low cutoff puts too much faith into predicting rare outcomes which we do not want (i.e., sensitivity = true positive rates--identifying actual 300 yard games vs specificity = true negative rates--identifying non-300-yard games).
+
+Let's raise the cutoff to 150 passing yards from their previous game to see if we get better results:
+
+```{r}
+petersenlab::accuracyAtCutoff(
+  player_stats_weekly_example$passing_yards_priorGame, # predictor variable
+  actual = player_stats_weekly_example$pass_300_yds, # outcome variable
+  cutoff = 150
+)
+```
+
+The sensitivity is lowered by almost 10% and the specificity is raised similarily. So far, a cutoff of 150 yards has appeared to demonstrate the most statistical 
+
+Let's see if we can identity what the best possible cutoff point is: 
+
+## Accuracy at Each Possible Cutoff
+
+```{r}
+petersenlab::accuracyAtEachCutoff(
+  predicted = player_stats_weekly_example$passing_yards_priorGame, # predictor variable
+  actual = player_stats_weekly_example$pass_300_yds # outcome variable
+)
+```
+
+While this may look a tad overwhelming with all the rows, but it appears that moderate cutoffs (i.e., like 150 yards) actually produce the highest balanced accuracy with overall performance remaining only slightly better than chance!
+
+## Receiver Operating Characteristic (ROC) Curve
+
+```{r}
+rocCurve <- pROC::roc(
+  data = player_stats_weekly_example,
+  response = pass_300_yds, # outcome variable
+  predictor = passing_yards_priorGame, # predictor variable
+  smooth = FALSE)
+
+rocCurve$auc
+
+plot(
+  rocCurve,
+  legacy.axes = TRUE,
+  print.auc = TRUE)
+```
+
 
 ## Statistical Analysis {#sec-statisticalAnalysis}
 
@@ -116,36 +242,21 @@ In sum, the pattern of findings held after conducting sensitivity analyses to ac
 
 # Discussion {#sec-discussion}
 
-In this article, I examined whether previous performance or opportunity is a stronger predictor of future fantasy performance among wide receivers.
-For the predictors, I operationalized the wide receiver's performance as their receiving yards.
-I operationalized a wide receiver's opportunity as their air yards, an index of the depth of targets the player received.
-For the criterion of fantasy performance, I examined wide receivers' fantasy points in the subsequent game.
-I hypothesized that opportunity would be a stronger influence of subsequent performance than previous performance and that, as a result, air yards will be a stronger predictor, compared to actual receiving yards, in predicting future fantasy points among wide receivers.
-Contrary to my hypothesis, however, I found that receiving yards was a stronger predictor than air yards in predicting wide receivers' fantasy points the following week.
-Receiving yards had a medium effect size; air yards had a small effect size.
-
-Nevertheless, both previous fantasy points and air yards accounted for unique variance in future fantasy points.
-The findings held when conducting sensitivity analyses, including transforming the outcome variable to be more normally distributed and using a mixed model to account for the longitudinal nature of the data.
-Thus, findings suggest that, although previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers, both previous performance and opportunity are important predictors of fantasy performance that should be considered.
-A possible alternative interpretation of the findings is that previous performance reflects other causal processes (such as ability and opportunity) and that previous performance does not influence future performance per se.
+In this article, I examined "restate hypotheses and whether they were supported or not:
+Statistical significance:
+Practical significance:
+Why I may have gotten the results that I got:
 
 # Strengths and Limitations {#sec-strengthsLimitations}
 
-The study had several strengths.
-First, I examined data from all seasons since 1999, thus providing strong statistical power to detect differences in the strength of associations.
-Second, I conducted several sensitivity analyses, providing additional rigor in the methods and additional confidence in the findings.
+Strengths: The study used thousands of quarterbacks, which contributed to greater reliability and generalizability (i.e., a large sample). The data used was real-world data, from all the way to 1999 to 2024. 
 
-The study also had limitations.
-First, air yards and other statistical indexes depend on many factors such as the game script and, in a given game, may not be representative of a player's role in the offense.
-Second, a player's inclusion of a given week in the analysis required the player to play in the given game and the following week.
-Player availability could depend, in part, due to usage; for instance, receivers who run more routes, receive more targets, and obtain more air/receiving yards could be more likely to miss a subsequent game due to injury and thus could be missing systematically from my analysis.
-This possibility would be important for future work to consider.
+Limitations: The study did not incorporate other similar research to support the predictions, hypotheses, or findings. The results of the study may be due to different external factors, such as weather, physical health (e.g., injury status), and/or the defensive strength of the other team. The study assessed only quarterbacks, so the data are generalizable only to quarterbacks, not to other positions. It’s important to consider that the study's statistical significance may be due to an overly large sample size.
 
 ## Conclusion {#sec-conclusion}
 
-In conclusion, previous performance is a stronger predictor than previous opportunity in predicting future fantasy performance among wide receivers.
-However, both previous performance and opportunity are important predictors of fantasy performance and should be considered when predicting wide receiver fantasy performance.
-Among underperforming players, air yards—as an index of opportunity—may be a useful way of identifying those who may bounce back in subsequent weeks.
+If the study were to be repeated, I would incorporate more variables (e.g., tackles, catches, passing yards, etc) and cover other football positions, rather than
+just quarterbacks, to make the findings more generalizable. 
 
 # References {#sec-references}
 
